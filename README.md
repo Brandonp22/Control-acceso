@@ -10,3 +10,6 @@
  de Bibliotecas (Click derecho, agregar
  archivo Jar/Carpeta).
 
+=========Base de datos============
+Base de datos se encuentra alojada en
+dist/datos/ con el nombre de registro.db

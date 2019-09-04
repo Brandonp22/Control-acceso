@@ -31,58 +31,58 @@ public class Conexion
     {
         // con la funcion property obtenemos la ubcación del archivo ejecutable.
         String url= System.getProperty("user.dir");   
-    try
-    {     
-        // obtenemos acceso a la base de datos con el paquete de clases jdbc
-        /**
-         * JDBC significa Java Database Conection conjunto de librerias para conectase a base de datos
-         * 
-         */
-        
-        Class.forName("org.sqlite.JDBC");
-        
-        /*
-        cargamos la clase org.sqlite.jdbc esta linea de codigo es vital para el proceso
-        */
-        /*
-        Cargamos la conexion pasando la ruta de la base de datos
-        */
-        
-        con = DriverManager.getConnection("jdbc:sqlite:"+url+"/"+"Prueba.db");      
-        
-        /*
-        Validamos si la conexión es nula
-        */
-        
-        if (con!=null) 
-        {
-            // solo por temas de control mostramos el estado de la conexión
-            
-            System.out.println("Conectado");
+        try
+        {     
+            // obtenemos acceso a la base de datos con el paquete de clases jdbc
+            /**
+             * JDBC significa Java Database Conection conjunto de librerias para conectase a base de datos
+             * 
+             */
+
+            Class.forName("org.sqlite.JDBC");
+
+            /*
+            cargamos la clase org.sqlite.jdbc esta linea de codigo es vital para el proceso
+            */
+            /*
+            Cargamos la conexion pasando la ruta de la base de datos
+            */
+
+            con = DriverManager.getConnection("jdbc:sqlite:"+url+"/"+"Prueba.db");      
+
+            /*
+            Validamos si la conexión es nula
+            */
+
+            if (con!=null) 
+            {
+                // solo por temas de control mostramos el estado de la conexión
+
+                System.out.println("Conectado");
+            }
         }
-    }
     
-    // control de errores de tipo slq
-    catch (SQLException ex) 
+        // control de errores de tipo slq
+        catch (SQLException ex) 
         {
             // error de conexión mostrando el mensaje de error
             System.err.println("No se ha podido conectar a la base de datos\n"+ex.getMessage());
-             JOptionPane.showMessageDialog(null,"No se ha podido conectar a la base de datos"+ex.getMessage());
+            JOptionPane.showMessageDialog(null,"No se ha podido conectar a la base de datos"+ex.getMessage());
         }
-}
+    }
     /*
     Metodo publico para cerrar la base de datos
     */
- public void close(){
-     /*
-     lo cargamos en un try por temas de seguridad del cierre de la conexión
-     */   
-     try {
+    public void close(){
+        /*
+        lo cargamos en un try por temas de seguridad del cierre de la conexión
+        */   
+        try {
             con.close();
         } catch (SQLException ex) 
         {
             // trazas de aplicaciones y con la clase de excepción y el nivel de excepción.
-            
+
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -167,6 +167,9 @@ public class Conexion
 
 public void guardarPrueba(PruebaVisual pv)
 {
+ 
+            
+            
         try
         {
           if (con!=null) 

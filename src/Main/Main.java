@@ -3,7 +3,7 @@
 * Prueba No. 1 para control acceso biometrico UMG
 */
 
-package Controlador;
+package Main;
 
 import Modelo.Conexion;
 import Vistas.PruebaVisual;
