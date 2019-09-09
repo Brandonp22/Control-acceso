@@ -3,7 +3,7 @@
  */
 package Modelo;
 
-import Vistas.PruebaVisual;
+import Vista.PruebaVisual;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;

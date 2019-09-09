@@ -1,24 +1,22 @@
 
 /*
-* Prueba No. 1 para control acceso biometrico UMG
+* Programa para control de acceso biometrico
+* Proyecto Final de Programacion II UMG Zacapa 2019
 */
 
 package Main;
 
-import Modelo.Conexion;
-import Vistas.PruebaVisual;
+import Vista.InicioSesion;
+import Vista.Registro;
 
 public class Main {
     
     public static void main(String[] arg) throws ClassNotFoundException
     {
+        InicioSesion inicio = new InicioSesion();
+        inicio.setVisible(true);
+        //Registro registro = new Registro();
+        //registro.setVisible(true);
         
-        
-      Conexion con  = new Conexion();
-      con.conexion_db();
-      con.close();
-        
-      PruebaVisual pv=new PruebaVisual();
-      pv.setVisible(true);
     }  
 }

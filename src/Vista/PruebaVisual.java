@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package Vista;
 
 import Modelo.Conexion;
 import java.awt.HeadlessException;
@@ -130,7 +130,6 @@ public class PruebaVisual extends javax.swing.JFrame {
         jTextEdad.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jScrollPane2.setViewportView(jTextEdad);
 
-        TablaDatos.setBackground(new java.awt.Color(255, 255, 255));
         TablaDatos.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         TablaDatos.setForeground(new java.awt.Color(0, 0, 0));
         TablaDatos.setModel(new javax.swing.table.DefaultTableModel(
@@ -304,37 +303,7 @@ public class PruebaVisual extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PruebaVisual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PruebaVisual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PruebaVisual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PruebaVisual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PruebaVisual().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDatos;
