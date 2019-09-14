@@ -21,7 +21,7 @@ public class Usuario {
     
     private String nombre;
     private String apellido;
-    private int DPI;
+    private long DPI;
     private String userName;
     private String password;
     private byte huella[];
@@ -45,11 +45,11 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    public int getDPI() {
+    public long getDPI() {
         return DPI;
     }
 
-    public void setDPI(int DPI) {
+    public void setDPI(long DPI) {
         this.DPI = DPI;
     }
 

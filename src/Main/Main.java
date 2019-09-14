@@ -6,17 +6,19 @@
 
 package Main;
 
-import Vista.InicioSesion;
-import Vista.Registro;
+import Controlador.ControlRegistro;
+import Vista.FormInicioSesion;
+import Vista.FormRegistro;
 
 public class Main {
     
     public static void main(String[] arg) throws ClassNotFoundException
     {
-        InicioSesion inicio = new InicioSesion();
-        inicio.setVisible(true);
-        //Registro registro = new Registro();
-        //registro.setVisible(true);
+        //InicioSesion inicio = new InicioSesion();
+        //inicio.setVisible(true);
+        FormRegistro Vregistro = new FormRegistro();
+        Vregistro.setVisible(true);
+        ControlRegistro registro = new ControlRegistro(Vregistro);
         
     }  
 }
