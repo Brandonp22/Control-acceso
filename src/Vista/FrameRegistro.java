@@ -1,6 +1,10 @@
 
 package Vista;
 
+import com.sun.awt.AWTUtilities;
+import java.awt.Color;
+import java.awt.Shape;
+import java.awt.geom.RoundRectangle2D;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -8,14 +12,14 @@ import javax.swing.UIManager;
  *
  * @author Jaasiel Guerra
  */
-public class FormRegistro extends javax.swing.JFrame {
+public class FrameRegistro extends javax.swing.JFrame {
 
 
     CambiarPanel cambiar;
     public PnlRegCredenciales registroCred;
     public PnlRegHuella registroHue;
     
-    public FormRegistro() {
+    public FrameRegistro() {
         
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -24,13 +28,19 @@ public class FormRegistro extends javax.swing.JFrame {
             JOptionPane.ERROR_MESSAGE);
         }
 
-        
+        this.setUndecorated(true);
         initComponents();
-        this.setSize(340, 480);
+        this.setSize(480, 540);
         this.setLocationRelativeTo(null);
         this.registroCred = new PnlRegCredenciales();
         this.registroHue = new PnlRegHuella();        
         cambiar = new CambiarPanel(PnlCentral, registroCred);
+        
+        this.setBackground(new Color(38,50,56,1));
+        this.setOpacity(0.96f);
+        this.setLocationRelativeTo(null);
+        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 27, 27);
+        AWTUtilities.setWindowShape(this, forma);
         
     }
 
@@ -51,16 +61,26 @@ public class FormRegistro extends javax.swing.JFrame {
 
         PnlPrincipal.setLayout(new java.awt.BorderLayout());
 
+        PnlEncabezado.setBackground(new java.awt.Color(38, 50, 56));
         PnlEncabezado.setLayout(new java.awt.BorderLayout());
 
+        jLabel1.setBackground(new java.awt.Color(38, 50, 56));
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Registro");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/LogoRegistro.png"))); // NOI18N
         PnlEncabezado.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         PnlPrincipal.add(PnlEncabezado, java.awt.BorderLayout.PAGE_START);
 
-        BtnSiguiente.setText("Siguiente");
+        PnlInferior.setBackground(new java.awt.Color(38, 50, 56));
+
+        BtnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnSiguiente2.png"))); // NOI18N
+        BtnSiguiente.setBorder(null);
+        BtnSiguiente.setBorderPainted(false);
+        BtnSiguiente.setContentAreaFilled(false);
+        BtnSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnSiguiente.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnSiguiente3.png"))); // NOI18N
+        BtnSiguiente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnSiguiente1.png"))); // NOI18N
         BtnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSiguienteActionPerformed(evt);
@@ -72,20 +92,20 @@ public class FormRegistro extends javax.swing.JFrame {
         PnlInferiorLayout.setHorizontalGroup(
             PnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlInferiorLayout.createSequentialGroup()
-                .addContainerGap(254, Short.MAX_VALUE)
-                .addComponent(BtnSiguiente)
+                .addContainerGap(279, Short.MAX_VALUE)
+                .addComponent(BtnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         PnlInferiorLayout.setVerticalGroup(
             PnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnlInferiorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(BtnSiguiente)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(BtnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         PnlPrincipal.add(PnlInferior, java.awt.BorderLayout.PAGE_END);
 
+        PnlCentral.setBackground(new java.awt.Color(38, 50, 56));
         PnlCentral.setLayout(new java.awt.BorderLayout());
         PnlPrincipal.add(PnlCentral, java.awt.BorderLayout.CENTER);
 
@@ -95,9 +115,9 @@ public class FormRegistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSiguienteActionPerformed
-        
+
         cambiar = new CambiarPanel(PnlCentral, registroHue);
-        
+
     }//GEN-LAST:event_BtnSiguienteActionPerformed
 
 

@@ -19,14 +19,16 @@ public class PnlRegHuella extends javax.swing.JPanel {
         LblPasos = new javax.swing.JLabel();
         LblHuella = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(38, 50, 56));
         setLayout(new java.awt.BorderLayout());
 
         LblPasos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LblPasos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/paso0.png"))); // NOI18N
+        LblPasos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Paso0.png"))); // NOI18N
         add(LblPasos, java.awt.BorderLayout.PAGE_START);
 
+        LblHuella.setBackground(new java.awt.Color(38, 50, 56));
         LblHuella.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LblHuella.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/lector_conectado.png"))); // NOI18N
+        LblHuella.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/LectorConectado.png"))); // NOI18N
         add(LblHuella, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 

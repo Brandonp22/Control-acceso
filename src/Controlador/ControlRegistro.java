@@ -34,7 +34,7 @@ import javax.swing.border.*;
 //osea, los que tienen lugar cuando se produce una acción sobre un elemento del programa
 public class ControlRegistro extends javax.swing.JFrame implements ActionListener {
     
-   private Vista.FormRegistro formulario;//para recibir el formulario de vista
+   private Vista.FrameRegistro formulario;//para recibir el formulario de vista
    
    //Nos sirve para identificar al dispositivo
     private DPFPCapture Lector;
@@ -66,7 +66,7 @@ public class ControlRegistro extends javax.swing.JFrame implements ActionListene
 
    
    //Este constructor recibe como parametro el formulario de registro
-    public ControlRegistro(Vista.FormRegistro formulario) {
+    public ControlRegistro(Vista.FrameRegistro formulario) {
         
         this.formulario = formulario;
         this.formulario.BtnSiguiente.addActionListener(this);//activar eventos al boton

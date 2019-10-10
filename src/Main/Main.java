@@ -7,8 +7,8 @@
 package Main;
 
 import Controlador.ControlRegistro;
-import Vista.FormInicioSesion;
-import Vista.FormRegistro;
+import Vista.FrameInicioSesion;
+import Vista.FrameRegistro;
 
 public class Main {
     
@@ -16,9 +16,14 @@ public class Main {
     {
         //InicioSesion inicio = new InicioSesion();
         //inicio.setVisible(true);
-        FormRegistro Vregistro = new FormRegistro();
+        
+        
+        FrameRegistro Vregistro = new FrameRegistro();
         Vregistro.setVisible(true);
         ControlRegistro registro = new ControlRegistro(Vregistro);
         
+        
+        /*FrameInicioSesion Vregistro = new FrameInicioSesion();
+        Vregistro.setVisible(true);*/
     }  
 }

@@ -1,11 +1,18 @@
 
 package Vista;
 
+import com.sun.awt.AWTUtilities;
+import java.awt.Color;
+import java.awt.Shape;
+import java.awt.geom.RoundRectangle2D;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+
 /**
  *
  * @author Jaasiel Guerra
  */
-public class FormInicioSesion extends javax.swing.JFrame {
+public class FrameInicioSesion extends javax.swing.JFrame {
 
     CambiarPanel cambiar;
     public PnlCredenciales credenciales;
@@ -13,23 +20,27 @@ public class FormInicioSesion extends javax.swing.JFrame {
     boolean pulso = true;
     
     
-    public FormInicioSesion() {
+    public FrameInicioSesion() {
+         try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Imposible modificar el tema visual", "Lookandfeel inválido.",
+            JOptionPane.ERROR_MESSAGE);
+        }
+       
+        this.setUndecorated(true);
         initComponents();
-        
-        
-        /*Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        
-        int x = (dim.width/8)*2;
-        int y = (dim.height/8)*5;
-        
-        System.out.println("Tamanio Login: "+x+ "," + y);*/
-        
-        this.setSize(340,480);
+        this.setSize(480, 540);
         this.setLocationRelativeTo(null);
         this.credenciales = new PnlCredenciales();
-        this.huella = new PnlHuella();
-        cambiar = new CambiarPanel(this.Contenedor, huella);//cambiar panel
+        this.huella = new PnlHuella();       
+        cambiar = new CambiarPanel(this.PnlCentral, huella);
         
+        this.setBackground(new Color(38,50,56,1));
+        this.setOpacity(0.96f);
+        this.setLocationRelativeTo(null);
+        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 27, 27);
+        AWTUtilities.setWindowShape(this, forma);
         
     }
 
@@ -40,28 +51,39 @@ public class FormInicioSesion extends javax.swing.JFrame {
         PanelPrincipal = new javax.swing.JPanel();
         Encabezado = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        Contenedor = new javax.swing.JPanel();
+        PnlCentral = new javax.swing.JPanel();
         PnlInferior = new javax.swing.JPanel();
         btnAccesoAlter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        PanelPrincipal.setBackground(new java.awt.Color(38, 50, 56));
         PanelPrincipal.setLayout(new java.awt.BorderLayout());
 
+        Encabezado.setBackground(new java.awt.Color(38, 50, 56));
         Encabezado.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Control de Acceso");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/LogoControlAcceso.png"))); // NOI18N
         Encabezado.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         PanelPrincipal.add(Encabezado, java.awt.BorderLayout.PAGE_START);
 
-        Contenedor.setLayout(new java.awt.BorderLayout());
-        PanelPrincipal.add(Contenedor, java.awt.BorderLayout.CENTER);
+        PnlCentral.setBackground(new java.awt.Color(38, 50, 56));
+        PnlCentral.setLayout(new java.awt.BorderLayout());
+        PanelPrincipal.add(PnlCentral, java.awt.BorderLayout.CENTER);
 
-        btnAccesoAlter.setText("Acceso Alternativo");
+        PnlInferior.setBackground(new java.awt.Color(38, 50, 56));
+
+        btnAccesoAlter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlternativo2.png"))); // NOI18N
+        btnAccesoAlter.setBorder(null);
+        btnAccesoAlter.setBorderPainted(false);
+        btnAccesoAlter.setContentAreaFilled(false);
+        btnAccesoAlter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAccesoAlter.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlternativo3.png"))); // NOI18N
+        btnAccesoAlter.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlternativo1.png"))); // NOI18N
         btnAccesoAlter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAccesoAlterActionPerformed(evt);
@@ -73,7 +95,7 @@ public class FormInicioSesion extends javax.swing.JFrame {
         PnlInferiorLayout.setHorizontalGroup(
             PnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlInferiorLayout.createSequentialGroup()
-                .addContainerGap(207, Short.MAX_VALUE)
+                .addContainerGap(339, Short.MAX_VALUE)
                 .addComponent(btnAccesoAlter)
                 .addContainerGap())
         );
@@ -96,12 +118,12 @@ public class FormInicioSesion extends javax.swing.JFrame {
         //boton acceso alternativo
         
         if(pulso){
-            cambiar = new CambiarPanel(this.Contenedor, credenciales);
-            this.btnAccesoAlter.setText("<= Regresar");
+            cambiar = new CambiarPanel(this.PnlCentral, credenciales);
+            //this.btnAccesoAlter.setText("<= Regresar");
             pulso = false;
         }else{
-            cambiar = new CambiarPanel(this.Contenedor, huella);
-            this.btnAccesoAlter.setText("Acceso Alternativo");
+            cambiar = new CambiarPanel(this.PnlCentral, huella);
+            //this.btnAccesoAlter.setText("Acceso Alternativo");
             pulso = true;
         }
         
@@ -109,9 +131,9 @@ public class FormInicioSesion extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Contenedor;
     private javax.swing.JPanel Encabezado;
     private javax.swing.JPanel PanelPrincipal;
+    private javax.swing.JPanel PnlCentral;
     private javax.swing.JPanel PnlInferior;
     private javax.swing.JButton btnAccesoAlter;
     private javax.swing.JLabel jLabel1;
