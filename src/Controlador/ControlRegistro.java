@@ -205,7 +205,7 @@ public class ControlRegistro extends javax.swing.JFrame implements ActionListene
     public boolean GuardarHuellaDB()
     {
         boolean resultado = false;
-        Conexion con = new Conexion("registro");
+        Conexion con = new Conexion("datos/registro");
         ClaseInsertar insertar = new ClaseInsertar(con.conectar(),"Usuarios");
         Usuario user = new Usuario();
         
@@ -219,15 +219,15 @@ public class ControlRegistro extends javax.swing.JFrame implements ActionListene
         user.setHuella(huellaByte);
         user.setPrivilegio("Admin");
         
-        insertar.agregar("nombre", user.getNombre(), "S");
-        insertar.agregar("apellidos", user.getApellido(), "S");
-        insertar.agregar("dpi", user.getDPI(), "L");
-        insertar.agregar("username", user.getUserName(), "S");
-        insertar.agregar("password", user.getPassword(), "S");
-        insertar.agregar("huella", user.getHuella(),"B");
-        insertar.agregar("privilegio", user.getPrivilegio(), "S");
+        insertar.agregarValor("nombre", user.getNombre(), "S");
+        insertar.agregarValor("apellidos", user.getApellido(), "S");
+        insertar.agregarValor("dpi", user.getDPI(), "L");
+        insertar.agregarValor("username", user.getUserName(), "S");
+        insertar.agregarValor("password", user.getPassword(), "S");
+        insertar.agregarValor("huella", user.getHuella(),"B");
+        insertar.agregarValor("privilegio", user.getPrivilegio(), "S");
         
-        if(insertar.ejecutar())
+        if(insertar.ejecutarSQL())
             resultado = true;
        
         return resultado;
