@@ -15,7 +15,6 @@ public class Usuario {
         this.huella = null;
         this.privilegio = "";
         this.area = "";
-        
     }
    
     
@@ -25,6 +24,15 @@ public class Usuario {
     private String userName;
     private String password;
     private byte huella[];
+    private byte[] foto;
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
     private String privilegio;
     private String area;
 

@@ -32,8 +32,8 @@ public class PnlBarraBotones extends javax.swing.JPanel {
         btnEmpleado = new javax.swing.JButton();
         btnAreaTrabajo = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        btnHistorial1 = new javax.swing.JButton();
-        btnImprimir1 = new javax.swing.JButton();
+        btnHistorial = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
         btnAddUser = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
@@ -87,27 +87,27 @@ public class PnlBarraBotones extends javax.swing.JPanel {
             .addGap(0, 15, Short.MAX_VALUE)
         );
 
-        btnHistorial1.setBackground(new java.awt.Color(51, 51, 51));
-        btnHistorial1.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        btnHistorial1.setForeground(new java.awt.Color(255, 255, 255));
-        btnHistorial1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Historial2.png"))); // NOI18N
-        btnHistorial1.setBorder(null);
-        btnHistorial1.setBorderPainted(false);
-        btnHistorial1.setContentAreaFilled(false);
-        btnHistorial1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnHistorial1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Historial3.png"))); // NOI18N
-        btnHistorial1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Historial1.png"))); // NOI18N
+        btnHistorial.setBackground(new java.awt.Color(51, 51, 51));
+        btnHistorial.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        btnHistorial.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Historial2.png"))); // NOI18N
+        btnHistorial.setBorder(null);
+        btnHistorial.setBorderPainted(false);
+        btnHistorial.setContentAreaFilled(false);
+        btnHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHistorial.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Historial3.png"))); // NOI18N
+        btnHistorial.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Historial1.png"))); // NOI18N
 
-        btnImprimir1.setBackground(new java.awt.Color(51, 51, 51));
-        btnImprimir1.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        btnImprimir1.setForeground(new java.awt.Color(255, 255, 255));
-        btnImprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Imprimir2.png"))); // NOI18N
-        btnImprimir1.setBorder(null);
-        btnImprimir1.setBorderPainted(false);
-        btnImprimir1.setContentAreaFilled(false);
-        btnImprimir1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnImprimir1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Imprimir3.png"))); // NOI18N
-        btnImprimir1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Imprimir1.png"))); // NOI18N
+        btnImprimir.setBackground(new java.awt.Color(51, 51, 51));
+        btnImprimir.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        btnImprimir.setForeground(new java.awt.Color(255, 255, 255));
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Imprimir2.png"))); // NOI18N
+        btnImprimir.setBorder(null);
+        btnImprimir.setBorderPainted(false);
+        btnImprimir.setContentAreaFilled(false);
+        btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnImprimir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Imprimir3.png"))); // NOI18N
+        btnImprimir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Imprimir1.png"))); // NOI18N
 
         btnAddUser.setBackground(new java.awt.Color(51, 51, 51));
         btnAddUser.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
@@ -136,9 +136,9 @@ public class PnlBarraBotones extends javax.swing.JPanel {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBarraBotonesLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                        .addComponent(btnHistorial1)
+                        .addComponent(btnHistorial)
                         .addGap(46, 46, 46)
-                        .addComponent(btnImprimir1)
+                        .addComponent(btnImprimir)
                         .addGap(46, 46, 46)
                         .addComponent(btnAddUser)
                         .addGap(35, 35, 35))))
@@ -152,8 +152,8 @@ public class PnlBarraBotones extends javax.swing.JPanel {
                     .addComponent(btnAdmin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelBarraBotonesLayout.createSequentialGroup()
                         .addGroup(panelBarraBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnHistorial1)
-                            .addComponent(btnImprimir1)
+                            .addComponent(btnHistorial)
+                            .addComponent(btnImprimir)
                             .addComponent(btnAddUser))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -174,12 +174,12 @@ public class PnlBarraBotones extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddUser;
-    private javax.swing.JButton btnAdmin;
-    private javax.swing.JButton btnAreaTrabajo;
-    private javax.swing.JButton btnEmpleado;
-    private javax.swing.JButton btnHistorial1;
-    private javax.swing.JButton btnImprimir1;
+    public javax.swing.JButton btnAddUser;
+    public javax.swing.JButton btnAdmin;
+    public javax.swing.JButton btnAreaTrabajo;
+    public javax.swing.JButton btnEmpleado;
+    public javax.swing.JButton btnHistorial;
+    public javax.swing.JButton btnImprimir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelBarraBotones;
     // End of variables declaration//GEN-END:variables

@@ -5,8 +5,7 @@ import com.sun.awt.AWTUtilities;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
+
 
 /**
  *
@@ -15,30 +14,20 @@ import javax.swing.UIManager;
 public class FrameRegistro extends javax.swing.JFrame {
 
 
-    CambiarPanel cambiar;
-    public PnlRegCredenciales registroCred;
-    public PnlRegHuella registroHue;
+    
     
     public FrameRegistro() {
         
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Imposible modificar el tema visual", "Lookandfeel inválido.",
-            JOptionPane.ERROR_MESSAGE);
-        }
-
+        
+        
         this.setUndecorated(true);
+        
         initComponents();
+                
         this.setSize(480, 540);
-        this.setLocationRelativeTo(null);
-        this.registroCred = new PnlRegCredenciales();
-        this.registroHue = new PnlRegHuella();        
-        cambiar = new CambiarPanel(PnlCentral, registroCred);
         
         this.setBackground(new Color(38,50,56,1));
         this.setOpacity(0.96f);
-        this.setLocationRelativeTo(null);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 27, 27);
         AWTUtilities.setWindowShape(this, forma);
         
@@ -81,11 +70,6 @@ public class FrameRegistro extends javax.swing.JFrame {
         BtnSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnSiguiente.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnSiguiente3.png"))); // NOI18N
         BtnSiguiente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnSiguiente1.png"))); // NOI18N
-        BtnSiguiente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSiguienteActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout PnlInferiorLayout = new javax.swing.GroupLayout(PnlInferior);
         PnlInferior.setLayout(PnlInferiorLayout);
@@ -113,12 +97,6 @@ public class FrameRegistro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BtnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSiguienteActionPerformed
-
-        cambiar = new CambiarPanel(PnlCentral, registroHue);
-
-    }//GEN-LAST:event_BtnSiguienteActionPerformed
 
 
 

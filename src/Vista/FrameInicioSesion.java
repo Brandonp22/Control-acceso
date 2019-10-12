@@ -5,8 +5,6 @@ import com.sun.awt.AWTUtilities;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 
 /**
  *
@@ -14,31 +12,16 @@ import javax.swing.UIManager;
  */
 public class FrameInicioSesion extends javax.swing.JFrame {
 
-    CambiarPanel cambiar;
-    public PnlCredenciales credenciales;
-    public PnlHuella huella;
-    boolean pulso = true;
-    
     
     public FrameInicioSesion() {
-         try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Imposible modificar el tema visual", "Lookandfeel inválido.",
-            JOptionPane.ERROR_MESSAGE);
-        }
-       
+                
         this.setUndecorated(true);
         initComponents();
         this.setSize(480, 540);
-        this.setLocationRelativeTo(null);
-        this.credenciales = new PnlCredenciales();
-        this.huella = new PnlHuella();       
-        cambiar = new CambiarPanel(this.PnlCentral, huella);
         
         this.setBackground(new Color(38,50,56,1));
         this.setOpacity(0.96f);
-        this.setLocationRelativeTo(null);
+        
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 27, 27);
         AWTUtilities.setWindowShape(this, forma);
         
@@ -54,6 +37,7 @@ public class FrameInicioSesion extends javax.swing.JFrame {
         PnlCentral = new javax.swing.JPanel();
         PnlInferior = new javax.swing.JPanel();
         btnAccesoAlter = new javax.swing.JButton();
+        BtnAccesoSistema = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -84,18 +68,23 @@ public class FrameInicioSesion extends javax.swing.JFrame {
         btnAccesoAlter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAccesoAlter.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlternativo3.png"))); // NOI18N
         btnAccesoAlter.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlternativo1.png"))); // NOI18N
-        btnAccesoAlter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAccesoAlterActionPerformed(evt);
-            }
-        });
+
+        BtnAccesoSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlSistema2.png"))); // NOI18N
+        BtnAccesoSistema.setBorder(null);
+        BtnAccesoSistema.setBorderPainted(false);
+        BtnAccesoSistema.setContentAreaFilled(false);
+        BtnAccesoSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnAccesoSistema.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlSistema3.png"))); // NOI18N
+        BtnAccesoSistema.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlSistema1.png"))); // NOI18N
 
         javax.swing.GroupLayout PnlInferiorLayout = new javax.swing.GroupLayout(PnlInferior);
         PnlInferior.setLayout(PnlInferiorLayout);
         PnlInferiorLayout.setHorizontalGroup(
             PnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlInferiorLayout.createSequentialGroup()
-                .addContainerGap(339, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addComponent(BtnAccesoSistema)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
                 .addComponent(btnAccesoAlter)
                 .addContainerGap())
         );
@@ -103,7 +92,9 @@ public class FrameInicioSesion extends javax.swing.JFrame {
             PnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlInferiorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAccesoAlter)
+                .addGroup(PnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(BtnAccesoSistema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAccesoAlter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -114,28 +105,14 @@ public class FrameInicioSesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAccesoAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccesoAlterActionPerformed
-        //boton acceso alternativo
-        
-        if(pulso){
-            cambiar = new CambiarPanel(this.PnlCentral, credenciales);
-            //this.btnAccesoAlter.setText("<= Regresar");
-            pulso = false;
-        }else{
-            cambiar = new CambiarPanel(this.PnlCentral, huella);
-            //this.btnAccesoAlter.setText("Acceso Alternativo");
-            pulso = true;
-        }
-        
-    }//GEN-LAST:event_btnAccesoAlterActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton BtnAccesoSistema;
     private javax.swing.JPanel Encabezado;
     private javax.swing.JPanel PanelPrincipal;
-    private javax.swing.JPanel PnlCentral;
+    public javax.swing.JPanel PnlCentral;
     private javax.swing.JPanel PnlInferior;
-    private javax.swing.JButton btnAccesoAlter;
+    public javax.swing.JButton btnAccesoAlter;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

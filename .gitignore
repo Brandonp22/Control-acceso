@@ -1,17 +1,27 @@
+# ignorar todos estas carpetas
+
+build/
+nbproject/private/
+test/
+dist/
+
+
+# ignora todo estos archivos
+
+build.xml
+manifest.mf
+*.sql
+
 # archivos compilados
+
 *.class
 
-# archivos de log
+# historial archivos
+
 *.log
 
-# Archivos BlueJ
-*.ctxt
+# paquetes
 
-# herramientas movil para Java (J2ME)
-.mtj.tmp/
-
-# archivos de paquetes
-*.jar
 *.war
 *.nar
 *.ear
@@ -19,8 +29,6 @@
 *.tar.gz
 *.rar
 
-# maquina virtual crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-nbproject/private/*
-build/*
-dist/*
+# bitacora de errores maquina virutal
+
+hr_err_pid*

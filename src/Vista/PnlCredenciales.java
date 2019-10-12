@@ -12,12 +12,12 @@ public class PnlCredenciales extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        BtbEntrar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtUser = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(38, 50, 56));
@@ -28,9 +28,16 @@ public class PnlCredenciales extends javax.swing.JPanel {
         jLabel1.setText("INGRESE SUS CREDENCIALES");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(33, 33, 33));
-        jButton2.setText("Entrar");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 190, 30));
+        BtbEntrar.setBackground(new java.awt.Color(33, 33, 33));
+        BtbEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnIniciarSesion2.png"))); // NOI18N
+        BtbEntrar.setBorder(null);
+        BtbEntrar.setBorderPainted(false);
+        BtbEntrar.setContentAreaFilled(false);
+        BtbEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtbEntrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnIniciarSesion3.png"))); // NOI18N
+        BtbEntrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnIniciarSesion1.png"))); // NOI18N
+        BtbEntrar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnIniciarSesion1.png"))); // NOI18N
+        add(BtbEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 190, 30));
 
         jPanel1.setBackground(new java.awt.Color(215, 217, 227));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -49,11 +56,10 @@ public class PnlCredenciales extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(215, 217, 227));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPasswordField1.setBackground(new java.awt.Color(215, 217, 227));
-        jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
-        jPasswordField1.setBorder(null);
-        jPasswordField1.setOpaque(false);
-        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 160, 30));
+        txtPassword.setBackground(new java.awt.Color(215, 217, 227));
+        txtPassword.setBorder(null);
+        txtPassword.setOpaque(false);
+        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 160, 30));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Pass.png"))); // NOI18N
@@ -64,13 +70,13 @@ public class PnlCredenciales extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    public javax.swing.JButton BtbEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField txtUser;
+    public javax.swing.JPasswordField txtPassword;
+    public javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }
