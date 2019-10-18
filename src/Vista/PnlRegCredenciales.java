@@ -1,6 +1,9 @@
 
 package Vista;
 
+import java.awt.Color;
+import java.awt.Font;
+
 /**
  *
  * @author Jaasiel Guerra
@@ -9,6 +12,32 @@ public class PnlRegCredenciales extends javax.swing.JPanel {
 
     public PnlRegCredenciales() {
         initComponents();  
+        
+        TextPrompt nombre = new TextPrompt("Nombre", TxtNombre);
+        nombre.setForeground(new Color(117,117,117 ,1));
+        nombre.changeAlpha(0.8f);
+        nombre.changeStyle(Font.ITALIC);
+        
+        TextPrompt apellido = new TextPrompt("Apellido", TxtApellido);
+        apellido.setForeground(new Color(117,117,117 ,1));
+        apellido.changeAlpha(0.8f);
+        apellido.changeStyle(Font.ITALIC);
+        
+        TextPrompt dpi = new TextPrompt("DPI", IntDPI);
+        dpi.setForeground(new Color(117,117,117 ,1));
+        dpi.changeAlpha(0.8f);
+        dpi.changeStyle(Font.ITALIC);
+        
+        TextPrompt user = new TextPrompt("Usuario", TxtUsuario);
+        user.setForeground(new Color(117,117,117 ,1));
+        user.changeAlpha(0.8f);
+        user.changeStyle(Font.ITALIC);
+        
+        TextPrompt pass = new TextPrompt("Contraseña", TxtPassword);
+        pass.setForeground(new Color(117,117,117 ,1));
+        pass.changeAlpha(0.8f);
+        pass.changeStyle(Font.ITALIC);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -17,16 +46,11 @@ public class PnlRegCredenciales extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         TxtNombre = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         TxtApellido = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         IntDPI = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         TxtUsuario = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        TxtContra = new javax.swing.JTextField();
+        TxtPassword = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(38, 50, 56));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -36,30 +60,15 @@ public class PnlRegCredenciales extends javax.swing.JPanel {
 
         TxtNombre.setBackground(new java.awt.Color(215, 217, 227));
         TxtNombre.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Nombre :");
-
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Apellido :");
+        TxtNombre.setBorder(null);
 
         TxtApellido.setBackground(new java.awt.Color(215, 217, 227));
         TxtApellido.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("DPI :");
+        TxtApellido.setBorder(null);
 
         IntDPI.setBackground(new java.awt.Color(215, 217, 227));
         IntDPI.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        IntDPI.setBorder(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -68,32 +77,21 @@ public class PnlRegCredenciales extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(IntDPI)
+                    .addComponent(IntDPI, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
                     .addComponent(TxtNombre)
-                    .addComponent(TxtApellido)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(0, 367, Short.MAX_VALUE)))
+                    .addComponent(TxtApellido))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(30, 30, 30)
                 .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(36, 36, 36)
                 .addComponent(TxtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(36, 36, 36)
                 .addComponent(IntDPI, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 460, 230));
@@ -101,28 +99,13 @@ public class PnlRegCredenciales extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(38, 50, 56));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 1, 12), new java.awt.Color(97, 203, 255))); // NOI18N
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Usuario :");
-
         TxtUsuario.setBackground(new java.awt.Color(215, 217, 227));
         TxtUsuario.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        TxtUsuario.setBorder(null);
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Contraseña :");
-
-        TxtContra.setBackground(new java.awt.Color(215, 217, 227));
-        TxtContra.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtContra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtContraActionPerformed(evt);
-            }
-        });
+        TxtPassword.setBackground(new java.awt.Color(215, 217, 227));
+        TxtPassword.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        TxtPassword.setBorder(null);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -131,47 +114,30 @@ public class PnlRegCredenciales extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtUsuario)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(0, 346, Short.MAX_VALUE))
-                    .addComponent(TxtContra))
+                    .addComponent(TxtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                    .addComponent(TxtUsuario))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(30, 30, 30)
                 .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(TxtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 7, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 460, 160));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 460, 170));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TxtContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtContraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtContraActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField IntDPI;
     public javax.swing.JTextField TxtApellido;
-    public javax.swing.JTextField TxtContra;
     public javax.swing.JTextField TxtNombre;
+    public javax.swing.JPasswordField TxtPassword;
     public javax.swing.JTextField TxtUsuario;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

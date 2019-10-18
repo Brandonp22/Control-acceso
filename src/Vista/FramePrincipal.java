@@ -27,15 +27,16 @@ public class FramePrincipal extends javax.swing.JFrame {
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 27, 27);
         AWTUtilities.setWindowShape(this, forma);
 
-        /*
-        PnlBarraBotones bbtn = new PnlBarraBotones();
+        
+        
+        /*PnlTablaDatos bbtn = new PnlTablaDatos();
         bbtn.setSize(900, 77);
         bbtn.setLocation(0, 1);
-        panelBarra.removeAll();
-        panelBarra.add(bbtn, BorderLayout.CENTER);
-        panelBarra.revalidate();
-        panelBarra.repaint();
-        */
+        panelContenedor.removeAll();
+        panelContenedor.add(bbtn, BorderLayout.CENTER);
+        panelContenedor.revalidate();
+        panelContenedor.repaint();*/
+        
     }
 
     /**
@@ -51,6 +52,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         LblPrivilegio = new javax.swing.JLabel();
         panelBarra = new javax.swing.JPanel();
         btnLogout = new javax.swing.JButton();
+        panelContenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -86,16 +88,25 @@ public class FramePrincipal extends javax.swing.JFrame {
         btnLogout.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/LogOut3.png"))); // NOI18N
         btnLogout.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/LogOut1.png"))); // NOI18N
 
+        panelContenedor.setBackground(new java.awt.Color(38, 50, 56));
+        panelContenedor.setLayout(new java.awt.BorderLayout());
+
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
         panelFondoLayout.setHorizontalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelBarra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelFondoLayout.createSequentialGroup()
-                .addComponent(LblPrivilegio)
-                .addGap(39, 39, 39)
-                .addComponent(btnLogout)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFondoLayout.createSequentialGroup()
+                        .addComponent(LblPrivilegio)
+                        .addGap(39, 39, 39)
+                        .addComponent(btnLogout)
+                        .addGap(0, 39, Short.MAX_VALUE))
+                    .addGroup(panelFondoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panelFondoLayout.setVerticalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +120,9 @@ public class FramePrincipal extends javax.swing.JFrame {
                         .addComponent(btnLogout)))
                 .addGap(18, 18, 18)
                 .addComponent(panelBarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(592, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(panelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(632, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,9 +133,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -145,6 +156,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public javax.swing.JLabel LblPrivilegio;
     public javax.swing.JButton btnLogout;
     public javax.swing.JPanel panelBarra;
+    private javax.swing.JPanel panelContenedor;
     private javax.swing.JPanel panelFondo;
     // End of variables declaration//GEN-END:variables
 }
