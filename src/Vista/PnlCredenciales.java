@@ -1,10 +1,23 @@
 
 package Vista;
 
+import java.awt.Color;
+import java.awt.Font;
+
 public class PnlCredenciales extends javax.swing.JPanel {
 
     public PnlCredenciales() {
         initComponents();
+        
+        TextPrompt user = new TextPrompt("Usuario", txtUser);
+        user.setForeground(new Color(117,117,117 ,1));
+        user.changeAlpha(0.8f);
+        user.changeStyle(Font.ITALIC);
+        
+        TextPrompt pass = new TextPrompt("Contraseña", txtPassword);
+        pass.setForeground(new Color(117,117,117 ,1));
+        pass.changeAlpha(0.8f);
+        pass.changeStyle(Font.ITALIC);   
     }
 
     @SuppressWarnings("unchecked")
@@ -43,6 +56,7 @@ public class PnlCredenciales extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtUser.setBackground(new java.awt.Color(215, 217, 227));
+        txtUser.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txtUser.setBorder(null);
         txtUser.setOpaque(false);
         jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 160, 30));
@@ -57,6 +71,7 @@ public class PnlCredenciales extends javax.swing.JPanel {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtPassword.setBackground(new java.awt.Color(215, 217, 227));
+        txtPassword.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txtPassword.setBorder(null);
         txtPassword.setOpaque(false);
         jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 160, 30));

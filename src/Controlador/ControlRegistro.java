@@ -257,7 +257,7 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
                     || pnlCredenciales.TxtApellido.getText().isEmpty()
                     || pnlCredenciales.IntDPI.getText().isEmpty()
                     || pnlCredenciales.TxtUsuario.getText().isEmpty()
-                    || pnlCredenciales.TxtContra.getText().isEmpty()) {
+                    || pnlCredenciales.TxtPassword.getText().isEmpty()) {
 
                 JOptionPane.showMessageDialog(this, "Por favor complete el formulario.",
                         "Control Acceso", JOptionPane.INFORMATION_MESSAGE);
@@ -269,7 +269,7 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
                 user.setApellido(pnlCredenciales.TxtApellido.getText());
                 user.setDPI(Long.parseLong(pnlCredenciales.IntDPI.getText()));
                 user.setUserName(pnlCredenciales.TxtUsuario.getText());
-                user.setPassword(pnlCredenciales.TxtContra.getText());
+                user.setPassword(pnlCredenciales.TxtPassword.getText());
                 user.setPrivilegio("Admin");
 
                 //cambiar a panel de huella
