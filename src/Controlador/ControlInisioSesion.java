@@ -6,7 +6,7 @@ package Controlador;
 
 import Modelo.ClaseConsultar;
 import Modelo.Conexion;
-import Modelo.Usuario;
+import Modelo.Personal;
 import Vista.FramePrincipal;
 import Vista.FrameInicioSesion;
 import Vista.PnlBarraBotones;
@@ -37,7 +37,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
     private boolean pulso = true;//para el pulso del boton acceso alternativo
 
     //encapsulamiento de datos de usuario
-    private Usuario user = null;
+    private Personal personal = null;
 
     public ControlInisioSesion() {
         super();//llamar al constructor de la clase padre
@@ -45,11 +45,11 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
         this.formulario = new FrameInicioSesion();
         this.pnlCredenciales = new PnlCredenciales();
         this.pnlHuella = new PnlHuella();
-        this.user = new Usuario();
+        this.personal = new Personal();
 
         this.pnlHuella.TxtNombreUsuario.setText("- - - -");//poner texto inicial
         this.pnlHuella.LblHuella.setIcon(new ImageIcon(getClass()
-                            .getResource("/Img/Huella.png")));
+                .getResource("/Img/Huella.png")));
 
         this.formulario.btnAccesoAlter.addActionListener(this);
         this.formulario.BtnAccesoSistema.addActionListener(this);
@@ -159,9 +159,12 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
                 DPFPDataPurpose.DATA_PURPOSE_VERIFICATION);
 
         Conexion conectar = new Conexion("datos/registro");
-        ClaseConsultar consulta = new ClaseConsultar(conectar.conectar(), "Usuarios");
+        
+        
+        ClaseConsultar consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Empleados");
 
-        consulta.consultar("*");//obtener todos los datos de la BD
+        consulta.consultar("Usuarios.DPI, Usuarios.Privilegio, Usuarios.Huella, Empleados.Nombre, "
+                + "Empleados.Apellidos", "Usuarios.DPI", "=", "Empleados.Usuarios_DPI");
 
         try {
 
@@ -169,15 +172,19 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
                 //compara la plantilla capturada actualmente (Plantilla vs huella en la BD)
                 if (verificarHuella(featureSetVerificacion, consulta.getResultadoConsulta()
-                        .getBytes("huella"))) {//si se encontro entra aca
+                        .getBytes("Huella"))) {//si se encontro entra aca
 
-                    System.out.println("La huella es de: " + consulta.getResultadoConsulta()
-                            .getString("nombre"));
+                    //rellenar los datos
+                    this.personal.setDPI(consulta.getResultadoConsulta().getLong("DPI"));
+                    this.personal.setPrivilegio(consulta.getResultadoConsulta().getString("Privilegio"));
+                    this.personal.setNombre(consulta.getResultadoConsulta().getString("Nombre"));
+                    this.personal.setApellidos(consulta.getResultadoConsulta().getString("Apellidos"));
+
+                    System.out.println("La huella es de: " + personal.getNombre());
 
                     //pone nombre del usuario en la vista
-                    this.pnlHuella.TxtNombreUsuario.setText(consulta.getResultadoConsulta()
-                            .getString("nombre") + " " + consulta.getResultadoConsulta()
-                            .getString("apellidos"));
+                    this.pnlHuella.TxtNombreUsuario.setText(personal.getNombre() + " "
+                            + personal.getApellidos());
 
                     //poner imagen 
                     this.pnlHuella.LblHuella.setIcon(new ImageIcon(getClass()
@@ -187,23 +194,61 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
                     this.formulario.btnAccesoAlter.setEnabled(false);//desactivar el boton
 
-                    if (consulta.getResultadoConsulta().getString("privilegio").equals("Admin")
-                            || consulta.getResultadoConsulta().getString("privilegio").equals("Propietario")) {
+                    if (personal.getPrivilegio().equals("Admin")) {
 
-                        //el boton de acceso se activa solo si es admin o propietario
+                        //el boton de acceso se activa solo si es admin
                         this.formulario.BtnAccesoSistema.setVisible(true);
                     }
 
-                    //lenar el usuario con los datos
-                    user.setNombre(consulta.getResultadoConsulta().getString("nombre"));
-                    user.setApellido(consulta.getResultadoConsulta().getString("apellidos"));
-                    user.setDPI(consulta.getResultadoConsulta().getInt("dpi"));
-                    user.setUserName(consulta.getResultadoConsulta().getString("username"));
-                    user.setPassword(consulta.getResultadoConsulta().getString("password"));
-                    user.setHuella(consulta.getResultadoConsulta().getBytes("huella"));
-                    user.setPrivilegio(consulta.getResultadoConsulta().getString("privilegio"));
+                    return;//romper el ciclo y retorna
 
-                    break;//romper el ciclo
+                } else {
+
+                    System.out.println("No se encuentra la huella");
+                    //poner imagen 
+                    this.pnlHuella.LblHuella.setIcon(new ImageIcon(getClass()
+                            .getResource("/Img/HuellaDesconocida.png")));
+                    this.pnlHuella.TxtNombreUsuario.setText("- - - -");
+
+                }
+            }
+
+            //si no se encuentran datos que coincidan, entonces llega hasta aca
+            consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Propietarios");
+
+            consulta.consultar("Usuarios.DPI, Usuarios.Privilegio, Usuarios.Huella, Propietarios.Nombre, "
+                    + "Propietarios.Apellidos", "Usuarios.DPI", "=", "Propietarios.Usuarios_DPI");//obtener 
+
+            while (consulta.getResultadoConsulta().next()) {//iterear en cada resultado
+                
+                //compara la plantilla capturada actualmente (Plantilla vs huella en la BD)
+                if (verificarHuella(featureSetVerificacion, consulta.getResultadoConsulta()
+                        .getBytes("Huella"))) {//si se encontro entra aca
+
+                    //rellenar los datos
+                    this.personal.setDPI(consulta.getResultadoConsulta().getLong("DPI"));
+                    this.personal.setPrivilegio(consulta.getResultadoConsulta().getString("Privilegio"));
+                    this.personal.setNombre(consulta.getResultadoConsulta().getString("Nombre"));
+                    this.personal.setApellidos(consulta.getResultadoConsulta().getString("Apellidos"));
+                    
+                    System.out.println("La huella es de: " + personal.getNombre());
+
+                    //pone nombre del usuario en la vista
+                    this.pnlHuella.TxtNombreUsuario.setText(personal.getNombre() + " "
+                            + personal.getApellidos());
+
+                    //poner imagen 
+                    this.pnlHuella.LblHuella.setIcon(new ImageIcon(getClass()
+                            .getResource("/Img/HuellaReconocida.png")));
+
+                    super.stop();//detener el lector
+
+                    this.formulario.btnAccesoAlter.setEnabled(false);//desactivar el boton
+
+                    //se activa boton de acceso al sistema
+                    this.formulario.BtnAccesoSistema.setVisible(true);
+
+                    return;//romper el ciclo y retorna
 
                 } else {
 
@@ -227,39 +272,68 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
     private void identificarCredenciales() {
 
         Conexion conectar = new Conexion("datos/registro");
-        ClaseConsultar consulta = new ClaseConsultar(conectar.conectar(), "Usuarios");
+        ClaseConsultar consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Empleados");
 
-        consulta.consultar("*");//obtener todo de la tabla
+        consulta.consultar("Usuarios.DPI, Usuarios.NombreUsuario, Usuarios.Contrasenia,"
+                + "Usuarios.Privilegio, Empleados.Nombre, Empleados.Apellidos");//obtener todo esto de la tabla
 
         try {
 
             while (consulta.getResultadoConsulta().next())//recorrer los datos
             {
-                if (consulta.getResultadoConsulta().getString("username")
+                if (consulta.getResultadoConsulta().getString("NombreUsuario")
                         .equals(pnlCredenciales.txtUser.getText())
-                        && consulta.getResultadoConsulta().getString("password")
+                        && consulta.getResultadoConsulta().getString("Contrasenia")
                                 .equals(pnlCredenciales.txtPassword.getText())) {
 
                     System.out.println("Acceso concedido");
-                    this.formulario.btnAccesoAlter.setEnabled(false);//desactivar el boton
 
-                    if (consulta.getResultadoConsulta().getString("privilegio").equals("Admin")
-                            || consulta.getResultadoConsulta().getString("privilegio").equals("Propietario")) {
+                    //rellenar los datos
+                    this.personal.setDPI(consulta.getResultadoConsulta().getLong("DPI"));
+                    this.personal.setPrivilegio(consulta.getResultadoConsulta().getString("Privilegio"));
+                    this.personal.setNombre(consulta.getResultadoConsulta().getString("Nombre"));
+                    this.personal.setApellidos(consulta.getResultadoConsulta().getString("Apellidos"));
 
-                        //el boton de acceso se activa solo si es admin o propietario
+                    this.formulario.btnAccesoAlter.setEnabled(false);//desactivar el boton acceso alternativo
+
+                    if (personal.getPrivilegio().equals("Admin")) {
+                        //el boton de acceso se activa solo si es admin
                         this.formulario.BtnAccesoSistema.setVisible(true);
                     }
 
-                    //lenar el usuario con los datos
-                    user.setNombre(consulta.getResultadoConsulta().getString("nombre"));
-                    user.setApellido(consulta.getResultadoConsulta().getString("apellidos"));
-                    user.setDPI(consulta.getResultadoConsulta().getInt("dpi"));
-                    user.setUserName(consulta.getResultadoConsulta().getString("username"));
-                    user.setPassword(consulta.getResultadoConsulta().getString("password"));
-                    user.setHuella(consulta.getResultadoConsulta().getBytes("huella"));
-                    user.setPrivilegio(consulta.getResultadoConsulta().getString("privilegio"));
+                    return;//romper el ciclo
 
-                    break;//romper el ciclo
+                } else {
+                    System.out.println("Acceso denegado");
+                }
+            }
+
+            //si no se encuentraron datos en la primera consulta entoncs llega hasta aca
+            consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Propietarios");
+
+            consulta.consultar("Usuarios.DPI, Usuarios.NombreUsuario, Usuarios.Contrasenia,"
+                    + "Usuarios.Privilegio, Propietarios.Nombre, Propietarios.Apellidos");//obtener todo esto de la tabla
+
+            while (consulta.getResultadoConsulta().next())//recorrer los datos
+            {
+                if (consulta.getResultadoConsulta().getString("NombreUsuario")
+                        .equals(pnlCredenciales.txtUser.getText())
+                        && consulta.getResultadoConsulta().getString("Contrasenia")
+                                .equals(pnlCredenciales.txtPassword.getText())) {
+
+                    System.out.println("Acceso concedido");
+
+                    //rellenar los datos
+                    this.personal.setDPI(consulta.getResultadoConsulta().getLong("DPI"));
+                    this.personal.setPrivilegio(consulta.getResultadoConsulta().getString("Privilegio"));
+                    this.personal.setNombre(consulta.getResultadoConsulta().getString("Nombre"));
+                    this.personal.setApellidos(consulta.getResultadoConsulta().getString("Apellidos"));
+                    this.formulario.btnAccesoAlter.setEnabled(false);//desactivar el boton acceso alternativo
+
+                    //el boton de acceso se activa solo si es admin
+                    this.formulario.BtnAccesoSistema.setVisible(true);
+
+                    return;//romper el ciclo
 
                 } else {
                     System.out.println("Acceso denegado");
@@ -279,10 +353,12 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
         if (e.getSource() == formulario.btnAccesoAlter) {//boton acceso alternativo
 
             if (pulso) {
+
                 //pasar al panel de credenciales
                 this.cambiar = new CambiarPanel(formulario.PnlCentral, pnlCredenciales);
                 super.stop();//para el lector
                 pulso = false;
+
             } else if (!pulso) {
                 //pasar al panel de huella
                 this.cambiar = new CambiarPanel(formulario.PnlCentral, pnlHuella);
@@ -296,10 +372,10 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
             identificarCredenciales();
         }//fin if
-        
-        if(e.getSource() == formulario.BtnAccesoSistema){//boton de acceso al sistema
-            
-            iniciarVentanaPrincipal(user.getPrivilegio());//iniciar la ventana segun privilegio
+
+        if (e.getSource() == formulario.BtnAccesoSistema) {//boton de acceso al sistema
+
+            iniciarVentanaPrincipal(personal.getPrivilegio());//iniciar la ventana segun privilegio
         }
 
     }

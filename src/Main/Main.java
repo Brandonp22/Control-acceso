@@ -29,6 +29,6 @@ public class Main {
         //ControlRegistro registrarse = new ControlRegistro();
 
         ControlInisioSesion inicio = new ControlInisioSesion();
-
+        
     }
 }

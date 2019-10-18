@@ -35,7 +35,8 @@ public class ClaseConsultar {
     public void consultar(String ResultColumna)//para consultas generales
     {
         initVariables();//limpiar antes de cada consulta
-        SQL.append("SELECT ").append(ResultColumna).append(" FROM ").append(nombreTab);//SQL
+        SQL.append("SELECT ").append(ResultColumna).append(" FROM ").append(nombreTab)
+                .append(";");//SQL
 
         try {
 
@@ -58,7 +59,7 @@ public class ClaseConsultar {
         initVariables();
         SQL.append("SELECT ").append(ResultColumna).append(" FROM ").append(nombreTab)
                 .append(" WHERE ").append(campo).append(" ").append(condicion)
-                .append(" '").append(buscar).append("'");//SQL
+                .append(" ").append(buscar).append(";");//SQL
 
         try {
 

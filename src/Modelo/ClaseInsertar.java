@@ -97,7 +97,7 @@ public class ClaseInsertar {
             }
         }
 
-        this.SQL.append(")");//cerramos el parentesis dejando listo la sentencia SQL
+        this.SQL.append(");");//cerramos el parentesis dejando listo la sentencia SQL
 
         System.out.println("SQL Construido: " + SQL.toString());//imprimir SQL
 

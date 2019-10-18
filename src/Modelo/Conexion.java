@@ -20,6 +20,7 @@ public class Conexion {
      */
     private Connection objConector = null;
     private String nomDb;
+    private String url;
 
     public Conexion(String nomDB)//recibe nombre de la DB
     {
@@ -28,8 +29,11 @@ public class Conexion {
     }
 
     public Connection conectar() {
+        
+        url = null;
+        
         // con la funcion property obtenemos la ubcación del archivo ejecutable.
-        String url = System.getProperty("user.dir");
+        url = System.getProperty("user.dir");
         try {
 
             //Cargamos la conexion pasando la ruta de la base de datos
@@ -57,6 +61,7 @@ public class Conexion {
         //lo cargamos en un try por temas de seguridad del cierre de la conexión   
         try {
             objConector.close();
+            System.out.println("Se cerro la conexion de " + url + "/" + this.nomDb + ".db");
         } catch (SQLException ex) {
             // trazas de aplicaciones y objConector la clase de excepción y el nivel de excepción.
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);

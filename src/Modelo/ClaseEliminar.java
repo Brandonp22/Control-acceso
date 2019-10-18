@@ -33,7 +33,8 @@ public class ClaseEliminar {
 
         System.out.println("Conectado desde: " + this.getClass().getName());
 
-        this.SQL.append(campo).append(" = ").append("'").append(valBuscar).append("'");
+        this.SQL.append(campo).append(" = ").append("'").append(valBuscar).append("'")
+                .append(";");
 
         try {
             if (objConector != null) {

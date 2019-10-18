@@ -5,10 +5,11 @@ package Controlador;
 
 import Modelo.ClaseInsertar;
 import Modelo.Conexion;
-import Modelo.Usuario;
+import Modelo.Personal;
+import Vista.FramePrincipal;
 
 import Vista.FrameRegistro;
-import Vista.PnlFoto;
+import Vista.PnlBarraBotones;
 import Vista.PnlRegCredenciales;
 import Vista.PnlRegHuella;
 import java.awt.event.ActionEvent;
@@ -28,14 +29,14 @@ import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
 //osea, los que tienen lugar cuando se produce una acción sobre un elemento del programa
 public class ControlRegistro extends ClaseLector implements ActionListener {
 
-    //usuario para el encapsulamiento
-    private Usuario user = null;
+    //Para el encapsulamiento
+    private Personal propietario = null;
 
     //variables de la vista
     private FrameRegistro formulario = null;
     private PnlRegCredenciales pnlCredenciales = null;
     private PnlRegHuella pnlHuella = null;
-    private PnlFoto pnlFoto = null;
+    //private PnlFoto pnlFoto = null;
     private CambiarPanel cambiarPanel = null;
 
     //cosntructor
@@ -46,19 +47,18 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
         this.formulario = new FrameRegistro();
         this.pnlCredenciales = new PnlRegCredenciales();
         this.pnlHuella = new PnlRegHuella();
-        this.pnlFoto = new PnlFoto();
+        //this.pnlFoto = new PnlFoto();
 
         this.formulario.BtnSiguiente.addActionListener(this);//activar eventos al boton
 
         //insertar el panel de credenciales en el formulario 
         this.cambiarPanel = new CambiarPanel(formulario.PnlCentral, pnlCredenciales);
 
-        
-        
         this.formulario.setLocationRelativeTo(null);
         this.formulario.setVisible(true);
 
-        this.user = new Usuario();
+        
+        this.propietario = new Personal();
 
         iniciarEventosTextField();
     }
@@ -80,7 +80,7 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
 
                     e.consume();  //si es letra se ignora el evento
                     //JOptionPane.showMessageDialog(null, "Campo DPI inválido.",
-                      //      "Control Acceso", JOptionPane.ERROR_MESSAGE);
+                    //      "Control Acceso", JOptionPane.ERROR_MESSAGE);
 
                 }
             }
@@ -105,8 +105,8 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
                         System.out.println("La huella ha sido capturada");
                         //mandar la img de la huella al label
                         DibujarHuella(CrearImagenHuella(e.getSample()), pnlHuella.LblHuella);
-                        
-                        ProcesarCaptura(e.getSample());                        
+
+                        ProcesarCaptura(e.getSample());
                     }
                 });
             }
@@ -175,20 +175,44 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
         Conexion con = new Conexion("datos/registro");
         ClaseInsertar insertar = new ClaseInsertar(con.conectar(), "Usuarios");
 
-        insertar.agregarValor("nombre", user.getNombre(), "S");
-        insertar.agregarValor("apellidos", user.getApellido(), "S");
-        insertar.agregarValor("dpi", user.getDPI(), "L");
-        insertar.agregarValor("username", user.getUserName(), "S");
-        insertar.agregarValor("password", user.getPassword(), "S");
-        insertar.agregarValor("huella", user.getHuella(), "B");
-        insertar.agregarValor("privilegio", user.getPrivilegio(), "S");
-        
+        insertar.agregarValor("DPI", propietario.getDPI(), "L");
+        insertar.agregarValor("NombreUsuario", propietario.getNombreUsuario(), "S");
+        insertar.agregarValor("Contrasenia", propietario.getContrasenia(), "S");
+        insertar.agregarValor("Privilegio", propietario.getPrivilegio(), "S");
+        insertar.agregarValor("Huella", propietario.getHuella(), "B");
+
+        if (!insertar.ejecutarSQL()) {
+            return;
+        }
+
+        insertar = new ClaseInsertar(con.conectar(), "Propietarios");
+
+        insertar.agregarValor("Usuarios_DPI", propietario.getDPI(), "L");
+        insertar.agregarValor("Nombre", propietario.getNombre(), "S");
+        insertar.agregarValor("Apellidos", propietario.getApellidos(), "S");
 
         if (insertar.ejecutarSQL()) {
-            JOptionPane.showMessageDialog(null, "Huella registrada correctamente.",
+
+            JOptionPane.showMessageDialog(null, "Datos registrados correctamente.",
                     "Control Acceso", JOptionPane.INFORMATION_MESSAGE);
+
+            this.formulario.setVisible(false);//ocultar el registro
+
+            FramePrincipal ventanaPrincipal = new FramePrincipal();
+
+            PnlBarraBotones barraBotones = new PnlBarraBotones();
+
+            barraBotones.btnAdmin.setVisible(true);
+
+            CambiarPanel cambiar = new CambiarPanel(ventanaPrincipal.panelBarra, barraBotones);
+
+            ventanaPrincipal.LblPrivilegio.setIcon(new ImageIcon(getClass()
+                    .getResource("/Img/ControlAcceso" + propietario.getPrivilegio() + ".png")));
+            ventanaPrincipal.setLocationRelativeTo(null);
+            ventanaPrincipal.setVisible(true);
         }
-         con.cerrar();//cerrar conexion
+
+        con.cerrar();//cerrar conexion
 
     }
 
@@ -219,7 +243,7 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
 
                         setTemplate(Reclutador.getTemplate());//se establece le huella 
 
-                        user.setHuella(getPlantillaHuella().serialize());//llenamos el ultimo dato del usuario
+                        propietario.setHuella(getPlantillaHuella().serialize());//llenamos el ultimo dato del usuario
 
                         GuardarHuellaDB();//y se guarda la huella
 
@@ -231,14 +255,14 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
 
                         Reclutador.clear();//se limpia el reclutador
                         stop();//deniene el lector 
-                        
+
                         setTemplate(null);//poner en null para evitar errores
-                        
+
                         System.out.println("La Plantilla de la huella no pudo ser creada. Por favor repita el proceso.");
                         JOptionPane.showMessageDialog(null, "La Plantilla de la huella no pudo ser creada.\nPor favor repita el proceso.",
                                 "Control Acceso", JOptionPane.ERROR_MESSAGE);
                         start();
-                        
+
                         EstadoHuellas();
 
                         break;
@@ -265,12 +289,12 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
             } else {
 
                 //rellenar usuario
-                user.setNombre(pnlCredenciales.TxtNombre.getText());
-                user.setApellido(pnlCredenciales.TxtApellido.getText());
-                user.setDPI(Long.parseLong(pnlCredenciales.IntDPI.getText()));
-                user.setUserName(pnlCredenciales.TxtUsuario.getText());
-                user.setPassword(pnlCredenciales.TxtContra.getText());
-                user.setPrivilegio("Admin");
+                propietario.setNombre(pnlCredenciales.TxtNombre.getText());
+                propietario.setApellidos(pnlCredenciales.TxtApellido.getText());
+                propietario.setDPI(Long.parseLong(pnlCredenciales.IntDPI.getText()));
+                propietario.setNombreUsuario(pnlCredenciales.TxtUsuario.getText());
+                propietario.setContrasenia(pnlCredenciales.TxtContra.getText());
+                propietario.setPrivilegio("Propietario");
 
                 //cambiar a panel de huella
                 this.cambiarPanel = new CambiarPanel(formulario.PnlCentral,
