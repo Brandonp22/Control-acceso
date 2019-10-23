@@ -82,34 +82,28 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
 
         TxtPassword.setBackground(new java.awt.Color(222, 222, 222));
         TxtPassword.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtPassword.setForeground(new java.awt.Color(0, 0, 0));
         TxtPassword.setBorder(null);
 
         TxtUsuario.setBackground(new java.awt.Color(222, 222, 222));
         TxtUsuario.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtUsuario.setForeground(new java.awt.Color(0, 0, 0));
         TxtUsuario.setBorder(null);
         TxtUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         TxtUsuario.setName(""); // NOI18N
 
         TxtNombre.setBackground(new java.awt.Color(222, 222, 222));
         TxtNombre.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtNombre.setForeground(new java.awt.Color(0, 0, 0));
         TxtNombre.setBorder(null);
 
         TxtApellido.setBackground(new java.awt.Color(222, 222, 222));
         TxtApellido.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtApellido.setForeground(new java.awt.Color(0, 0, 0));
         TxtApellido.setBorder(null);
 
         IntDPI.setBackground(new java.awt.Color(222, 222, 222));
         IntDPI.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        IntDPI.setForeground(new java.awt.Color(0, 0, 0));
         IntDPI.setBorder(null);
 
         jComboBox1.setBackground(new java.awt.Color(222, 222, 222));
         jComboBox1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AREA DE TRABAJO" }));
         jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -195,17 +189,17 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnGuardar;
-    private javax.swing.JCheckBox CheckAdmin;
-    private javax.swing.JTextField IntDPI;
-    private javax.swing.JTextField TxtApellido;
-    private javax.swing.JTextField TxtNombre;
-    private javax.swing.JPasswordField TxtPassword;
-    private javax.swing.JTextField TxtUsuario;
+    public javax.swing.JButton BtnGuardar;
+    public javax.swing.JCheckBox CheckAdmin;
+    public javax.swing.JTextField IntDPI;
+    public javax.swing.JTextField TxtApellido;
+    public javax.swing.JTextField TxtNombre;
+    public javax.swing.JPasswordField TxtPassword;
+    public javax.swing.JTextField TxtUsuario;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JButton jButton2;
+    public javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

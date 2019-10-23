@@ -29,6 +29,8 @@ public class PnlFoto extends javax.swing.JPanel {
 
         LblFoto = new JPanelWebCam.JPanelWebCam();
 
+        LblFoto.setFONDO(false);
+
         javax.swing.GroupLayout LblFotoLayout = new javax.swing.GroupLayout(LblFoto);
         LblFoto.setLayout(LblFotoLayout);
         LblFotoLayout.setHorizontalGroup(

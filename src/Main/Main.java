@@ -5,16 +5,16 @@
  */
 package Main;
 
-import Controlador.ControlInisioSesion;
+import Controlador.ControlPrincipal;
 import Controlador.ControlRegistro;
-import Vista.FrameInicioSesion;
-import Vista.FrameRegistro;
+import java.sql.SQLException;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 public class Main {
 
-    public static void main(String[] arg) throws ClassNotFoundException {
+    public static void main(String[] arg) throws ClassNotFoundException, SQLException {
         
         
         //cambiar el look del programa
@@ -28,7 +28,22 @@ public class Main {
 
         //ControlRegistro registrarse = new ControlRegistro();
 
-        ControlInisioSesion inicio = new ControlInisioSesion();
+        //ControlInisioSesion inicio = new ControlInisioSesion();
+        
+       // Conexion conec = new Conexion("datos/registro");
+        //ClaseConsultar con = new ClaseConsultar(conec.conectar(), "Usuarios");
+        
+       // con.consultar("COUNT(*) As total");
+        
+        //System.out.println("Usuarios registrados "+con.getResultadoConsulta().getInt("total"));
+        
+         
+        
+        ControlPrincipal control;
+        control = new ControlPrincipal();
+        
+     
+        
         
     }
 }

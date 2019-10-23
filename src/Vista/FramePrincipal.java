@@ -156,7 +156,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public javax.swing.JLabel LblPrivilegio;
     public javax.swing.JButton btnLogout;
     public javax.swing.JPanel panelBarra;
-    private javax.swing.JPanel panelContenedor;
+    public javax.swing.JPanel panelContenedor;
     private javax.swing.JPanel panelFondo;
     // End of variables declaration//GEN-END:variables
 }

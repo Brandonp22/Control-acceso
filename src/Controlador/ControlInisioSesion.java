@@ -7,9 +7,7 @@ package Controlador;
 import Modelo.ClaseConsultar;
 import Modelo.Conexion;
 import Modelo.Personal;
-import Vista.FramePrincipal;
 import Vista.FrameInicioSesion;
-import Vista.PnlBarraBotones;
 import Vista.PnlCredenciales;
 import Vista.PnlHuella;
 import com.digitalpersona.onetouch.DPFPDataPurpose;
@@ -26,12 +24,15 @@ import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
-public class ControlInisioSesion extends ClaseLector implements ActionListener {
+public class ControlInisioSesion extends ClaseLector implements ActionListener{
 
     //attributos para la vista
     private FrameInicioSesion formulario = null;
+
     private PnlCredenciales pnlCredenciales = null;
     private PnlHuella pnlHuella = null;
+
+    private ControlPrincipal CtrlMain = null;
 
     private CambiarPanel cambiar = null;
     private boolean pulso = true;//para el pulso del boton acceso alternativo
@@ -39,13 +40,14 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
     //encapsulamiento de datos de usuario
     private Personal personal = null;
 
-    public ControlInisioSesion() {
+    public ControlInisioSesion(ControlPrincipal ventanaMain, Personal personal) {
         super();//llamar al constructor de la clase padre
 
         this.formulario = new FrameInicioSesion();
         this.pnlCredenciales = new PnlCredenciales();
         this.pnlHuella = new PnlHuella();
-        this.personal = new Personal();
+        this.personal = personal;
+        this.CtrlMain = ventanaMain;
 
         this.pnlHuella.TxtNombreUsuario.setText("- - - -");//poner texto inicial
         this.pnlHuella.LblHuella.setIcon(new ImageIcon(getClass()
@@ -55,18 +57,20 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
         this.formulario.BtnAccesoSistema.addActionListener(this);
         this.formulario.BtnAccesoSistema.setVisible(false);
         this.pnlCredenciales.BtbEntrar.addActionListener(this);
+        
 
         //insertar el panel de la huella
-        cambiar = new CambiarPanel(formulario.PnlCentral, pnlHuella);
-
-        this.formulario.setLocationRelativeTo(null);
-        this.formulario.setVisible(true);
+        cambiar = new CambiarPanel();
+        cambiar.cambiarPNL(formulario.PnlCentral, pnlHuella);
 
         iniciarEventosLector();
         super.start();
+
+        this.formulario.setLocationRelativeTo(null);
+        this.formulario.setVisible(true);
     }
 
-    protected void iniciarEventosLector() {
+    private void iniciarEventosLector() {
 
         /*
         EL lector tiene sus propios eventos, los cuales se activan desde esta
@@ -126,30 +130,11 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
         });
     }
 
-    private void iniciarVentanaPrincipal(String privilegio) {
+    private void iniciarVentanaPrincipal() {
 
-        //instancias
-        FramePrincipal ventanaPrincipal = new FramePrincipal();
-        PnlBarraBotones barraBotones = new PnlBarraBotones();
-
-        if (privilegio.equals("Propietario")) {
-            barraBotones.btnAdmin.setVisible(true);//si es el propietario, boton admin es visible
-        } else {
-            barraBotones.btnAdmin.setVisible(false);
-        }
-
-        //setear el panel
-        cambiar = new CambiarPanel(ventanaPrincipal.panelBarra, barraBotones);
-        ventanaPrincipal.LblPrivilegio.setIcon(new ImageIcon(getClass()
-                .getResource("/Img/ControlAcceso" + privilegio + ".png")));
-
-        //ocultar el login
         this.formulario.setVisible(false);
-
-        //hacer visible la ventana principal del sistema
-        ventanaPrincipal.setLocationRelativeTo(null);
-        ventanaPrincipal.setVisible(true);
-
+        this.CtrlMain.getVentanaPrincipal().setVisible(true);
+        this.CtrlMain.starVentanaPrincipal();
     }
 
     private void identificarPersona(DPFPSample muestra)//para buscar la huella que se capturo
@@ -159,8 +144,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
                 DPFPDataPurpose.DATA_PURPOSE_VERIFICATION);
 
         Conexion conectar = new Conexion("datos/registro");
-        
-        
+
         ClaseConsultar consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Empleados");
 
         consulta.consultar("Usuarios.DPI, Usuarios.Privilegio, Usuarios.Huella, Empleados.Nombre, "
@@ -214,13 +198,14 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
             }
 
             //si no se encuentran datos que coincidan, entonces llega hasta aca
+            //y se hace la consulta en la tabla propietarios
             consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Propietarios");
 
             consulta.consultar("Usuarios.DPI, Usuarios.Privilegio, Usuarios.Huella, Propietarios.Nombre, "
                     + "Propietarios.Apellidos", "Usuarios.DPI", "=", "Propietarios.Usuarios_DPI");//obtener 
 
             while (consulta.getResultadoConsulta().next()) {//iterear en cada resultado
-                
+
                 //compara la plantilla capturada actualmente (Plantilla vs huella en la BD)
                 if (verificarHuella(featureSetVerificacion, consulta.getResultadoConsulta()
                         .getBytes("Huella"))) {//si se encontro entra aca
@@ -230,7 +215,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
                     this.personal.setPrivilegio(consulta.getResultadoConsulta().getString("Privilegio"));
                     this.personal.setNombre(consulta.getResultadoConsulta().getString("Nombre"));
                     this.personal.setApellidos(consulta.getResultadoConsulta().getString("Apellidos"));
-                    
+
                     System.out.println("La huella es de: " + personal.getNombre());
 
                     //pone nombre del usuario en la vista
@@ -265,6 +250,9 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
             System.err.print("Error al consultar los datos: " + ex.getMessage());
         } finally {
             conectar.cerrar();//cerrar la conexion
+            conectar = null;
+            consulta = null;
+            System.gc();
         }
 
     }
@@ -282,7 +270,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
             while (consulta.getResultadoConsulta().next())//recorrer los datos
             {
                 if (consulta.getResultadoConsulta().getString("NombreUsuario")
-                        .equals(pnlCredenciales.txtUser.getText())
+                        .equals(pnlCredenciales.txtUser.getText().toUpperCase())
                         && consulta.getResultadoConsulta().getString("Contrasenia")
                                 .equals(pnlCredenciales.txtPassword.getText())) {
 
@@ -300,6 +288,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
                         //el boton de acceso se activa solo si es admin
                         this.formulario.BtnAccesoSistema.setVisible(true);
                     }
+                    this.pnlCredenciales.BtbEntrar.setEnabled(false);
 
                     return;//romper el ciclo
 
@@ -317,7 +306,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
             while (consulta.getResultadoConsulta().next())//recorrer los datos
             {
                 if (consulta.getResultadoConsulta().getString("NombreUsuario")
-                        .equals(pnlCredenciales.txtUser.getText())
+                        .equals(pnlCredenciales.txtUser.getText().toUpperCase())
                         && consulta.getResultadoConsulta().getString("Contrasenia")
                                 .equals(pnlCredenciales.txtPassword.getText())) {
 
@@ -332,6 +321,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
                     //el boton de acceso se activa solo si es admin
                     this.formulario.BtnAccesoSistema.setVisible(true);
+                    this.pnlCredenciales.BtbEntrar.setEnabled(false);
 
                     return;//romper el ciclo
 
@@ -344,7 +334,37 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
             System.err.print("Error al consultar los datos: " + ex.getMessage());
         } finally {
             conectar.cerrar();//cerramos conexion
+            conectar = null;
+            consulta = null;
+            System.gc();
+
         }
+    }
+
+    public FrameInicioSesion getFormulario() {
+        return formulario;
+    }
+
+    public void resetInisioSesion() {//para reiniciar el login
+
+        ///////////reset lo de huella///////////////
+        this.formulario.btnAccesoAlter.setEnabled(true);
+        this.formulario.BtnAccesoSistema.setVisible(false);
+        this.pnlHuella.TxtNombreUsuario.setText("- - - -");//poner texto inicial
+        this.pnlHuella.LblHuella.setIcon(new ImageIcon(getClass()
+                .getResource("/Img/Huella.png")));
+        //pasar al panel de huella
+        this.cambiar.cambiarPNL(formulario.PnlCentral, pnlHuella);
+        super.start();
+        
+        //////////////reset lo de credenciales
+        this.pnlCredenciales.txtUser.setText(null);
+        this.pnlCredenciales.txtPassword.setText(null);
+        this.pulso = true;
+        this.pnlCredenciales.BtbEntrar.setEnabled(true);
+
+        ////////volver a hacer visible///////////
+        this.formulario.setVisible(true);
     }
 
     @Override
@@ -355,13 +375,13 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
             if (pulso) {
 
                 //pasar al panel de credenciales
-                this.cambiar = new CambiarPanel(formulario.PnlCentral, pnlCredenciales);
+                this.cambiar.cambiarPNL(formulario.PnlCentral, pnlCredenciales);
                 super.stop();//para el lector
                 pulso = false;
 
             } else if (!pulso) {
                 //pasar al panel de huella
-                this.cambiar = new CambiarPanel(formulario.PnlCentral, pnlHuella);
+                this.cambiar.cambiarPNL(formulario.PnlCentral, pnlHuella);
                 super.start();//iniciar el lector
                 pulso = true;
             }
@@ -375,9 +395,11 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
         if (e.getSource() == formulario.BtnAccesoSistema) {//boton de acceso al sistema
 
-            iniciarVentanaPrincipal(personal.getPrivilegio());//iniciar la ventana segun privilegio
+            iniciarVentanaPrincipal();//iniciar la ventana segun privilegio
         }
 
     }
+
+  
 
 }

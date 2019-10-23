@@ -6,10 +6,9 @@ package Controlador;
 import Modelo.ClaseInsertar;
 import Modelo.Conexion;
 import Modelo.Personal;
-import Vista.FramePrincipal;
 
 import Vista.FrameRegistro;
-import Vista.PnlBarraBotones;
+import Vista.PnlFoto;
 import Vista.PnlRegCredenciales;
 import Vista.PnlRegHuella;
 import java.awt.event.ActionEvent;
@@ -31,34 +30,38 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
 
     //Para el encapsulamiento
     private Personal propietario = null;
+    private ControlPrincipal ctrlMain = null;
 
     //variables de la vista
     private FrameRegistro formulario = null;
     private PnlRegCredenciales pnlCredenciales = null;
     private PnlRegHuella pnlHuella = null;
-    //private PnlFoto pnlFoto = null;
+    private PnlFoto pnlFoto = null;
     private CambiarPanel cambiarPanel = null;
 
+    private int paso = 1;
+
     //cosntructor
-    public ControlRegistro() {
+    public ControlRegistro(ControlPrincipal ventanaMain, Personal personal) {
 
         super();//ejecutar el constructor de la clase base
 
         this.formulario = new FrameRegistro();
         this.pnlCredenciales = new PnlRegCredenciales();
         this.pnlHuella = new PnlRegHuella();
-        //this.pnlFoto = new PnlFoto();
+        this.pnlFoto = new PnlFoto();
+
+        this.ctrlMain = ventanaMain;
+        this.propietario = personal;
 
         this.formulario.BtnSiguiente.addActionListener(this);//activar eventos al boton
 
         //insertar el panel de credenciales en el formulario 
-        this.cambiarPanel = new CambiarPanel(formulario.PnlCentral, pnlCredenciales);
+        this.cambiarPanel = new CambiarPanel();
+        this.cambiarPanel.cambiarPNL(formulario.PnlCentral, pnlCredenciales);
 
         this.formulario.setLocationRelativeTo(null);
         this.formulario.setVisible(true);
-
-        
-        this.propietario = new Personal();
 
         iniciarEventosTextField();
     }
@@ -193,23 +196,13 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
 
         if (insertar.ejecutarSQL()) {
 
-            JOptionPane.showMessageDialog(null, "Datos registrados correctamente.",
+            JOptionPane.showMessageDialog(null, "Datos registrados correctamente "
+                    + "\nPresione OK para continuar a la Ventana Principal",
                     "Control Acceso", JOptionPane.INFORMATION_MESSAGE);
 
-            this.formulario.setVisible(false);//ocultar el registro
-
-            FramePrincipal ventanaPrincipal = new FramePrincipal();
-
-            PnlBarraBotones barraBotones = new PnlBarraBotones();
-
-            barraBotones.btnAdmin.setVisible(true);
-
-            CambiarPanel cambiar = new CambiarPanel(ventanaPrincipal.panelBarra, barraBotones);
-
-            ventanaPrincipal.LblPrivilegio.setIcon(new ImageIcon(getClass()
-                    .getResource("/Img/ControlAcceso" + propietario.getPrivilegio() + ".png")));
-            ventanaPrincipal.setLocationRelativeTo(null);
-            ventanaPrincipal.setVisible(true);
+            this.formulario.dispose();
+            this.ctrlMain.getVentanaPrincipal().setVisible(true);
+            this.ctrlMain.starVentanaPrincipal();
         }
 
         con.cerrar();//cerrar conexion
@@ -288,22 +281,35 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
 
             } else {
 
-                //rellenar usuario
-                propietario.setNombre(pnlCredenciales.TxtNombre.getText());
-                propietario.setApellidos(pnlCredenciales.TxtApellido.getText());
-                propietario.setDPI(Long.parseLong(pnlCredenciales.IntDPI.getText()));
-                propietario.setNombreUsuario(pnlCredenciales.TxtUsuario.getText());
-                propietario.setContrasenia(pnlCredenciales.TxtPassword.getText());
-                propietario.setPrivilegio("Propietario");
+                this.paso++;
 
-                //cambiar a panel de huella
-                this.cambiarPanel = new CambiarPanel(formulario.PnlCentral,
-                        pnlHuella);
+                if (paso == 2) {
 
-                this.iniciarEventosLector();
-                this.start();
-                this.EstadoHuellas();
-                this.formulario.BtnSiguiente.setEnabled(false);
+                    //rellenar usuario
+                    propietario.setNombre(pnlCredenciales.TxtNombre.getText().toUpperCase());
+                    propietario.setApellidos(pnlCredenciales.TxtApellido.getText().toUpperCase());
+                    propietario.setDPI(Long.parseLong(pnlCredenciales.IntDPI.getText()));
+                    propietario.setNombreUsuario(pnlCredenciales.TxtUsuario.getText().toUpperCase());
+                    propietario.setContrasenia(pnlCredenciales.TxtPassword.getText());
+                    propietario.setPrivilegio("Propietario");
+
+                    //cambiar a panel de foto
+                    this.cambiarPanel.cambiarPNL(formulario.PnlCentral,
+                            pnlFoto);
+
+                }
+
+                if (paso == 3) {
+                    
+                    this.iniciarEventosLector();
+                    this.start();
+                    this.EstadoHuellas();
+                    //cambiar a panel de huella
+                    this.cambiarPanel.cambiarPNL(formulario.PnlCentral,
+                            pnlHuella);
+                    this.formulario.BtnSiguiente.setEnabled(false);
+                }
+
             }
 
         }
