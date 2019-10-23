@@ -97,7 +97,7 @@ public class ClaseLector extends JFrame {
     public void DibujarHuella(Image image, javax.swing.JButton Boton) {//funcion para setear imagen en label
 
         Boton.setIcon(new ImageIcon(
-                image.getScaledInstance(Boton.getWidth(), Boton.getHeight(), Image.SCALE_DEFAULT)
+                image.getScaledInstance(Boton.getWidth(),Boton.getHeight() , Image.SCALE_DEFAULT)
         )
         );
     }

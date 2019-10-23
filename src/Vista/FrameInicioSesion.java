@@ -66,6 +66,7 @@ public class FrameInicioSesion extends javax.swing.JFrame {
         btnAccesoAlter.setBorderPainted(false);
         btnAccesoAlter.setContentAreaFilled(false);
         btnAccesoAlter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAccesoAlter.setFocusable(false);
         btnAccesoAlter.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlternativo3.png"))); // NOI18N
         btnAccesoAlter.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlternativo1.png"))); // NOI18N
 
@@ -74,6 +75,7 @@ public class FrameInicioSesion extends javax.swing.JFrame {
         BtnAccesoSistema.setBorderPainted(false);
         BtnAccesoSistema.setContentAreaFilled(false);
         BtnAccesoSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnAccesoSistema.setFocusable(false);
         BtnAccesoSistema.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlSistema3.png"))); // NOI18N
         BtnAccesoSistema.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlSistema1.png"))); // NOI18N
 

@@ -47,6 +47,7 @@ public class PnlCredenciales extends javax.swing.JPanel {
         BtbEntrar.setBorderPainted(false);
         BtbEntrar.setContentAreaFilled(false);
         BtbEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtbEntrar.setFocusable(false);
         BtbEntrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnIniciarSesion3.png"))); // NOI18N
         BtbEntrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnIniciarSesion1.png"))); // NOI18N
         BtbEntrar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnIniciarSesion1.png"))); // NOI18N

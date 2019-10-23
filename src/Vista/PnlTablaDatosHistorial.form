@@ -188,10 +188,11 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="20">
+                  <Table columnCount="6" rowCount="20">
                     <Column editable="true" title="DPI" type="java.lang.Object"/>
                     <Column editable="true" title="Nombre" type="java.lang.String"/>
                     <Column editable="true" title="Area de trabajo" type="java.lang.String"/>
+                    <Column editable="true" title="Fecha" type="java.lang.String"/>
                     <Column editable="true" title="Entrada" type="java.lang.String"/>
                     <Column editable="true" title="Salida" type="java.lang.String"/>
                   </Table>

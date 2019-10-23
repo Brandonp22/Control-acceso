@@ -49,6 +49,7 @@ public class PnlBarraBotones extends javax.swing.JPanel {
         btnAdmin.setBorderPainted(false);
         btnAdmin.setContentAreaFilled(false);
         btnAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdmin.setFocusable(false);
         btnAdmin.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Admin3.png"))); // NOI18N
         btnAdmin.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Admin1.png"))); // NOI18N
 
@@ -60,6 +61,7 @@ public class PnlBarraBotones extends javax.swing.JPanel {
         btnEmpleado.setBorderPainted(false);
         btnEmpleado.setContentAreaFilled(false);
         btnEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEmpleado.setFocusable(false);
         btnEmpleado.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Empleados3.png"))); // NOI18N
         btnEmpleado.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Empleados1.png"))); // NOI18N
 
@@ -71,6 +73,7 @@ public class PnlBarraBotones extends javax.swing.JPanel {
         btnAreaTrabajo.setBorderPainted(false);
         btnAreaTrabajo.setContentAreaFilled(false);
         btnAreaTrabajo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAreaTrabajo.setFocusable(false);
         btnAreaTrabajo.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/AreaTrabajo3.png"))); // NOI18N
         btnAreaTrabajo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/AreaTrabajo1.png"))); // NOI18N
 
@@ -91,10 +94,12 @@ public class PnlBarraBotones extends javax.swing.JPanel {
         btnHistorial.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         btnHistorial.setForeground(new java.awt.Color(255, 255, 255));
         btnHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Historial2.png"))); // NOI18N
+        btnHistorial.setToolTipText("Historial");
         btnHistorial.setBorder(null);
         btnHistorial.setBorderPainted(false);
         btnHistorial.setContentAreaFilled(false);
         btnHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHistorial.setFocusable(false);
         btnHistorial.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Historial3.png"))); // NOI18N
         btnHistorial.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Historial1.png"))); // NOI18N
 
@@ -102,10 +107,12 @@ public class PnlBarraBotones extends javax.swing.JPanel {
         btnImprimir.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         btnImprimir.setForeground(new java.awt.Color(255, 255, 255));
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Imprimir2.png"))); // NOI18N
+        btnImprimir.setToolTipText("Imprimir");
         btnImprimir.setBorder(null);
         btnImprimir.setBorderPainted(false);
         btnImprimir.setContentAreaFilled(false);
         btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnImprimir.setFocusable(false);
         btnImprimir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Imprimir3.png"))); // NOI18N
         btnImprimir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Imprimir1.png"))); // NOI18N
 
@@ -113,10 +120,12 @@ public class PnlBarraBotones extends javax.swing.JPanel {
         btnAddUser.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         btnAddUser.setForeground(new java.awt.Color(255, 255, 255));
         btnAddUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/AddUsuario2.png"))); // NOI18N
+        btnAddUser.setToolTipText("Agregar Empleado");
         btnAddUser.setBorder(null);
         btnAddUser.setBorderPainted(false);
         btnAddUser.setContentAreaFilled(false);
         btnAddUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAddUser.setFocusable(false);
         btnAddUser.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/AddUsuario2.png"))); // NOI18N
         btnAddUser.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/AddUsuario1.png"))); // NOI18N
 
