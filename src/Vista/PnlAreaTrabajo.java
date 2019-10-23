@@ -16,12 +16,15 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author brand
  */
-public class PnlTablaDatos extends javax.swing.JPanel {
+public class PnlAreaTrabajo extends javax.swing.JPanel {
+
+   
+    private TextPrompt buscar;
     
-    public PnlTablaDatos() {
+    public PnlAreaTrabajo() {
         initComponents();
         
-        // TEXT PROMPT
+       // TEXT PROMPT
         TextPrompt nombre = new TextPrompt("Buscar", TxtBuscar);
         nombre.setForeground(new Color(117,117,117 ,1));
         nombre.changeAlpha(0.8f);
@@ -67,6 +70,8 @@ public class PnlTablaDatos extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
         Datos = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(38, 50, 56));
         setLayout(new java.awt.BorderLayout());
@@ -126,33 +131,33 @@ public class PnlTablaDatos extends javax.swing.JPanel {
         Datos.setForeground(new java.awt.Color(0, 0, 0));
         Datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "DPI", "Nombre", "Area de trabajo", "Entrada", "Salida"
+                "Area de trabajo", "Entrada", "Salida"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -164,21 +169,43 @@ public class PnlTablaDatos extends javax.swing.JPanel {
         Datos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane.setViewportView(Datos);
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnNuevaArea2.png"))); // NOI18N
+        jButton2.setToolTipText("");
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setFocusable(false);
+        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnNuevaArea3.png"))); // NOI18N
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnNuevaArea1.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(226, 226, 226)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        jPanel3.setBackground(new java.awt.Color(38, 50, 56));
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+        add(jPanel3, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -187,8 +214,10 @@ public class PnlTablaDatos extends javax.swing.JPanel {
     public javax.swing.JTextField TxtBuscar;
     public javax.swing.JComboBox<String> TxtBusquedaPor;
     public javax.swing.JButton btnBuscar;
+    public javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane;
     // End of variables declaration//GEN-END:variables
 }

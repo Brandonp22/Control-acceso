@@ -29,6 +29,12 @@ public class PnlFoto extends javax.swing.JPanel {
 
         LblFoto = new JPanelWebCam.JPanelWebCam();
 
+        setBackground(new java.awt.Color(38, 50, 56));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TOMAR FOTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 0, 12), new java.awt.Color(97, 203, 255))); // NOI18N
+
+        LblFoto.setBackground(new java.awt.Color(222, 222, 222));
+        LblFoto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         javax.swing.GroupLayout LblFotoLayout = new javax.swing.GroupLayout(LblFoto);
         LblFoto.setLayout(LblFotoLayout);
         LblFotoLayout.setHorizontalGroup(
@@ -45,16 +51,16 @@ public class PnlFoto extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
+                .addGap(92, 92, 92)
                 .addComponent(LblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(52, 52, 52)
                 .addComponent(LblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -6,7 +6,6 @@
 package Vista;
 
 import com.sun.awt.AWTUtilities;
-import java.awt.BorderLayout;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Shape;
@@ -26,11 +25,12 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 27, 27);
         AWTUtilities.setWindowShape(this, forma);
-
         
-        
-        /*PnlTablaDatos bbtn = new PnlTablaDatos();
-        bbtn.setSize(900, 77);
+        //PnlNuevaAreaTrabajo bbtn = new PnlNuevaAreaTrabajo();
+        //PnlAreaTrabajo bbtn = new PnlAreaTrabajo();
+        //PnlTablaDatos bbtn = new PnlTablaDatos();
+        //PnlRegistroPersona bbtn = new PnlRegistroPersona();
+        /*bbtn.setSize(900, 77);
         bbtn.setLocation(0, 1);
         panelContenedor.removeAll();
         panelContenedor.add(bbtn, BorderLayout.CENTER);
@@ -53,6 +53,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         panelBarra = new javax.swing.JPanel();
         btnLogout = new javax.swing.JButton();
         panelContenedor = new javax.swing.JPanel();
+        PanelMinCerrar = new javax.swing.JPanel();
+        PanelFechaHora = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -81,15 +83,44 @@ public class FramePrincipal extends javax.swing.JFrame {
         btnLogout.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         btnLogout.setForeground(new java.awt.Color(255, 255, 255));
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/LogOut2.png"))); // NOI18N
+        btnLogout.setToolTipText("Cerrar Sesión");
         btnLogout.setBorder(null);
         btnLogout.setBorderPainted(false);
         btnLogout.setContentAreaFilled(false);
         btnLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogout.setFocusPainted(false);
+        btnLogout.setFocusable(false);
         btnLogout.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/LogOut3.png"))); // NOI18N
         btnLogout.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/LogOut1.png"))); // NOI18N
 
         panelContenedor.setBackground(new java.awt.Color(38, 50, 56));
         panelContenedor.setLayout(new java.awt.BorderLayout());
+
+        PanelMinCerrar.setBackground(new java.awt.Color(38, 50, 56));
+
+        javax.swing.GroupLayout PanelMinCerrarLayout = new javax.swing.GroupLayout(PanelMinCerrar);
+        PanelMinCerrar.setLayout(PanelMinCerrarLayout);
+        PanelMinCerrarLayout.setHorizontalGroup(
+            PanelMinCerrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        PanelMinCerrarLayout.setVerticalGroup(
+            PanelMinCerrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 25, Short.MAX_VALUE)
+        );
+
+        PanelFechaHora.setBackground(new java.awt.Color(38, 50, 56));
+
+        javax.swing.GroupLayout PanelFechaHoraLayout = new javax.swing.GroupLayout(PanelFechaHora);
+        PanelFechaHora.setLayout(PanelFechaHoraLayout);
+        PanelFechaHoraLayout.setHorizontalGroup(
+            PanelFechaHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        PanelFechaHoraLayout.setVerticalGroup(
+            PanelFechaHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
@@ -97,16 +128,16 @@ public class FramePrincipal extends javax.swing.JFrame {
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelBarra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelFondoLayout.createSequentialGroup()
-                .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelFondoLayout.createSequentialGroup()
-                        .addComponent(LblPrivilegio)
-                        .addGap(39, 39, 39)
-                        .addComponent(btnLogout)
-                        .addGap(0, 39, Short.MAX_VALUE))
-                    .addGroup(panelFondoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(panelContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(panelContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(panelFondoLayout.createSequentialGroup()
+                .addComponent(LblPrivilegio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PanelMinCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogout)))
+            .addComponent(PanelFechaHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelFondoLayout.setVerticalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,13 +147,15 @@ public class FramePrincipal extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(LblPrivilegio))
                     .addGroup(panelFondoLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addComponent(PanelMinCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLogout)))
                 .addGap(18, 18, 18)
                 .addComponent(panelBarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(632, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 482, Short.MAX_VALUE)
+                .addComponent(PanelFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -133,7 +166,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -154,6 +187,8 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel LblPrivilegio;
+    private javax.swing.JPanel PanelFechaHora;
+    private javax.swing.JPanel PanelMinCerrar;
     public javax.swing.JButton btnLogout;
     public javax.swing.JPanel panelBarra;
     private javax.swing.JPanel panelContenedor;

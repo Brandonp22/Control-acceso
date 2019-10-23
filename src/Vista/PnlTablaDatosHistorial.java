@@ -16,12 +16,12 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author brand
  */
-public class PnlTablaDatos extends javax.swing.JPanel {
+public class PnlTablaDatosHistorial extends javax.swing.JPanel {
     
-    public PnlTablaDatos() {
+    public PnlTablaDatosHistorial() {
         initComponents();
         
-        // TEXT PROMPT
+       // TEXT PROMPT
         TextPrompt nombre = new TextPrompt("Buscar", TxtBuscar);
         nombre.setForeground(new Color(117,117,117 ,1));
         nombre.changeAlpha(0.8f);
@@ -126,33 +126,33 @@ public class PnlTablaDatos extends javax.swing.JPanel {
         Datos.setForeground(new java.awt.Color(0, 0, 0));
         Datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "DPI", "Nombre", "Area de trabajo", "Entrada", "Salida"
+                "DPI", "Nombre", "Area de trabajo", "Fecha", "Entrada", "Salida"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {

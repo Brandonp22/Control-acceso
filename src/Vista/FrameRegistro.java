@@ -68,6 +68,7 @@ public class FrameRegistro extends javax.swing.JFrame {
         BtnSiguiente.setBorderPainted(false);
         BtnSiguiente.setContentAreaFilled(false);
         BtnSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnSiguiente.setFocusable(false);
         BtnSiguiente.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnSiguiente3.png"))); // NOI18N
         BtnSiguiente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnSiguiente1.png"))); // NOI18N
 

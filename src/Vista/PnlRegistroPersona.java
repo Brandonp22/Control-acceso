@@ -5,10 +5,11 @@
  */
 package Vista;
 
+import Vista.TextPrompt;
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -16,8 +17,9 @@ import javax.swing.JTextField;
  */
 public class PnlRegistroPersona extends javax.swing.JPanel {
 
+    
     /**
-     * Creates new form PnlRegistroPersona
+     * Creates new form PnlTablaDatos
      */
     public PnlRegistroPersona() {
         initComponents();
@@ -57,33 +59,27 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        TxtPassword = new javax.swing.JPasswordField();
+        jPanel2 = new javax.swing.JPanel();
         TxtUsuario = new javax.swing.JTextField();
+        TxtPassword = new javax.swing.JPasswordField();
         TxtNombre = new javax.swing.JTextField();
         TxtApellido = new javax.swing.JTextField();
         IntDPI = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
-        CheckAdmin = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
+        CheckAdmin = new javax.swing.JCheckBox();
         BtnGuardar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(38, 50, 56));
         setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(38, 50, 56));
-
-        jButton1.setText("FOTO");
-
-        jButton2.setText("HUELLA");
-
-        TxtPassword.setBackground(new java.awt.Color(222, 222, 222));
-        TxtPassword.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtPassword.setForeground(new java.awt.Color(0, 0, 0));
-        TxtPassword.setBorder(null);
+        jPanel2.setBackground(new java.awt.Color(38, 50, 56));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "REGISTRAR EMPLEADO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 0, 12), new java.awt.Color(97, 203, 255))); // NOI18N
+        jPanel2.setLayout(new java.awt.GridBagLayout());
 
         TxtUsuario.setBackground(new java.awt.Color(222, 222, 222));
         TxtUsuario.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -91,121 +87,165 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
         TxtUsuario.setBorder(null);
         TxtUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         TxtUsuario.setName(""); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.ipadx = 440;
+        gridBagConstraints.ipady = 17;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 11);
+        jPanel2.add(TxtUsuario, gridBagConstraints);
+
+        TxtPassword.setBackground(new java.awt.Color(222, 222, 222));
+        TxtPassword.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        TxtPassword.setForeground(new java.awt.Color(0, 0, 0));
+        TxtPassword.setBorder(null);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.ipadx = 440;
+        gridBagConstraints.ipady = 17;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 11);
+        jPanel2.add(TxtPassword, gridBagConstraints);
 
         TxtNombre.setBackground(new java.awt.Color(222, 222, 222));
         TxtNombre.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         TxtNombre.setForeground(new java.awt.Color(0, 0, 0));
         TxtNombre.setBorder(null);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.ipadx = 440;
+        gridBagConstraints.ipady = 17;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 11);
+        jPanel2.add(TxtNombre, gridBagConstraints);
 
         TxtApellido.setBackground(new java.awt.Color(222, 222, 222));
         TxtApellido.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         TxtApellido.setForeground(new java.awt.Color(0, 0, 0));
         TxtApellido.setBorder(null);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.ipadx = 440;
+        gridBagConstraints.ipady = 17;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 11);
+        jPanel2.add(TxtApellido, gridBagConstraints);
 
         IntDPI.setBackground(new java.awt.Color(222, 222, 222));
         IntDPI.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         IntDPI.setForeground(new java.awt.Color(0, 0, 0));
         IntDPI.setBorder(null);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.ipadx = 440;
+        gridBagConstraints.ipady = 17;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 11);
+        jPanel2.add(IntDPI, gridBagConstraints);
 
         jComboBox1.setBackground(new java.awt.Color(222, 222, 222));
         jComboBox1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AREA DE TRABAJO" }));
         jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CheckAdmin.setBackground(new java.awt.Color(38, 50, 56));
-        CheckAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CheckAdmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.ipadx = 287;
+        gridBagConstraints.ipady = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 11);
+        jPanel2.add(jComboBox1, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("¿Es Administrador?");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 5, 0, 0);
+        jPanel2.add(jLabel1, gridBagConstraints);
+
+        CheckAdmin.setBackground(new java.awt.Color(38, 50, 56));
+        CheckAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CheckAdmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 14;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 0);
+        jPanel2.add(CheckAdmin, gridBagConstraints);
 
         BtnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnGuardar2.png"))); // NOI18N
+        BtnGuardar.setToolTipText("Guardar");
         BtnGuardar.setBorder(null);
         BtnGuardar.setBorderPainted(false);
         BtnGuardar.setContentAreaFilled(false);
         BtnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnGuardar.setFocusable(false);
         BtnGuardar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnGuardar3.png"))); // NOI18N
         BtnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnGuardar1.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 170, 2, 0);
+        jPanel2.add(BtnGuardar, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(CheckAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel1))
-                            .addComponent(IntDPI)
-                            .addComponent(TxtApellido)
-                            .addComponent(TxtNombre)
-                            .addComponent(jComboBox1, 0, 370, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addComponent(BtnGuardar)))
-                .addGap(185, 185, 185))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(TxtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(IntDPI, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CheckAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(BtnGuardar)
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
+        jButton1.setText("FOTO");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 138;
+        gridBagConstraints.ipady = 105;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
+        jPanel2.add(jButton1, gridBagConstraints);
 
-        add(jPanel1, java.awt.BorderLayout.CENTER);
+        jButton2.setText("HUELLA");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 126;
+        gridBagConstraints.ipady = 105;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 40, 0, 11);
+        jPanel2.add(jButton2, gridBagConstraints);
+
+        add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnGuardar;
-    private javax.swing.JCheckBox CheckAdmin;
-    private javax.swing.JTextField IntDPI;
-    private javax.swing.JTextField TxtApellido;
-    private javax.swing.JTextField TxtNombre;
-    private javax.swing.JPasswordField TxtPassword;
-    private javax.swing.JTextField TxtUsuario;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JButton BtnGuardar;
+    public javax.swing.JCheckBox CheckAdmin;
+    public javax.swing.JTextField IntDPI;
+    public javax.swing.JTextField TxtApellido;
+    public javax.swing.JTextField TxtNombre;
+    public javax.swing.JPasswordField TxtPassword;
+    public javax.swing.JTextField TxtUsuario;
+    public javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton2;
+    public javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
