@@ -30,7 +30,7 @@ public class PnlMinCerrar extends javax.swing.JPanel {
         BtnMinimizar = new javax.swing.JButton();
         BtnCerrar = new javax.swing.JButton();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(new java.awt.GridLayout(1, 2));
 
         BtnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnMinimizar2.png"))); // NOI18N
         BtnMinimizar.setToolTipText("Minimizar");
@@ -41,7 +41,7 @@ public class PnlMinCerrar extends javax.swing.JPanel {
         BtnMinimizar.setFocusable(false);
         BtnMinimizar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnMinimizar3.png"))); // NOI18N
         BtnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnMinimizar1.png"))); // NOI18N
-        add(BtnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(BtnMinimizar);
 
         BtnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnCerrar2.png"))); // NOI18N
         BtnCerrar.setToolTipText("Cerrar");
@@ -52,7 +52,7 @@ public class PnlMinCerrar extends javax.swing.JPanel {
         BtnCerrar.setFocusable(false);
         BtnCerrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnCerrar3.png"))); // NOI18N
         BtnCerrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnCerrar1.png"))); // NOI18N
-        add(BtnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, -1));
+        add(BtnCerrar);
     }// </editor-fold>//GEN-END:initComponents
 
 

@@ -7,6 +7,7 @@ import Modelo.ClaseInsertar;
 import Modelo.Conexion;
 import Modelo.Personal;
 
+
 import Vista.FrameRegistro;
 import Vista.PnlFoto;
 import Vista.PnlRegCredenciales;
@@ -131,6 +132,8 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
                 });
             }
 
+           
+            
             @Override
             public void readerDisconnected(final DPFPReaderStatusEvent e) {//si el lector esta desactivado
                 SwingUtilities.invokeLater(new Runnable() {
@@ -206,6 +209,9 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
         }
 
         con.cerrar();//cerrar conexion
+        con = null;
+        insertar = null;
+        System.gc();
 
     }
 

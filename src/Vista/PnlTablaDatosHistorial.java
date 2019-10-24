@@ -76,12 +76,10 @@ public class PnlTablaDatosHistorial extends javax.swing.JPanel {
 
         TxtBuscar.setBackground(new java.awt.Color(222, 222, 222));
         TxtBuscar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtBuscar.setForeground(new java.awt.Color(0, 0, 0));
         TxtBuscar.setBorder(null);
 
         TxtBusquedaPor.setBackground(new java.awt.Color(222, 222, 222));
         TxtBusquedaPor.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtBusquedaPor.setForeground(new java.awt.Color(0, 0, 0));
         TxtBusquedaPor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BUSCAR POR", "DPI", "NOMBRE" }));
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnBuscar2.png"))); // NOI18N
@@ -123,7 +121,6 @@ public class PnlTablaDatosHistorial extends javax.swing.JPanel {
 
         Datos.setBackground(new java.awt.Color(204, 204, 204));
         Datos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        Datos.setForeground(new java.awt.Color(0, 0, 0));
         Datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -161,7 +158,6 @@ public class PnlTablaDatosHistorial extends javax.swing.JPanel {
         });
         Datos.setGridColor(new java.awt.Color(0, 0, 0));
         Datos.setSelectionBackground(new java.awt.Color(97, 203, 255));
-        Datos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane.setViewportView(Datos);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

@@ -70,8 +70,8 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
         Datos = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(38, 50, 56));
         setLayout(new java.awt.BorderLayout());
@@ -81,12 +81,10 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
 
         TxtBuscar.setBackground(new java.awt.Color(222, 222, 222));
         TxtBuscar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtBuscar.setForeground(new java.awt.Color(0, 0, 0));
         TxtBuscar.setBorder(null);
 
         TxtBusquedaPor.setBackground(new java.awt.Color(222, 222, 222));
         TxtBusquedaPor.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtBusquedaPor.setForeground(new java.awt.Color(0, 0, 0));
         TxtBusquedaPor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BUSCAR POR", "DPI", "NOMBRE" }));
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnBuscar2.png"))); // NOI18N
@@ -104,7 +102,7 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(TxtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addComponent(TxtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(TxtBusquedaPor, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -128,7 +126,6 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
 
         Datos.setBackground(new java.awt.Color(204, 204, 204));
         Datos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        Datos.setForeground(new java.awt.Color(0, 0, 0));
         Datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -166,8 +163,30 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
         });
         Datos.setGridColor(new java.awt.Color(0, 0, 0));
         Datos.setSelectionBackground(new java.awt.Color(97, 203, 255));
-        Datos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane.setViewportView(Datos);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        jPanel3.setBackground(new java.awt.Color(38, 50, 56));
+        jPanel3.setPreferredSize(new java.awt.Dimension(141, 55));
+        jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnNuevaArea2.png"))); // NOI18N
         jButton2.setToolTipText("");
@@ -177,34 +196,8 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
         jButton2.setFocusable(false);
         jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnNuevaArea3.png"))); // NOI18N
         jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnNuevaArea1.png"))); // NOI18N
+        jPanel3.add(jButton2, new java.awt.GridBagConstraints());
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addContainerGap())
-        );
-
-        add(jPanel2, java.awt.BorderLayout.CENTER);
-
-        jPanel3.setBackground(new java.awt.Color(38, 50, 56));
-        jPanel3.setLayout(new java.awt.GridBagLayout());
         add(jPanel3, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
 

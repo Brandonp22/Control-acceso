@@ -98,30 +98,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         panelContenedor.setLayout(new java.awt.BorderLayout());
 
         PanelMinCerrar.setBackground(new java.awt.Color(38, 50, 56));
-
-        javax.swing.GroupLayout PanelMinCerrarLayout = new javax.swing.GroupLayout(PanelMinCerrar);
-        PanelMinCerrar.setLayout(PanelMinCerrarLayout);
-        PanelMinCerrarLayout.setHorizontalGroup(
-            PanelMinCerrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        PanelMinCerrarLayout.setVerticalGroup(
-            PanelMinCerrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 25, Short.MAX_VALUE)
-        );
+        PanelMinCerrar.setLayout(new java.awt.BorderLayout());
 
         PanelFechaHora.setBackground(new java.awt.Color(38, 50, 56));
-
-        javax.swing.GroupLayout PanelFechaHoraLayout = new javax.swing.GroupLayout(PanelFechaHora);
-        PanelFechaHora.setLayout(PanelFechaHoraLayout);
-        PanelFechaHoraLayout.setHorizontalGroup(
-            PanelFechaHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        PanelFechaHoraLayout.setVerticalGroup(
-            PanelFechaHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
-        );
+        PanelFechaHora.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
@@ -134,7 +114,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(panelFondoLayout.createSequentialGroup()
                 .addComponent(LblPrivilegio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanelMinCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogout)))
@@ -155,7 +135,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addComponent(panelBarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 568, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 628, Short.MAX_VALUE)
                 .addComponent(PanelFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -188,8 +168,8 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel LblPrivilegio;
-    private javax.swing.JPanel PanelFechaHora;
-    private javax.swing.JPanel PanelMinCerrar;
+    public javax.swing.JPanel PanelFechaHora;
+    public javax.swing.JPanel PanelMinCerrar;
     public javax.swing.JButton btnLogout;
     public javax.swing.JPanel panelBarra;
     public javax.swing.JPanel panelContenedor;
