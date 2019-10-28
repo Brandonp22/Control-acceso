@@ -24,7 +24,7 @@ import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
-public class ControlInisioSesion extends ClaseLector implements ActionListener{
+public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
     //attributos para la vista
     private FrameInicioSesion formulario = null;
@@ -57,7 +57,6 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener{
         this.formulario.BtnAccesoSistema.addActionListener(this);
         this.formulario.BtnAccesoSistema.setVisible(false);
         this.pnlCredenciales.BtbEntrar.addActionListener(this);
-        
 
         //insertar el panel de la huella
         cambiar = new CambiarPanel();
@@ -263,7 +262,8 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener{
         ClaseConsultar consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Empleados");
 
         consulta.consultar("Usuarios.DPI, Usuarios.NombreUsuario, Usuarios.Contrasenia,"
-                + "Usuarios.Privilegio, Empleados.Nombre, Empleados.Apellidos");//obtener todo esto de la tabla
+                + "Usuarios.Privilegio, Empleados.Nombre, Empleados.Apellidos", 
+                "Usuarios.DPI", " = ", "Empleados.Usuarios_DPI");//obtener todo esto de la tabla
 
         try {
 
@@ -301,7 +301,8 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener{
             consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Propietarios");
 
             consulta.consultar("Usuarios.DPI, Usuarios.NombreUsuario, Usuarios.Contrasenia,"
-                    + "Usuarios.Privilegio, Propietarios.Nombre, Propietarios.Apellidos");//obtener todo esto de la tabla
+                    + "Usuarios.Privilegio, Propietarios.Nombre, Propietarios.Apellidos",
+                    "Usuarios.DPI" , " = " , "Propietarios.Usuarios_DPI");//obtener todo esto de la tabla
 
             while (consulta.getResultadoConsulta().next())//recorrer los datos
             {
@@ -317,9 +318,9 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener{
                     this.personal.setPrivilegio(consulta.getResultadoConsulta().getString("Privilegio"));
                     this.personal.setNombre(consulta.getResultadoConsulta().getString("Nombre"));
                     this.personal.setApellidos(consulta.getResultadoConsulta().getString("Apellidos"));
+
                     this.formulario.btnAccesoAlter.setEnabled(false);//desactivar el boton acceso alternativo
 
-                    //el boton de acceso se activa solo si es admin
                     this.formulario.BtnAccesoSistema.setVisible(true);
                     this.pnlCredenciales.BtbEntrar.setEnabled(false);
 
@@ -356,7 +357,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener{
         //pasar al panel de huella
         this.cambiar.cambiarPNL(formulario.PnlCentral, pnlHuella);
         super.start();
-        
+
         //////////////reset lo de credenciales
         this.pnlCredenciales.txtUser.setText(null);
         this.pnlCredenciales.txtPassword.setText(null);
@@ -399,7 +400,5 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener{
         }
 
     }
-
-  
 
 }

@@ -67,11 +67,11 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
         TxtBuscar = new javax.swing.JTextField();
         TxtBusquedaPor = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
         Datos = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(38, 50, 56));
         setLayout(new java.awt.BorderLayout());
@@ -122,68 +122,6 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
 
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.setBackground(new java.awt.Color(38, 50, 56));
-
-        Datos.setBackground(new java.awt.Color(204, 204, 204));
-        Datos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        Datos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Area de trabajo", "Entrada", "Salida"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        Datos.setGridColor(new java.awt.Color(0, 0, 0));
-        Datos.setSelectionBackground(new java.awt.Color(97, 203, 255));
-        jScrollPane.setViewportView(Datos);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
-
-        add(jPanel2, java.awt.BorderLayout.CENTER);
-
         jPanel3.setBackground(new java.awt.Color(38, 50, 56));
         jPanel3.setPreferredSize(new java.awt.Dimension(141, 55));
         jPanel3.setLayout(new java.awt.GridBagLayout());
@@ -199,6 +137,43 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
         jPanel3.add(jButton2, new java.awt.GridBagConstraints());
 
         add(jPanel3, java.awt.BorderLayout.PAGE_END);
+
+        jPanel2.setBackground(new java.awt.Color(38, 50, 56));
+
+        Datos.setBackground(new java.awt.Color(204, 204, 204));
+        Datos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        Datos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Area de trabajo", "Entrada", "Salida"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Datos.setGridColor(new java.awt.Color(0, 0, 0));
+        Datos.setSelectionBackground(new java.awt.Color(97, 203, 255));
+        jScrollPane.setViewportView(Datos);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+        );
+
+        add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 

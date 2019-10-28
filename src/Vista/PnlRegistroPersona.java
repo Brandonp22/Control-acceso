@@ -63,16 +63,16 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BtnFoto = new javax.swing.JButton();
+        BtnHuella = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         TxtUsuario = new javax.swing.JTextField();
         TxtPassword = new javax.swing.JPasswordField();
         TxtNombre = new javax.swing.JTextField();
         TxtApellido = new javax.swing.JTextField();
         IntDPI = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        CombAreasT = new javax.swing.JComboBox<>();
+        LblAdmin = new javax.swing.JLabel();
         CheckAdmin = new javax.swing.JCheckBox();
         BtnGuardar = new javax.swing.JButton();
 
@@ -87,9 +87,9 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(478, 135));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setText("FOTO");
-        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton1.setPreferredSize(new java.awt.Dimension(100, 50));
+        BtnFoto.setText("FOTO");
+        BtnFoto.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        BtnFoto.setPreferredSize(new java.awt.Dimension(100, 50));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -98,12 +98,12 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
         gridBagConstraints.ipady = 70;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 6, 11, 0);
-        jPanel1.add(jButton1, gridBagConstraints);
+        jPanel1.add(BtnFoto, gridBagConstraints);
 
-        jButton2.setText("HUELLA");
-        jButton2.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton2.setMaximumSize(new java.awt.Dimension(50, 23));
-        jButton2.setPreferredSize(new java.awt.Dimension(100, 50));
+        BtnHuella.setText("HUELLA");
+        BtnHuella.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        BtnHuella.setMaximumSize(new java.awt.Dimension(50, 23));
+        BtnHuella.setPreferredSize(new java.awt.Dimension(100, 50));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -112,7 +112,7 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
         gridBagConstraints.ipady = 70;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 6, 11, 0);
-        jPanel1.add(jButton2, gridBagConstraints);
+        jPanel1.add(BtnHuella, gridBagConstraints);
 
         jPanel2.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
@@ -186,10 +186,10 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(13, 10, 0, 12);
         jPanel3.add(IntDPI, gridBagConstraints);
 
-        jComboBox1.setBackground(new java.awt.Color(222, 222, 222));
-        jComboBox1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AREA DE TRABAJO" }));
-        jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CombAreasT.setBackground(new java.awt.Color(222, 222, 222));
+        CombAreasT.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        CombAreasT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AREA DE TRABAJO" }));
+        CombAreasT.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -198,11 +198,11 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
         gridBagConstraints.ipady = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 10, 0, 12);
-        jPanel3.add(jComboBox1, gridBagConstraints);
+        jPanel3.add(CombAreasT, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("¿Es Administrador?");
+        LblAdmin.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        LblAdmin.setForeground(new java.awt.Color(255, 255, 255));
+        LblAdmin.setText("¿Es Administrador?");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -211,7 +211,7 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
         gridBagConstraints.ipady = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(15, 18, 0, 0);
-        jPanel3.add(jLabel1, gridBagConstraints);
+        jPanel3.add(LblAdmin, gridBagConstraints);
 
         CheckAdmin.setBackground(new java.awt.Color(38, 50, 56));
         CheckAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -247,17 +247,17 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton BtnFoto;
     public javax.swing.JButton BtnGuardar;
+    public javax.swing.JButton BtnHuella;
     public javax.swing.JCheckBox CheckAdmin;
+    public javax.swing.JComboBox<String> CombAreasT;
     public javax.swing.JTextField IntDPI;
+    public javax.swing.JLabel LblAdmin;
     public javax.swing.JTextField TxtApellido;
     public javax.swing.JTextField TxtNombre;
     public javax.swing.JPasswordField TxtPassword;
     public javax.swing.JTextField TxtUsuario;
-    public javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JComboBox<String> jComboBox1;
-    public javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

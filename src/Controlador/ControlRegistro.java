@@ -7,7 +7,6 @@ import Modelo.ClaseInsertar;
 import Modelo.Conexion;
 import Modelo.Personal;
 
-
 import Vista.FrameRegistro;
 import Vista.PnlFoto;
 import Vista.PnlRegCredenciales;
@@ -108,7 +107,7 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
 
                         System.out.println("La huella ha sido capturada");
                         //mandar la img de la huella al label
-                        DibujarHuella(CrearImagenHuella(e.getSample()), pnlHuella.LblHuella);
+                        DibujarImagen(CrearImagenHuella(e.getSample()), pnlHuella.LblHuella);
 
                         ProcesarCaptura(e.getSample());
                     }
@@ -132,8 +131,6 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
                 });
             }
 
-           
-            
             @Override
             public void readerDisconnected(final DPFPReaderStatusEvent e) {//si el lector esta desactivado
                 SwingUtilities.invokeLater(new Runnable() {
@@ -186,6 +183,7 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
         insertar.agregarValor("Contrasenia", propietario.getContrasenia(), "S");
         insertar.agregarValor("Privilegio", propietario.getPrivilegio(), "S");
         insertar.agregarValor("Huella", propietario.getHuella(), "B");
+        insertar.agregarValor("Foto", propietario.getFoto(), "B");
 
         if (!insertar.ejecutarSQL()) {
             return;
@@ -306,7 +304,9 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
                 }
 
                 if (paso == 3) {
-                    
+
+                    propietario.setFoto(pnlFoto.LblFoto.getBytes());//llenar la foto
+
                     this.iniciarEventosLector();
                     this.start();
                     this.EstadoHuellas();

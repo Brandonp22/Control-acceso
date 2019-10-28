@@ -107,6 +107,6 @@ public class FrameRegistro extends javax.swing.JFrame {
     private javax.swing.JPanel PnlEncabezado;
     public javax.swing.JPanel PnlInferior;
     private javax.swing.JPanel PnlPrincipal;
-    public javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

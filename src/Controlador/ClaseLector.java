@@ -86,7 +86,7 @@ public class ClaseLector extends JFrame {
         return DPFPGlobal.getSampleConversionFactory().createImage(muestra);//crea una img a partir de una muestra
     }
 
-    public void DibujarHuella(Image image, javax.swing.JLabel lblHuella) {//funcion para setear imagen en label
+    public void DibujarImagen(Image image, javax.swing.JLabel lblHuella) {//funcion para setear imagen en label
 
         lblHuella.setIcon(new ImageIcon(
                 image.getScaledInstance(lblHuella.getWidth(), lblHuella.getHeight(), Image.SCALE_DEFAULT)
@@ -94,7 +94,7 @@ public class ClaseLector extends JFrame {
         );
     }
     
-    public void DibujarHuella(Image image, javax.swing.JButton Boton) {//funcion para setear imagen en label
+    public void DibujarImagen(Image image, javax.swing.JButton Boton) {//funcion para setear imagen en label
 
         Boton.setIcon(new ImageIcon(
                 image.getScaledInstance(Boton.getWidth(),Boton.getHeight() , Image.SCALE_DEFAULT)

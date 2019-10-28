@@ -30,7 +30,7 @@ public class PnlTablaDatos extends javax.swing.JPanel {
         // COLOR TABLA
         TablaRenderColor tabla = new TablaRenderColor();
         tabla.setCellRender(Datos);
-
+                
         Datos.getTableHeader().setAlignmentX(CENTER_ALIGNMENT);
         Datos.getTableHeader().setFont(new Font("Arial", Font.BOLD, 12));
         Datos.getTableHeader().setOpaque(false);
@@ -45,7 +45,7 @@ public class PnlTablaDatos extends javax.swing.JPanel {
 
         jScrollPane.getViewport().getView().setBackground(new Color(0, 69, 165));
         jScrollPane.getViewport().getView().setForeground(new Color(0, 69, 165));
-
+        
     }
 
 /**
@@ -123,37 +123,18 @@ public class PnlTablaDatos extends javax.swing.JPanel {
         Datos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "DPI", "Nombre", "Area de trabajo", "Entrada", "Salida"
+                "DPI", "Nombre", "Apellido", "Area de trabajo", "E. Programada", "S. Programada"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         Datos.setGridColor(new java.awt.Color(0, 0, 0));
@@ -164,14 +145,11 @@ public class PnlTablaDatos extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+            .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
         );
 
         add(jPanel2, java.awt.BorderLayout.CENTER);

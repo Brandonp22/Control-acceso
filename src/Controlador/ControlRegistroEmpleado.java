@@ -8,6 +8,7 @@ import Modelo.ClaseInsertar;
 import Modelo.Conexion;
 import Modelo.Personal;
 import Vista.FrameRegistro;
+import Vista.PnlFoto;
 import Vista.PnlRegHuella;
 import Vista.PnlRegistroPersona;
 import com.digitalpersona.onetouch.DPFPDataPurpose;
@@ -19,13 +20,17 @@ import com.digitalpersona.onetouch.capture.event.DPFPErrorEvent;
 import com.digitalpersona.onetouch.capture.event.DPFPReaderStatusAdapter;
 import com.digitalpersona.onetouch.capture.event.DPFPReaderStatusEvent;
 import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
+import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -35,17 +40,18 @@ import javax.swing.SwingUtilities;
  *
  * @author Jaasiel Guerra
  */
-public class ControlRegistroEmpleado extends  ClaseLector implements ActionListener {
+public class ControlRegistroEmpleado extends ClaseLector implements ActionListener {
 
     //variables de la vista
     private FrameRegistro formularioHuella = null;
     private PnlRegHuella pnlHuella = null;
     private PnlRegistroPersona pnlRegistroPer = null;
+    private PnlFoto pnlFoto = null;
     private CambiarPanel cambiarPanel = null;
     private Personal personal = null;
     private ControlPrincipal controlMain = null;
     private Map<String, Integer> areas = null;
-    private String DEFAULT_SELECTED_COMBO = "<Seleccione Area>";
+    private final String DEFAULT_SELECTED_COMBO = "<Seleccione Area>";
 
     /////constructor//////////
     public ControlRegistroEmpleado(ControlPrincipal ventanaMain, Personal per) {
@@ -57,6 +63,7 @@ public class ControlRegistroEmpleado extends  ClaseLector implements ActionListe
 
         this.formularioHuella = new FrameRegistro();
         this.pnlHuella = new PnlRegHuella();
+        this.pnlFoto = new PnlFoto();
         this.pnlRegistroPer = new PnlRegistroPersona();
         this.personal = new Personal();
         this.cambiarPanel = new CambiarPanel();
@@ -66,12 +73,16 @@ public class ControlRegistroEmpleado extends  ClaseLector implements ActionListe
         * aca se valida si el privilegio del usuario es propietario
         * de ser asi, se hacen visibles los componenetes
          */
-        this.pnlRegistroPer.jLabel1.setVisible(per.getPrivilegio().equals("Propietario"));
+        this.pnlRegistroPer.LblAdmin.setVisible(per.getPrivilegio().equals("Propietario"));
         this.pnlRegistroPer.CheckAdmin.setVisible(per.getPrivilegio().equals("Propietario"));
 
         this.pnlRegistroPer.BtnGuardar.addActionListener(this);
-        this.pnlRegistroPer.jButton2.addActionListener(this);
-        this.pnlRegistroPer.jButton2.setText(null);
+        this.pnlRegistroPer.BtnHuella.addActionListener(this);
+        this.pnlRegistroPer.BtnFoto.addActionListener(this);
+        this.pnlFoto.BtnAceptarFoto.addActionListener(this);
+
+        this.pnlRegistroPer.BtnHuella.setText(null);
+        this.pnlRegistroPer.BtnFoto.setText(null);
 
         iniciarEventosTextField();
         insertAreasTrabajo();
@@ -106,19 +117,19 @@ public class ControlRegistroEmpleado extends  ClaseLector implements ActionListe
         Conexion conector = new Conexion("datos/registro");
         ClaseConsultar consulta = new ClaseConsultar(conector.conectar(), "AreasTrabajo");
 
-        consulta.consultar("id,Nombre");
+        consulta.consultar("id,NombreArea");
 
         try {
-            this.pnlRegistroPer.jComboBox1.removeAllItems();//limpiar
-            this.pnlRegistroPer.jComboBox1.addItem(DEFAULT_SELECTED_COMBO);
+            this.pnlRegistroPer.CombAreasT.removeAllItems();//limpiar
+            this.pnlRegistroPer.CombAreasT.addItem(DEFAULT_SELECTED_COMBO);
             while (consulta.getResultadoConsulta().next()) {
 
                 //poner las areas en el combobox
-                this.pnlRegistroPer.jComboBox1.addItem(consulta.getResultadoConsulta()
-                        .getString("Nombre"));
+                this.pnlRegistroPer.CombAreasT.addItem(consulta.getResultadoConsulta()
+                        .getString("NombreArea"));
 
                 //meter las areas en el mapa
-                this.areas.put(consulta.getResultadoConsulta().getString("Nombre"),
+                this.areas.put(consulta.getResultadoConsulta().getString("NombreArea"),
                         consulta.getResultadoConsulta().getInt("id"));
             }
         } catch (SQLException ex) {
@@ -152,7 +163,7 @@ public class ControlRegistroEmpleado extends  ClaseLector implements ActionListe
 
                         System.out.println("La huella ha sido capturada");
                         //mandar la img de la huella al label
-                        DibujarHuella(CrearImagenHuella(e.getSample()), pnlHuella.LblHuella);
+                        DibujarImagen(CrearImagenHuella(e.getSample()), pnlHuella.LblHuella);
 
                         ProcesarCaptura(e.getSample());
 
@@ -244,9 +255,10 @@ public class ControlRegistroEmpleado extends  ClaseLector implements ActionListe
                         super.stop();//detiene el lector de huella
                         setTemplate(Reclutador.getTemplate());//se establece le huella 
                         this.formularioHuella.setVisible(false);//oculta la ventanita
+                        this.controlMain.getVentanaPrincipal().setVisible(true);//hablitar ventana main
 
                         //pone la imagen de la huella en el boton
-                        super.DibujarHuella(CrearImagenHuella(muestra), this.pnlRegistroPer.jButton2);
+                        super.DibujarImagen(CrearImagenHuella(muestra), this.pnlRegistroPer.BtnHuella);
                         //this.pnlRegistroPer.jButton2.setEnabled(false);//desactiva el boton
                         //this.pnlRegistroPer.jButton2.removeActionListener(this);//no escucha mas acciones el boton
                         this.personal.setHuella(getPlantillaHuella().serialize());//llena el dato huella
@@ -278,10 +290,12 @@ public class ControlRegistroEmpleado extends  ClaseLector implements ActionListe
     private void iniciarCapturaHuella() {
 
         //para evitar errores se quita la escucha de las acciones del boton
-        this.pnlRegistroPer.jButton2.removeActionListener(this);//no escucha mas acciones el boton
+        this.pnlRegistroPer.BtnHuella.removeActionListener(this);//no escucha mas acciones el boton
         this.iniciarEventosLector();
         this.start();
         this.EstadoHuellas();
+
+        this.controlMain.getVentanaPrincipal().setVisible(false);//deshabilita ventana main
 
         //insertar el panel huella
         this.cambiarPanel.cambiarPNL(formularioHuella.PnlCentral, pnlHuella);
@@ -291,13 +305,39 @@ public class ControlRegistroEmpleado extends  ClaseLector implements ActionListe
         this.formularioHuella.setVisible(true);
     }
 
+    private void iniciarTomaFoto() {
+
+        //remover la escucha de acciones
+        this.pnlRegistroPer.BtnFoto.removeActionListener(this);
+        
+
+        this.controlMain.getVentanaPrincipal().setVisible(false);//deshabilita ventana main
+
+        this.cambiarPanel.cambiarPNL(formularioHuella.PnlCentral, pnlFoto);
+        this.formularioHuella.BtnSiguiente.setVisible(false);
+        this.formularioHuella.setLocationRelativeTo(null);
+        this.formularioHuella.setVisible(true);
+
+    }
+
+    private void capturarFoto() {
+
+        this.personal.setFoto(this.pnlFoto.LblFoto.getBytes());
+        this.formularioHuella.setVisible(false);
+        
+        super.DibujarImagen(pnlFoto.LblFoto.getImage(), pnlRegistroPer.BtnFoto);
+        
+        this.controlMain.getVentanaPrincipal().setVisible(true);
+    }
+
     private void guardarEmpleado() {
 
-        //validar si ya esta lleno el personal
+        //validar 
         if (this.personal.getHuella() != null && pnlRegistroPer.TxtUsuario.getText().length() > 0
                 && pnlRegistroPer.TxtPassword.getText().length() > 0 && pnlRegistroPer.TxtNombre.getText().length() > 0
                 && pnlRegistroPer.TxtApellido.getText().length() > 0 && pnlRegistroPer.IntDPI.getText().length() > 0
-                && !pnlRegistroPer.jComboBox1.getSelectedItem().toString().equals(DEFAULT_SELECTED_COMBO)) {
+                && !pnlRegistroPer.CombAreasT.getSelectedItem().toString().equals(DEFAULT_SELECTED_COMBO)
+                && this.personal.getFoto() != null) {
 
             //llenar el usuario
             this.personal.setNombreUsuario(pnlRegistroPer.TxtUsuario.getText().toUpperCase());
@@ -305,7 +345,7 @@ public class ControlRegistroEmpleado extends  ClaseLector implements ActionListe
             this.personal.setNombre(pnlRegistroPer.TxtNombre.getText().toUpperCase());
             this.personal.setApellidos(pnlRegistroPer.TxtApellido.getText().toUpperCase());
             this.personal.setDPI(Long.parseLong(pnlRegistroPer.IntDPI.getText()));
-            this.personal.setAreaTrabajo(this.areas.get(pnlRegistroPer.jComboBox1.getSelectedItem().toString()));
+            this.personal.setAreaTrabajo(this.areas.get(pnlRegistroPer.CombAreasT.getSelectedItem().toString()));
 
             //si esta seleccionado el check es admin
             if (pnlRegistroPer.CheckAdmin.isSelected()) {
@@ -322,6 +362,7 @@ public class ControlRegistroEmpleado extends  ClaseLector implements ActionListe
             insertar.agregarValor("Contrasenia", personal.getContrasenia(), "S");
             insertar.agregarValor("Privilegio", personal.getPrivilegio(), "S");
             insertar.agregarValor("Huella", personal.getHuella(), "B");
+            insertar.agregarValor("Foto", personal.getFoto(),"B");
 
             if (!insertar.ejecutarSQL()) {
 
@@ -362,10 +403,18 @@ public class ControlRegistroEmpleado extends  ClaseLector implements ActionListe
     public void actionPerformed(ActionEvent e) {
 
         //boton de capturar huella
-        if (e.getSource().equals(this.pnlRegistroPer.jButton2)) {
+        if (e.getSource().equals(this.pnlRegistroPer.BtnHuella)) {
 
             iniciarCapturaHuella();
 
+        }
+
+        if (e.getSource().equals(this.pnlRegistroPer.BtnFoto)) {
+            iniciarTomaFoto();
+        }
+
+        if (e.getSource().equals(this.pnlFoto.BtnAceptarFoto)) {
+            capturarFoto();
         }
 
         //boton guardar

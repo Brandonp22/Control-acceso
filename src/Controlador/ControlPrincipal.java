@@ -3,6 +3,7 @@
  */
 package Controlador;
 
+import Modelo.Conexion;
 import Modelo.Personal;
 import Vista.FramePrincipal;
 import Vista.PnlBarraBotones;
@@ -10,6 +11,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -19,7 +27,7 @@ public class ControlPrincipal implements ActionListener {
 
     //instancias
     private FramePrincipal ventanaPrincipal = null;
-    private PnlBarraBotones barraBotones = null;
+    //private PnlBarraBotones barraBotones = null;
     private ControlInisioSesion ctrlLogin;
     private ControlRegistro ctrlRegistro;
     private ControlBarraBotones CtrlBarraBTN = null;
@@ -29,8 +37,13 @@ public class ControlPrincipal implements ActionListener {
     private ClaseContarRegistros contador = null;
     //private PnlTablaDatos tablaDatos = null;
     private ControlRegistroEmpleado registroEmp = null;
-    private ControlTablaDatos ctrlTablaD = null;
+    private ControlTablaDatos ctrlTablaDat = null;
     private ControlAreasTrabajo ctrlAreasT = null;
+    private ControlNuevaAreaTrabajo ctrlNAT = null;
+    private ControlTablaHistorial ctrlTDH = null;
+
+    private final String EMPLEADO = "Empleado";
+    private final String ADMINISTRADOR = "Admin";
 
     private CambiarPanel cambiar = null;
 
@@ -60,23 +73,22 @@ public class ControlPrincipal implements ActionListener {
     //una vez llenado personal en login o registro
     public void starVentanaPrincipal() {
 
-        this.barraBotones = new PnlBarraBotones();
+        //this.barraBotones = new PnlBarraBotones();
+        this.CtrlBarraBTN = new ControlBarraBotones();
 
-        this.barraBotones.btnAdmin.setVisible(
+        this.CtrlBarraBTN.btnAdmin.setVisible(
                 this.personal.getPrivilegio().equals("Propietario")
         );//si es el propietario, boton admin es visible
 
-        this.barraBotones.btnEmpleado.addActionListener(this);
-        this.barraBotones.btnAreaTrabajo.addActionListener(this);
-        this.barraBotones.btnAdmin.addActionListener(this);
-        this.barraBotones.btnHistorial.addActionListener(this);
-        this.barraBotones.btnImprimir.addActionListener(this);
-        this.barraBotones.btnAddUser.addActionListener(this);
-
-        this.CtrlBarraBTN = new ControlBarraBotones(this);
+        this.CtrlBarraBTN.btnEmpleado.addActionListener(this);
+        this.CtrlBarraBTN.btnAreaTrabajo.addActionListener(this);
+        this.CtrlBarraBTN.btnAdmin.addActionListener(this);
+        this.CtrlBarraBTN.btnHistorial.addActionListener(this);
+        this.CtrlBarraBTN.btnImprimir.addActionListener(this);
+        this.CtrlBarraBTN.btnAddUser.addActionListener(this);
 
         //setear el panel
-        this.cambiar.cambiarPNL(ventanaPrincipal.panelBarra, barraBotones);
+        this.cambiar.cambiarPNL(ventanaPrincipal.panelBarra, CtrlBarraBTN);
 
         this.ventanaPrincipal.LblPrivilegio.setIcon(new ImageIcon(getClass()
                 .getResource("/Img/ControlAcceso" + this.personal.getPrivilegio() + ".png")));
@@ -120,12 +132,13 @@ public class ControlPrincipal implements ActionListener {
     }
 
     public PnlBarraBotones getBarraBotones() {
-        return barraBotones;
+        return CtrlBarraBTN;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        //this.ventanaPrincipal.panelContenedor.removeAll();//limpiar el panel principal
         /////////////////boton de cerrar sesion/////////////
         if (e.getSource().equals(this.ventanaPrincipal.btnLogout)) {
             this.ventanaPrincipal.setVisible(false);
@@ -134,7 +147,7 @@ public class ControlPrincipal implements ActionListener {
         }
 
         ///////////////boton agregar empleado////////////////
-        if (e.getSource().equals(this.barraBotones.btnAddUser)) {
+        if (e.getSource().equals(this.CtrlBarraBTN.btnAddUser)) {
 
             //comprobar si existen areas de trabajo
             if (this.contador.contarReg("datos/registro", "AreasTrabajo") > 0) {
@@ -144,36 +157,156 @@ public class ControlPrincipal implements ActionListener {
                         this.registroEmp.getPnlRegistroPer());
             } else {
 
-                JOptionPane.showMessageDialog(null, "Aun no existe ningún área de trabajo."
-                        + "\nPor favor registre al menos una en el apartado de"
-                        + " <Área de Trabajo> para poder registar empleados.", "Control Acceso",
-                        JOptionPane.WARNING_MESSAGE);
+                int option = JOptionPane.showConfirmDialog(null,
+                        "Para registrar Empleados debe existir al menos un Área de Trabajo."
+                        + "\n¿Desea registrar una nueva?", "Control Acceso",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                if (option == JOptionPane.YES_OPTION) {
+
+                    this.ctrlAreasT = new ControlAreasTrabajo(this);
+                    this.ctrlNAT = new ControlNuevaAreaTrabajo(this, ctrlAreasT);
+                    this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
+                            this.ctrlNAT);
+
+                }
+
             }
 
         }
 
-        //////////////////boton empleados//////////////
-        if (e.getSource().equals(this.barraBotones.btnEmpleado)) {
+        //////////////////boton ver empleados//////////////
+        if (e.getSource().equals(this.CtrlBarraBTN.btnEmpleado)) {
 
             //comprobar si existen empleados
-            if (this.contador.contarReg("datos/registro", "Empleados") > 0) {
+            if (this.contador.contarReg("datos/registro", "Usuarios", "Privilegio", "Empleado") > 0) {
 
-                this.ctrlTablaD = new ControlTablaDatos();
+                this.ctrlTablaDat = new ControlTablaDatos();
+                this.ctrlTablaDat.actualizarTabla(EMPLEADO);
                 this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
-                        this.ctrlTablaD);
+                        this.ctrlTablaDat);
             } else {
 
                 int option = JOptionPane.showConfirmDialog(
                         null,
-                        "Aun no existe ningún empleado en el registro."
+                        "Aún no existe ningún empleado en el registro."
                         + "\n¿Desea registrar un nuevo empleado?",
                         "Control Acceso",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
 
                 if (option == JOptionPane.YES_OPTION) {
-                    this.barraBotones.btnAddUser.doClick();//accion de clic al boton de add usuario
+                    this.CtrlBarraBTN.btnAddUser.doClick();//accion de clic al boton de add usuario
                 }
+            }
+
+        }
+
+        //////////////////boton ver AreasTRabajo//////////////
+        if (e.getSource().equals(this.CtrlBarraBTN.btnAreaTrabajo)) {
+
+            //comprobar si existen areas
+            if (this.contador.contarReg("datos/registro", "AreasTrabajo") > 0) {
+
+                this.ctrlAreasT = new ControlAreasTrabajo(this);
+                this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
+                        this.ctrlAreasT);
+
+                this.ctrlNAT = null;//colgar el objeto para que java lo elimine en algun momento
+            } else {
+
+                int option = JOptionPane.showConfirmDialog(
+                        null,
+                        "Todavía no existe ningún Área de Trabajo."
+                        + "\n¿Desea registrar una nueva?",
+                        "Control Acceso",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+
+                if (option == JOptionPane.YES_OPTION) {
+
+                    this.ctrlAreasT = new ControlAreasTrabajo(this);
+                    this.ctrlNAT = new ControlNuevaAreaTrabajo(this, ctrlAreasT);
+                    this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
+                            this.ctrlNAT);
+
+                }
+            }
+
+        }
+
+        //////////////////boton ver administradoress//////////////
+        if (e.getSource().equals(this.CtrlBarraBTN.btnAdmin)) {
+
+            //comprobar si existen empleados
+            if (this.contador.contarReg("datos/registro", "Usuarios", "Privilegio", "Admin") > 0) {
+
+                this.ctrlTablaDat = new ControlTablaDatos();
+                this.ctrlTablaDat.actualizarTabla(ADMINISTRADOR);
+                this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
+                        this.ctrlTablaDat);
+            } else {
+
+                int option = JOptionPane.showConfirmDialog(
+                        null,
+                        "Aún no existe ningún administrador en el registro."
+                        + "\n¿Desea registrar un nuevo administrador?",
+                        "Control Acceso",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+
+                if (option == JOptionPane.YES_OPTION) {
+                    this.CtrlBarraBTN.btnAddUser.doClick();//accion de clic al boton de add usuario
+                }
+            }
+
+        }
+
+        //////////////////boton ver historial//////////////
+        if (e.getSource().equals(this.CtrlBarraBTN.btnHistorial)) {
+
+            //comprobar si hay historial
+            if (this.contador.contarReg("datos/registro", "EntradasSalidas") > 0) {
+
+                this.ctrlTDH = new ControlTablaHistorial();
+
+                this.ctrlTDH.actualizarTabla(this.CtrlBarraBTN.getBotonPulsado());
+
+                this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
+                        this.ctrlTDH);
+            } else {
+
+                JOptionPane.showMessageDialog(null,
+                        "El historial de horarios esta vacío.", "Control Acceso",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
+
+        //////////////////boton imprimir Reporte//////////////
+        if (e.getSource().equals(this.CtrlBarraBTN.btnImprimir)) {
+
+            try {
+
+                Conexion conec = new Conexion("datos/registro");
+
+                JasperReport reporte = null;//creamos la variable Jasreport reporte
+                String path = "src/Reportes/ReporteEmpleados.jasper";//ruta del reporte
+
+                reporte = (JasperReport) JRLoader.loadObjectFromFile(path);//igualamos la variable reporte y le enviamos el path
+
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conec.conectar());//caste y lo hacemos a jaspereport
+
+                JasperViewer view = new JasperViewer(jprint, false);//llenado del reporte
+
+                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);//habilitmos la x para salir
+
+                view.setTitle("Reportes de Empleados");
+
+                view.setVisible(true);
+
+            } catch (JRException ex) {
+                System.out.println("No se pudo imprimir el reporte: " + ex.getMessage());
             }
 
         }
