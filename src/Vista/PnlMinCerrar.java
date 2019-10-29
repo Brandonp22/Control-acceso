@@ -30,6 +30,7 @@ public class PnlMinCerrar extends javax.swing.JPanel {
         BtnMinimizar = new javax.swing.JButton();
         BtnCerrar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(33, 33, 33));
         setLayout(new java.awt.GridLayout(1, 2));
 
         BtnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnMinimizar2.png"))); // NOI18N

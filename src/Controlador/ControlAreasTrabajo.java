@@ -28,7 +28,7 @@ public class ControlAreasTrabajo extends PnlAreaTrabajo implements ActionListene
         this.cambiar = new CambiarPanel();
 
         //activar la escucha de acciones
-        this.jButton2.addActionListener(this);
+        this.BtnNuevo.addActionListener(this);
 
         initComponentes();
         actualizarTabla();
@@ -69,7 +69,7 @@ public class ControlAreasTrabajo extends PnlAreaTrabajo implements ActionListene
     public void actionPerformed(ActionEvent e) {
 
         //////////boton de nueva area de trabajo///////////////
-        if (e.getSource().equals(jButton2)) {
+        if (e.getSource().equals(BtnNuevo)) {
             
             //oculta boton de imprimir de la barra botones
             this.controlMain.getBarraBotones().btnImprimir.setVisible(false);

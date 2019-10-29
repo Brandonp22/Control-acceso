@@ -59,6 +59,7 @@ public class PnlTablaDatos extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         TxtBuscar = new javax.swing.JTextField();
@@ -67,6 +68,9 @@ public class PnlTablaDatos extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
         Datos = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        BtnEditar = new javax.swing.JButton();
+        BtnEliminar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(38, 50, 56));
         setLayout(new java.awt.BorderLayout());
@@ -141,15 +145,52 @@ public class PnlTablaDatos extends javax.swing.JPanel {
         Datos.setSelectionBackground(new java.awt.Color(97, 203, 255));
         jScrollPane.setViewportView(Datos);
 
+        jPanel3.setBackground(new java.awt.Color(38, 50, 56));
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+
+        BtnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnEditar2.png"))); // NOI18N
+        BtnEditar.setBorder(null);
+        BtnEditar.setBorderPainted(false);
+        BtnEditar.setContentAreaFilled(false);
+        BtnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnEditar.setFocusable(false);
+        BtnEditar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnEditar3.png"))); // NOI18N
+        BtnEditar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnEditar1.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 146, 11, 0);
+        jPanel3.add(BtnEditar, gridBagConstraints);
+
+        BtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnEliminar2.png"))); // NOI18N
+        BtnEliminar.setBorder(null);
+        BtnEliminar.setBorderPainted(false);
+        BtnEliminar.setContentAreaFilled(false);
+        BtnEliminar.setFocusable(false);
+        BtnEliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnEliminar3.png"))); // NOI18N
+        BtnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnEliminar1.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 30, 11, 147);
+        jPanel3.add(BtnEliminar, gridBagConstraints);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+            .addComponent(jScrollPane)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -157,12 +198,15 @@ public class PnlTablaDatos extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton BtnEditar;
+    public javax.swing.JButton BtnEliminar;
     public javax.swing.JTable Datos;
     public javax.swing.JTextField TxtBuscar;
     public javax.swing.JComboBox<String> TxtBusquedaPor;
     public javax.swing.JButton btnBuscar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane;
     // End of variables declaration//GEN-END:variables
 }

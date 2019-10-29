@@ -87,9 +87,16 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(478, 135));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        BtnFoto.setText("FOTO");
+        BtnFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnTomarFoto2.png"))); // NOI18N
+        BtnFoto.setBorder(null);
+        BtnFoto.setBorderPainted(false);
+        BtnFoto.setContentAreaFilled(false);
+        BtnFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnFoto.setFocusable(false);
         BtnFoto.setMargin(new java.awt.Insets(0, 0, 0, 0));
         BtnFoto.setPreferredSize(new java.awt.Dimension(100, 50));
+        BtnFoto.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnTomarFoto3.png"))); // NOI18N
+        BtnFoto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnTomarFoto1.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -100,10 +107,16 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 6, 11, 0);
         jPanel1.add(BtnFoto, gridBagConstraints);
 
-        BtnHuella.setText("HUELLA");
+        BtnHuella.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnCapturarHuella2.png"))); // NOI18N
+        BtnHuella.setBorder(null);
+        BtnHuella.setBorderPainted(false);
+        BtnHuella.setContentAreaFilled(false);
+        BtnHuella.setFocusable(false);
         BtnHuella.setMargin(new java.awt.Insets(0, 0, 0, 0));
         BtnHuella.setMaximumSize(new java.awt.Dimension(50, 23));
         BtnHuella.setPreferredSize(new java.awt.Dimension(100, 50));
+        BtnHuella.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnCapturarHuella3.png"))); // NOI18N
+        BtnHuella.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnCapturarHuella1.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -117,111 +130,50 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
         jPanel2.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
         jPanel3.setBackground(new java.awt.Color(38, 50, 56));
-        jPanel3.setLayout(new java.awt.GridBagLayout());
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TxtUsuario.setBackground(new java.awt.Color(222, 222, 222));
         TxtUsuario.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         TxtUsuario.setBorder(null);
         TxtUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         TxtUsuario.setName(""); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 449;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 10, 0, 12);
-        jPanel3.add(TxtUsuario, gridBagConstraints);
+        jPanel3.add(TxtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 2, 450, 30));
 
         TxtPassword.setBackground(new java.awt.Color(222, 222, 222));
         TxtPassword.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         TxtPassword.setBorder(null);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 449;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 10, 0, 12);
-        jPanel3.add(TxtPassword, gridBagConstraints);
+        jPanel3.add(TxtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 43, 450, 30));
 
         TxtNombre.setBackground(new java.awt.Color(222, 222, 222));
         TxtNombre.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         TxtNombre.setBorder(null);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 449;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 10, 0, 12);
-        jPanel3.add(TxtNombre, gridBagConstraints);
+        jPanel3.add(TxtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 86, 450, 30));
 
         TxtApellido.setBackground(new java.awt.Color(222, 222, 222));
         TxtApellido.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         TxtApellido.setBorder(null);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 449;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 10, 0, 12);
-        jPanel3.add(TxtApellido, gridBagConstraints);
+        jPanel3.add(TxtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 127, 450, 30));
 
         IntDPI.setBackground(new java.awt.Color(222, 222, 222));
         IntDPI.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         IntDPI.setBorder(null);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 449;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 10, 0, 12);
-        jPanel3.add(IntDPI, gridBagConstraints);
+        jPanel3.add(IntDPI, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 450, 30));
 
         CombAreasT.setBackground(new java.awt.Color(222, 222, 222));
         CombAreasT.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         CombAreasT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AREA DE TRABAJO" }));
         CombAreasT.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 295;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 10, 0, 12);
-        jPanel3.add(CombAreasT, gridBagConstraints);
+        jPanel3.add(CombAreasT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 211, 450, 30));
 
         LblAdmin.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         LblAdmin.setForeground(new java.awt.Color(255, 255, 255));
         LblAdmin.setText("¿Es Administrador?");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 32;
-        gridBagConstraints.ipady = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 18, 0, 0);
-        jPanel3.add(LblAdmin, gridBagConstraints);
+        jPanel3.add(LblAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 157, 38));
 
         CheckAdmin.setBackground(new java.awt.Color(38, 50, 56));
         CheckAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CheckAdmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(24, 10, 0, 0);
-        jPanel3.add(CheckAdmin, gridBagConstraints);
+        jPanel3.add(CheckAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, -1, -1));
 
         BtnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnGuardar2.png"))); // NOI18N
         BtnGuardar.setToolTipText("Guardar");
@@ -232,13 +184,7 @@ public class PnlRegistroPersona extends javax.swing.JPanel {
         BtnGuardar.setFocusable(false);
         BtnGuardar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnGuardar3.png"))); // NOI18N
         BtnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnGuardar1.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 192, 0, 12);
-        jPanel3.add(BtnGuardar, gridBagConstraints);
+        jPanel3.add(BtnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, -1, -1));
 
         jPanel2.add(jPanel3, java.awt.BorderLayout.CENTER);
 
