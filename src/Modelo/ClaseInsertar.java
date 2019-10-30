@@ -21,12 +21,11 @@ public class ClaseInsertar {
     private Connection objConector = null;
     private String nombreTab;
     private PreparedStatement preInsert;//objeto de preparion de consulta SQL
-    private ArrayList valores;
+    private ArrayList<Object> valores;//lista de tipo objeto
     private StringBuilder SQL;
     private ArrayList<String> tipoCampo;
-    private byte[] dato;
+    //private byte[] dato;
     //short auxNumDatos; //variable auxilirias para el numero de datos a insertar
-    
 
     public ClaseInsertar(Connection objConector, String nombreTab_) {//recibe el objeto de conexion y nombre de la tabla
 
@@ -71,9 +70,8 @@ public class ClaseInsertar {
             this.SQL.append(",").append(campo);//y se agrega el campo precedido de una coma
         }        //=========================================================================
 
-        this.dato = valor;//agregar el dato tipo arreglo de bytes
-
-        this.valores.add(null);//le metemos un valor quemado al arrayList en lugar del byte de la huella
+        //this.dato = valor;//agregar el dato tipo arreglo de bytes
+        this.valores.add(valor);//agregar valos al arraylist
 
         this.tipoCampo.add(tipoCampo_);  //agregar el tipo de campo   
 
@@ -108,45 +106,48 @@ public class ClaseInsertar {
             //clasificador de variables
             for (int i = 0; i < valores.size(); i++) {//recorrer la lista de campos
 
+                this.preInsert.setObject(i + 1, this.valores.get(i));
+
                 //validamos que el arreglo no recorra un valor mayor que el tamanio del mismo
                 // if(i <= campos.size())
                 //{
+                /*
                 if ("I".equals(this.tipoCampo.get(i)))//tipo Int
                 {
-                    this.preInsert.setInt(i + 1, Integer.parseInt(this.valores.get(i).toString()));
+                    this.preInsert.setObject(i + 1, this.valores.get(i));
                 }
 
                 if ("L".equals(this.tipoCampo.get(i)))//tipo Long
                 {
-                    this.preInsert.setLong(i + 1, Long.parseLong(this.valores.get(i).toString()));
+                    this.preInsert.setObject(i + 1, this.valores.get(i));
                 }
 
                 if ("F".equals(this.tipoCampo.get(i)))//tipo Float
                 {
-                    this.preInsert.setFloat(i + 1, Float.parseFloat(this.valores.get(i).toString()));
+                    this.preInsert.setObject(i + 1, this.valores.get(i));
                 }
 
                 if ("D".equals(this.tipoCampo.get(i)))//tipo Double
                 {
-                    this.preInsert.setDouble(i + 1, Double.parseDouble(this.valores.get(i).toString()));
+                    this.preInsert.setObject(i + 1, this.valores.get(i));
                 }
 
                 if ("S".equals(this.tipoCampo.get(i)))//tipo String
                 {
-                    this.preInsert.setString(i + 1, this.valores.get(i).toString());
+                    this.preInsert.setObject(i + 1, this.valores.get(i));
                 }
                 //}
 
                 if ("B".equals(this.tipoCampo.get(i)))//tipo Bytes
                 {
-                    this.preInsert.setBytes(i + 1, dato);
+                    this.preInsert.setObject(i + 1, this.valores.get(i));
                 }
-
+                 */
             }//termina for
 
             this.preInsert.execute();//ejecutar SQL
             resultado = true;
-            System.out.println("Datos insertados correctamente en la tabla: "+ nombreTab);
+            System.out.println("Datos insertados correctamente en la tabla: " + nombreTab);
             initVariables();//limpiar para una nueva insercion
 
         } catch (SQLException ex) {
@@ -160,10 +161,10 @@ public class ClaseInsertar {
     private void initVariables() {//limpiar todas las variables dejando listo para nueva insercion
 
         this.preInsert = null;
-        this.valores = new ArrayList();
+        this.valores = new ArrayList<Object>();
         this.SQL = new StringBuilder();
         this.tipoCampo = new ArrayList<String>();
-        this.dato = null;
+        //this.dato = null;
         this.SQL.append("INSERT INTO ").append(nombreTab).append("(");//inicializar sentencia SQL
 
     }

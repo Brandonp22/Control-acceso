@@ -18,6 +18,7 @@ public class ControlBarraBotones extends PnlBarraBotones implements ActionListen
     //private FramePrincipal ventanaMain = null;
     private CambiarPanel cambiar = null;
     private String botonPulsado;
+    private boolean activarDesactivarBtn = true;
 
     public ControlBarraBotones() {
 
@@ -41,25 +42,30 @@ public class ControlBarraBotones extends PnlBarraBotones implements ActionListen
         return botonPulsado;
     }
 
+    //este metodo activa o desactiva la funcion de hablitar o deshabilitar los botones
+    public void setActivarDesactivarBtn(boolean activarDesactivarBtn) {
+        this.activarDesactivarBtn = activarDesactivarBtn;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        /*
+        if (this.activarDesactivarBtn) {
+            /*
         //la funcion .equals devuelve true o false dependiendo si son o no iguales los objetos
         this.btnAddUser.setVisible(e.getSource().equals(btnEmpleado)
                 || e.getSource().equals(btnAdmin) || e.getSource().equals(btnAddUser)
                 || e.getSource().equals(btnImprimir));
 
         this.btnAddUser.setEnabled(!e.getSource().equals(btnAddUser));
-        */
-        
-        this.btnAdmin.setEnabled(!e.getSource().equals(btnAdmin));
+             */
+            this.btnAdmin.setEnabled(!e.getSource().equals(btnAdmin));
 
-        this.btnAreaTrabajo.setEnabled(!e.getSource().equals(btnAreaTrabajo));
+            this.btnAreaTrabajo.setEnabled(!e.getSource().equals(btnAreaTrabajo));
 
-        this.btnEmpleado.setEnabled(!e.getSource().equals(btnEmpleado));
+            this.btnEmpleado.setEnabled(!e.getSource().equals(btnEmpleado));
 
-        /*
+            /*
         this.btnHistorial.setVisible(e.getSource().equals(btnEmpleado)
                 || e.getSource().equals(btnAdmin) || e.getSource().equals(btnImprimir));
 
@@ -69,49 +75,50 @@ public class ControlBarraBotones extends PnlBarraBotones implements ActionListen
                 || e.getSource().equals(btnAdmin) || e.getSource().equals(btnAreaTrabajo)
                 || e.getSource().equals(btnHistorial) || e.getSource().equals(btnImprimir));
         
-        */
+             */
+            if (e.getSource().equals(btnEmpleado)) {
+                this.botonPulsado = "Empleado";
+                this.btnHistorial.setVisible(true);
+                this.btnImprimir.setVisible(true);
+                this.btnAddUser.setVisible(true);
+            }
 
-        if (e.getSource().equals(btnEmpleado)) {
-            this.botonPulsado = "Empleado";
-            this.btnHistorial.setVisible(true);
-            this.btnImprimir.setVisible(true);
-            this.btnAddUser.setVisible(true);
-        }
+            if (e.getSource().equals(btnAreaTrabajo)) {
+                this.btnHistorial.setVisible(false);
+                this.btnImprimir.setVisible(true);
+                this.btnAddUser.setVisible(false);
+            }
 
-        if (e.getSource().equals(btnAreaTrabajo)) {
-            this.btnHistorial.setVisible(false);
-            this.btnImprimir.setVisible(true);
-            this.btnAddUser.setVisible(false);
-        }
+            if (e.getSource().equals(btnAdmin)) {
 
-        if (e.getSource().equals(btnAdmin)) {
+                this.botonPulsado = "Admin";
+                this.btnHistorial.setVisible(true);
+                this.btnImprimir.setVisible(true);
+                this.btnAddUser.setVisible(true);
+            }
 
-            this.botonPulsado = "Admin";
-            this.btnHistorial.setVisible(true);
-            this.btnImprimir.setVisible(true);
-            this.btnAddUser.setVisible(true);
-        }
+            if (e.getSource().equals(btnHistorial)) {
+                this.btnHistorial.setVisible(false);
+                this.btnAddUser.setVisible(false);
 
-        if (e.getSource().equals(btnHistorial)) {
-            this.btnHistorial.setVisible(false);
-            this.btnAddUser.setVisible(false);
-            
-            
-            if(botonPulsado.equals("Empleado"))
-                botonPulsado = "EmpleadoHistorial";
-            else if(botonPulsado.equals("Admin"))
-                botonPulsado = "AdminHistorial";
-               
-        }
+                if (botonPulsado.equals("Empleado")) {
+                    botonPulsado = "EmpleadoHistorial";
+                } else if (botonPulsado.equals("Admin")) {
+                    botonPulsado = "AdminHistorial";
+                }
 
-        if (e.getSource().equals(btnImprimir)) {
-            
-        }
+            }
 
-        if (e.getSource().equals(btnAddUser)) {
-            this.btnAddUser.setVisible(false);
-            this.btnHistorial.setVisible(false);
-            this.btnImprimir.setVisible(false);
+            if (e.getSource().equals(btnImprimir)) {
+
+            }
+
+            if (e.getSource().equals(btnAddUser)) {
+                this.btnAddUser.setVisible(false);
+                this.btnHistorial.setVisible(false);
+                this.btnImprimir.setVisible(false);
+            }
+
         }
 
     }

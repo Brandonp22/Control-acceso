@@ -120,7 +120,7 @@ public class ControlPrincipal implements ActionListener {
 
             this.ctrlLogin = new ControlInisioSesion(this, personal);
 
-        } else if (this.contador.contarReg("datos/registro", "Usuarios") == 0) {//si no existe nigun usuario
+        } else {//si no existe nigun usuario
 
             this.ctrlRegistro = new ControlRegistro(this, personal);
         }
@@ -181,6 +181,7 @@ public class ControlPrincipal implements ActionListener {
             //comprobar si existen empleados
             if (this.contador.contarReg("datos/registro", "Usuarios", "Privilegio", "Empleado") > 0) {
 
+                this.CtrlBarraBTN.setActivarDesactivarBtn(true);
                 this.ctrlTablaDat = new ControlTablaDatos();
                 this.ctrlTablaDat.actualizarTabla(EMPLEADO);
                 this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
@@ -197,6 +198,9 @@ public class ControlPrincipal implements ActionListener {
 
                 if (option == JOptionPane.YES_OPTION) {
                     this.CtrlBarraBTN.btnAddUser.doClick();//accion de clic al boton de add usuario
+                    this.CtrlBarraBTN.setActivarDesactivarBtn(false);
+                } else {
+                    this.CtrlBarraBTN.setActivarDesactivarBtn(false);
                 }
             }
 
@@ -207,7 +211,8 @@ public class ControlPrincipal implements ActionListener {
 
             //comprobar si existen areas
             if (this.contador.contarReg("datos/registro", "AreasTrabajo") > 0) {
-
+                
+                this.CtrlBarraBTN.setActivarDesactivarBtn(true);
                 this.ctrlAreasT = new ControlAreasTrabajo(this);
                 this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
                         this.ctrlAreasT);
@@ -229,7 +234,9 @@ public class ControlPrincipal implements ActionListener {
                     this.ctrlNAT = new ControlNuevaAreaTrabajo(this, ctrlAreasT);
                     this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
                             this.ctrlNAT);
-
+                    this.CtrlBarraBTN.setActivarDesactivarBtn(false);
+                } else {
+                    this.CtrlBarraBTN.setActivarDesactivarBtn(false);
                 }
             }
 
@@ -241,6 +248,7 @@ public class ControlPrincipal implements ActionListener {
             //comprobar si existen empleados
             if (this.contador.contarReg("datos/registro", "Usuarios", "Privilegio", "Admin") > 0) {
 
+                this.CtrlBarraBTN.setActivarDesactivarBtn(true);
                 this.ctrlTablaDat = new ControlTablaDatos();
                 this.ctrlTablaDat.actualizarTabla(ADMINISTRADOR);
                 this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
@@ -257,6 +265,9 @@ public class ControlPrincipal implements ActionListener {
 
                 if (option == JOptionPane.YES_OPTION) {
                     this.CtrlBarraBTN.btnAddUser.doClick();//accion de clic al boton de add usuario
+                    this.CtrlBarraBTN.setActivarDesactivarBtn(false);
+                } else {
+                    this.CtrlBarraBTN.setActivarDesactivarBtn(false);
                 }
             }
 

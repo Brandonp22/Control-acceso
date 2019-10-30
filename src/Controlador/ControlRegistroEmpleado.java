@@ -55,7 +55,7 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
 
     /////constructor//////////
     public ControlRegistroEmpleado(ControlPrincipal ventanaMain, Personal per) {
-
+        
         super();//ejecutar constructor de clase base
 
         this.controlMain = ventanaMain;
@@ -75,34 +75,34 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
          */
         this.pnlRegistroPer.LblAdmin.setVisible(per.getPrivilegio().equals("Propietario"));
         this.pnlRegistroPer.CheckAdmin.setVisible(per.getPrivilegio().equals("Propietario"));
-
+        
         this.pnlRegistroPer.BtnGuardar.addActionListener(this);
         this.pnlRegistroPer.BtnHuella.addActionListener(this);
         this.pnlRegistroPer.BtnFoto.addActionListener(this);
         this.pnlFoto.BtnAceptarFoto.addActionListener(this);
-
+        
         this.pnlRegistroPer.BtnHuella.setText(null);
         this.pnlRegistroPer.BtnFoto.setText(null);
-
+        
         iniciarEventosTextField();
         insertAreasTrabajo();
     }
-
+    
     private void iniciarEventosTextField() {
 
         //este evento es para validar el campo DPI em tiempo real
         this.pnlRegistroPer.IntDPI.addKeyListener(new KeyAdapter() {
-
+            
             @Override
             public void keyTyped(KeyEvent e) {
-
+                
                 char caracter = e.getKeyChar();
 
                 // Verificar si la tecla pulsada es una letra
                 if (((caracter < '0')
                         || (caracter > '9'))
                         && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
-
+                    
                     e.consume();  //si es letra se ignora el evento
                     //JOptionPane.showMessageDialog(null, "Campo DPI inválido.",
                     //      "Control Acceso", JOptionPane.ERROR_MESSAGE);
@@ -116,9 +116,9 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
     private void insertAreasTrabajo() {
         Conexion conector = new Conexion("datos/registro");
         ClaseConsultar consulta = new ClaseConsultar(conector.conectar(), "AreasTrabajo");
-
+        
         consulta.consultar("id,NombreArea");
-
+        
         try {
             this.pnlRegistroPer.CombAreasT.removeAllItems();//limpiar
             this.pnlRegistroPer.CombAreasT.addItem(DEFAULT_SELECTED_COMBO);
@@ -141,11 +141,11 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
             System.gc();
         }
     }
-
+    
     public PnlRegistroPersona getPnlRegistroPer() {
         return pnlRegistroPer;
     }
-
+    
     private void iniciarEventosLector() {
 
         /*
@@ -160,17 +160,17 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-
+                        
                         System.out.println("La huella ha sido capturada");
                         //mandar la img de la huella al label
                         DibujarImagen(CrearImagenHuella(e.getSample()), pnlHuella.LblHuella);
-
+                        
                         ProcesarCaptura(e.getSample());
-
+                        
                     }
                 });
             }
-
+            
         });
 
         //------------------Metodo para saber el estado del lector---------------------------------------
@@ -180,14 +180,14 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-
+                        
                         System.out.println("EL sensor de huella se encuentra activado");
                         pnlHuella.LblHuella.setIcon(new ImageIcon(getClass()
                                 .getResource("/Img/LectorConectado.png")));
                     }
                 });
             }
-
+            
             @Override
             public void readerDisconnected(final DPFPReaderStatusEvent e) {//si el lector esta desactivado
                 SwingUtilities.invokeLater(new Runnable() {
@@ -208,7 +208,7 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
                     @Override
                     public void run() {
                         System.out.println("Error: " + e.getError());
-
+                        
                     }
                 });
             }
@@ -224,31 +224,31 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
     public void EstadoHuellas() {
         System.out.println("Muestra de huellas necesarias para guardar plantilla: "
                 + Reclutador.getFeaturesNeeded());
-
+        
         int paso = 4 - Reclutador.getFeaturesNeeded();
         marcaPasos(paso, pnlHuella.LblPasos);//marcar el paso
 
     }
-
+    
     public void ProcesarCaptura(DPFPSample muestra) {
 
         //para guardar las plantillas, que se obtienen en la funcion extraerCaracteristicas
         featureSetInscripcion = extraerCaracteristicas(muestra, DPFPDataPurpose.DATA_PURPOSE_ENROLLMENT);
-
+        
         if (featureSetInscripcion != null) {//asegurarse de que la huella este bien leida
 
             try {
-
+                
                 System.out.println("Las características de la huella han sido creadas");
                 Reclutador.addFeatures(featureSetInscripcion);//aniadir la plantilla de la huella al reclutador
 
             } catch (DPFPImageQualityException e) {
                 System.err.println("Error al extreaer caracteristicas: " + e.getMessage());
             } finally {
-
+                
                 EstadoHuellas();
                 switch (Reclutador.getTemplateStatus()) {
-
+                    
                     case TEMPLATE_STATUS_READY://huella lista!!!
 
                         marcaPasos(5, pnlHuella.LblPasos);//marca el ultimo paso
@@ -265,7 +265,7 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
                         this.Reclutador.clear();//limpiar el reclutador
 
                         break;
-
+                    
                     case TEMPLATE_STATUS_FAILED://si falla el proceso 
 
                         Reclutador.clear();//se limpia el reclutador
@@ -277,9 +277,9 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
                         JOptionPane.showMessageDialog(null, "La Plantilla de la huella no pudo ser creada.\nPor favor repita el proceso.",
                                 "Control Acceso", JOptionPane.ERROR_MESSAGE);
                         start();
-
+                        
                         EstadoHuellas();
-
+                        
                         break;
                 }//termina switch
             }//termina finally
@@ -294,34 +294,33 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
         this.iniciarEventosLector();
         this.start();
         this.EstadoHuellas();
-
+        
         this.controlMain.getVentanaPrincipal().setVisible(false);//deshabilita ventana main
 
         //insertar el panel huella
         this.cambiarPanel.cambiarPNL(formularioHuella.PnlCentral, pnlHuella);
         this.formularioHuella.BtnSiguiente.setVisible(false);
         this.formularioHuella.setLocationRelativeTo(null);
-        this.formularioHuella.setAlwaysOnTop(true);//para que sea modal
+        //this.formularioHuella.setAlwaysOnTop(true);//para que sea modal
         this.formularioHuella.setVisible(true);
     }
-
+    
     private void iniciarTomaFoto() {
 
         //remover la escucha de acciones
         this.pnlRegistroPer.BtnFoto.removeActionListener(this);
         
-
         this.controlMain.getVentanaPrincipal().setVisible(false);//deshabilita ventana main
 
         this.cambiarPanel.cambiarPNL(formularioHuella.PnlCentral, pnlFoto);
         this.formularioHuella.BtnSiguiente.setVisible(false);
         this.formularioHuella.setLocationRelativeTo(null);
         this.formularioHuella.setVisible(true);
-
+        
     }
-
+    
     private void capturarFoto() {
-
+        
         this.personal.setFoto(this.pnlFoto.LblFoto.getBytes());
         this.formularioHuella.setVisible(false);
         
@@ -329,7 +328,7 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
         
         this.controlMain.getVentanaPrincipal().setVisible(true);
     }
-
+    
     private void guardarEmpleado() {
 
         //validar 
@@ -353,66 +352,70 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
             } else {
                 this.personal.setPrivilegio("Empleado");
             }
-
+            
             Conexion con = new Conexion("datos/registro");
             ClaseInsertar insertar = new ClaseInsertar(con.conectar(), "Usuarios");
-
+            
             insertar.agregarValor("DPI", personal.getDPI(), "L");
             insertar.agregarValor("NombreUsuario", personal.getNombreUsuario(), "S");
             insertar.agregarValor("Contrasenia", personal.getContrasenia(), "S");
             insertar.agregarValor("Privilegio", personal.getPrivilegio(), "S");
             insertar.agregarValor("Huella", personal.getHuella(), "B");
-            insertar.agregarValor("Foto", personal.getFoto(),"B");
-
+            insertar.agregarValor("Foto", personal.getFoto(), "B");
+            
             if (!insertar.ejecutarSQL()) {
-
+                
                 JOptionPane.showMessageDialog(this, "El campo DPI ya existe.",
                         "Control Acceso", JOptionPane.ERROR_MESSAGE);
-
+                
                 return;//si no se inserto correctamente retornamos
             }
-
+            
             insertar = new ClaseInsertar(con.conectar(), "Empleados");
-
+            
             insertar.agregarValor("Usuarios_DPI", personal.getDPI(), "L");
             insertar.agregarValor("Nombre", personal.getNombre(), "S");
             insertar.agregarValor("Apellidos", personal.getApellidos(), "S");
             insertar.agregarValor("AreasTrabajo_id", personal.getAreaTrabajo(), "S");
-
+            
             if (insertar.ejecutarSQL()) {
-
+                
                 JOptionPane.showMessageDialog(null, "Empleado registrado correctamente.",
                         "Control Acceso", JOptionPane.INFORMATION_MESSAGE);
 
-                //remover el panel
-                this.controlMain.getVentanaPrincipal().panelContenedor.removeAll();
+                //listar resgitro
+                if (personal.getPrivilegio().equals("Empleado")) {
+                    this.controlMain.getBarraBotones().btnEmpleado.doClick();
+                }else{
+                    this.controlMain.getBarraBotones().btnAdmin.doClick();
+                }
             }
-
+            
             con.cerrar();//cerrar conexion
             con = null;
             insertar = null;
             System.gc();
-
+            
         } else {
             JOptionPane.showMessageDialog(this, "Por favor llene todos los datos.",
                     "Control Acceso", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
 
         //boton de capturar huella
         if (e.getSource().equals(this.pnlRegistroPer.BtnHuella)) {
-
+            
             iniciarCapturaHuella();
-
+            
         }
-
+        
         if (e.getSource().equals(this.pnlRegistroPer.BtnFoto)) {
             iniciarTomaFoto();
         }
-
+        
         if (e.getSource().equals(this.pnlFoto.BtnAceptarFoto)) {
             capturarFoto();
         }
@@ -421,7 +424,7 @@ public class ControlRegistroEmpleado extends ClaseLector implements ActionListen
         if (e.getSource().equals(this.pnlRegistroPer.BtnGuardar)) {
             guardarEmpleado();
         }
-
+        
     }
-
+    
 }
