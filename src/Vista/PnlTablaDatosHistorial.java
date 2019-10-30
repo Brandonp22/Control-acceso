@@ -64,6 +64,8 @@ public class PnlTablaDatosHistorial extends javax.swing.JPanel {
         TxtBuscar = new javax.swing.JTextField();
         TxtBusquedaPor = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
+        TxtBuscarArea = new javax.swing.JComboBox<>();
+        Calendario = new rojeru_san.componentes.RSDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
         Datos = new javax.swing.JTable();
@@ -91,15 +93,31 @@ public class PnlTablaDatosHistorial extends javax.swing.JPanel {
         btnBuscar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnBuscar3.png"))); // NOI18N
         btnBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnBuscar1.png"))); // NOI18N
 
+        TxtBuscarArea.setBackground(new java.awt.Color(222, 222, 222));
+        TxtBuscarArea.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        TxtBuscarArea.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BUSCAR POR", "DPI", "NOMBRE" }));
+
+        Calendario.setBackground(new java.awt.Color(222, 222, 222));
+        Calendario.setColorBackground(new java.awt.Color(33, 33, 33));
+        Calendario.setColorButtonHover(new java.awt.Color(0, 69, 165));
+        Calendario.setColorDiaActual(new java.awt.Color(0, 69, 165));
+        Calendario.setColorForeground(new java.awt.Color(0, 0, 0));
+        Calendario.setFormatoFecha("dd/MM/yyyy");
+        Calendario.setFuente(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(TxtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addGap(6, 6, 6)
+                .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TxtBusquedaPor, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(TxtBusquedaPor, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(TxtBuscarArea, 0, 175, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -108,11 +126,20 @@ public class PnlTablaDatosHistorial extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TxtBusquedaPor, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtBusquedaPor, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TxtBuscarArea, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -145,11 +172,11 @@ public class PnlTablaDatosHistorial extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 861, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
         );
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -157,8 +184,10 @@ public class PnlTablaDatosHistorial extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public rojeru_san.componentes.RSDateChooser Calendario;
     public javax.swing.JTable Datos;
     public javax.swing.JTextField TxtBuscar;
+    public javax.swing.JComboBox<String> TxtBuscarArea;
     public javax.swing.JComboBox<String> TxtBusquedaPor;
     public javax.swing.JButton btnBuscar;
     private javax.swing.JPanel jPanel1;

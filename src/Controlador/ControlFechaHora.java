@@ -27,7 +27,7 @@ public class ControlFechaHora {
     public ControlFechaHora() {
 
         this.fechaHora = new PnlFechaHora();
-        this.hora = new SimpleDateFormat("HH:mm:ss");
+        this.hora = new SimpleDateFormat("HH:mm");
         this.fecha = new SimpleDateFormat("dd/MM/yyyy");
         this.timer = new Timer();//timer para subprocesos
 

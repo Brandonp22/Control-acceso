@@ -31,6 +31,8 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
         nombre.changeStyle(Font.ITALIC);
         
         // COLOR TABLA
+       
+        
         TablaRenderColor tabla = new TablaRenderColor();
         tabla.setCellRender(Datos);
 
@@ -42,10 +44,10 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
         Datos.setRowHeight(25);
         ((DefaultTableCellRenderer) Datos.getTableHeader().getDefaultRenderer())
                 .setHorizontalAlignment(JLabel.CENTER);
-
+        
+        
         // SCROLLPANE
         jScrollPane.setBackground(new Color(0, 69, 165));
-
         jScrollPane.getViewport().getView().setBackground(new Color(0, 69, 165));
         jScrollPane.getViewport().getView().setForeground(new Color(0, 69, 165));
 
@@ -62,13 +64,16 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         TxtBuscar = new javax.swing.JTextField();
         TxtBusquedaPor = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        BtnNuevo = new javax.swing.JButton();
+        BtnEditar = new javax.swing.JButton();
+        BtnEliminar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
         Datos = new javax.swing.JTable();
@@ -126,21 +131,55 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(141, 55));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnNuevaArea2.png"))); // NOI18N
-        jButton2.setToolTipText("");
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setFocusable(false);
-        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnNuevaArea3.png"))); // NOI18N
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnNuevaArea1.png"))); // NOI18N
-        jPanel3.add(jButton2, new java.awt.GridBagConstraints());
+        BtnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnNuevo2.png"))); // NOI18N
+        BtnNuevo.setToolTipText("");
+        BtnNuevo.setBorder(null);
+        BtnNuevo.setBorderPainted(false);
+        BtnNuevo.setContentAreaFilled(false);
+        BtnNuevo.setFocusable(false);
+        BtnNuevo.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnNuevo3.png"))); // NOI18N
+        BtnNuevo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnNuevo1.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 60, 5, 0);
+        jPanel3.add(BtnNuevo, gridBagConstraints);
+
+        BtnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnEditar2.png"))); // NOI18N
+        BtnEditar.setBorder(null);
+        BtnEditar.setBorderPainted(false);
+        BtnEditar.setContentAreaFilled(false);
+        BtnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnEditar.setFocusable(false);
+        BtnEditar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnEditar3.png"))); // NOI18N
+        BtnEditar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnEditar1.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 30, 5, 0);
+        jPanel3.add(BtnEditar, gridBagConstraints);
+
+        BtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnEliminar2.png"))); // NOI18N
+        BtnEliminar.setBorder(null);
+        BtnEliminar.setBorderPainted(false);
+        BtnEliminar.setContentAreaFilled(false);
+        BtnEliminar.setFocusable(false);
+        BtnEliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnEliminar3.png"))); // NOI18N
+        BtnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnEliminar1.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 30, 5, 63);
+        jPanel3.add(BtnEliminar, gridBagConstraints);
 
         add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         jPanel2.setBackground(new java.awt.Color(38, 50, 56));
 
-        Datos.setBackground(new java.awt.Color(204, 204, 204));
+        Datos.setBackground(new java.awt.Color(51, 255, 0));
         Datos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -178,11 +217,13 @@ public class PnlAreaTrabajo extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton BtnEditar;
+    public javax.swing.JButton BtnEliminar;
+    public javax.swing.JButton BtnNuevo;
     public javax.swing.JTable Datos;
     public javax.swing.JTextField TxtBuscar;
     public javax.swing.JComboBox<String> TxtBusquedaPor;
     public javax.swing.JButton btnBuscar;
-    public javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

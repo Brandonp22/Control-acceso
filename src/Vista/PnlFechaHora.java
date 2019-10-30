@@ -35,7 +35,7 @@ public class PnlFechaHora extends javax.swing.JPanel {
 
         Hora.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         Hora.setForeground(new java.awt.Color(255, 255, 255));
-        Hora.setText("00:00 PM");
+        Hora.setText("00:00");
 
         Fecha.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         Fecha.setForeground(new java.awt.Color(255, 255, 255));
@@ -46,10 +46,10 @@ public class PnlFechaHora extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(525, Short.MAX_VALUE)
+                .addContainerGap(532, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Hora, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Fecha, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(Fecha, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Hora, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(

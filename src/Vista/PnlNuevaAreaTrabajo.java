@@ -24,21 +24,15 @@ public class PnlNuevaAreaTrabajo extends javax.swing.JPanel {
     public PnlNuevaAreaTrabajo() {
         initComponents();
         
-        TextPrompt ar = new TextPrompt("Nombre area de trabajo", TxtArea);
+        TextPrompt id = new TextPrompt("Establece un ID", TxtId);
+        id.setForeground(new Color(117,117,117 ,1));
+        id.changeAlpha(0.8f);
+        id.changeStyle(Font.ITALIC);
+        
+        TextPrompt ar = new TextPrompt("Nombre area de trabajo", TxtAreaTrabajo);
         ar.setForeground(new Color(117,117,117 ,1));
         ar.changeAlpha(0.8f);
         ar.changeStyle(Font.ITALIC);
-        
-        TextPrompt he = new TextPrompt("Establece hora de entrada", TxtHoraEntrada);
-        he.setForeground(new Color(117,117,117 ,1));
-        he.changeAlpha(0.8f);
-        he.changeStyle(Font.ITALIC);
-        
-        TextPrompt hs = new TextPrompt("Establece hora de salida", TxtHoraSalida);
-        hs.setForeground(new Color(117,117,117 ,1));
-        hs.changeAlpha(0.8f);
-        hs.changeStyle(Font.ITALIC);
-        
     }
 
     /**
@@ -52,61 +46,28 @@ public class PnlNuevaAreaTrabajo extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
-        TxtArea = new javax.swing.JTextField();
-        TxtHoraEntrada = new javax.swing.JPasswordField();
-        TxtHoraSalida = new javax.swing.JTextField();
+        TxtAreaTrabajo = new javax.swing.JTextField();
         BtnGuardar = new javax.swing.JButton();
+        TxtId = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        TxtHoraEntrada = new javax.swing.JFormattedTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        TxtHoraSalida = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(38, 50, 56));
-        setLayout(new java.awt.BorderLayout());
+        setLayout(new java.awt.GridBagLayout());
 
         jPanel2.setBackground(new java.awt.Color(38, 50, 56));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "REGISTRAR AREA DE TRABAJO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 0, 12), new java.awt.Color(97, 203, 255))); // NOI18N
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TxtArea.setBackground(new java.awt.Color(222, 222, 222));
-        TxtArea.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtArea.setForeground(new java.awt.Color(0, 0, 0));
-        TxtArea.setBorder(null);
-        TxtArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        TxtArea.setName(""); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 440;
-        gridBagConstraints.ipady = 17;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(60, 20, 0, 21);
-        jPanel2.add(TxtArea, gridBagConstraints);
-
-        TxtHoraEntrada.setBackground(new java.awt.Color(222, 222, 222));
-        TxtHoraEntrada.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtHoraEntrada.setForeground(new java.awt.Color(0, 0, 0));
-        TxtHoraEntrada.setBorder(null);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 440;
-        gridBagConstraints.ipady = 17;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(35, 20, 0, 21);
-        jPanel2.add(TxtHoraEntrada, gridBagConstraints);
-
-        TxtHoraSalida.setBackground(new java.awt.Color(222, 222, 222));
-        TxtHoraSalida.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtHoraSalida.setForeground(new java.awt.Color(0, 0, 0));
-        TxtHoraSalida.setBorder(null);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 440;
-        gridBagConstraints.ipady = 17;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(35, 20, 0, 21);
-        jPanel2.add(TxtHoraSalida, gridBagConstraints);
+        TxtAreaTrabajo.setBackground(new java.awt.Color(222, 222, 222));
+        TxtAreaTrabajo.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        TxtAreaTrabajo.setForeground(new java.awt.Color(0, 0, 0));
+        TxtAreaTrabajo.setBorder(null);
+        jPanel2.add(TxtAreaTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 440, 35));
 
         BtnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnGuardar2.png"))); // NOI18N
         BtnGuardar.setToolTipText("Guardar");
@@ -117,22 +78,110 @@ public class PnlNuevaAreaTrabajo extends javax.swing.JPanel {
         BtnGuardar.setFocusable(false);
         BtnGuardar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnGuardar3.png"))); // NOI18N
         BtnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnGuardar1.png"))); // NOI18N
+        jPanel2.add(BtnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, -1));
+
+        TxtId.setBackground(new java.awt.Color(222, 222, 222));
+        TxtId.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        TxtId.setForeground(new java.awt.Color(0, 0, 0));
+        TxtId.setBorder(null);
+        TxtId.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        TxtId.setName(""); // NOI18N
+        jPanel2.add(TxtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 440, 35));
+
+        jPanel1.setBackground(new java.awt.Color(222, 222, 222));
+
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Reloj.png"))); // NOI18N
+        jLabel2.setText("Entrada");
+
+        TxtHoraEntrada.setBackground(new java.awt.Color(222, 222, 222));
+        TxtHoraEntrada.setBorder(null);
+        TxtHoraEntrada.setForeground(new java.awt.Color(0, 0, 0));
+        try {
+            TxtHoraEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        TxtHoraEntrada.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(TxtHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(TxtHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 220, 35));
+
+        jPanel3.setBackground(new java.awt.Color(222, 222, 222));
+
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Reloj.png"))); // NOI18N
+        jLabel1.setText("Salida");
+
+        TxtHoraSalida.setBackground(new java.awt.Color(222, 222, 222));
+        TxtHoraSalida.setBorder(null);
+        TxtHoraSalida.setForeground(new java.awt.Color(0, 0, 0));
+        try {
+            TxtHoraSalida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        TxtHoraSalida.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(TxtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(TxtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 220, 35));
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(25, 210, 28, 0);
-        jPanel2.add(BtnGuardar, gridBagConstraints);
-
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 8, 3);
+        add(jPanel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BtnGuardar;
-    public javax.swing.JTextField TxtArea;
-    public javax.swing.JPasswordField TxtHoraEntrada;
-    public javax.swing.JTextField TxtHoraSalida;
+    public javax.swing.JTextField TxtAreaTrabajo;
+    public javax.swing.JFormattedTextField TxtHoraEntrada;
+    public javax.swing.JFormattedTextField TxtHoraSalida;
+    public javax.swing.JTextField TxtId;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
