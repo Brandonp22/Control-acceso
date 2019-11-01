@@ -66,7 +66,29 @@ public class ClaseConsultar {
             System.out.println("SQL ejecutado " + SQL.toString());//imprimir SQL
             preConsulta = objConector.prepareStatement(SQL.toString());
             resultadoConsulta = preConsulta.executeQuery();//ejecutar la consulta
-            System.out.println("Datos consultado correctamente de la tabla: "+this.nombreTab);
+            System.out.println("Datos consultado correctamente de la tabla: " + this.nombreTab);
+
+        } catch (SQLException ex) {
+            System.err.println("Error al leer desde la base de datos: " + ex.getMessage());
+            resultadoConsulta = null;
+        }
+
+        //return resultadoConsulta;//retorna toda la consulta
+    }
+
+    public void consultar(String ResultColumna, String campo, String SubCadenabuscar)//para consultas de subcadenas
+    {
+        initVariables();
+        SQL.append("SELECT ").append(ResultColumna).append(" FROM ").append(nombreTab)
+                .append(" WHERE ").append(campo).append(" ").append(" LIKE ")
+                .append(" '").append(SubCadenabuscar).append("%'");//SQL
+
+        try {
+
+            System.out.println("SQL ejecutado " + SQL.toString());//imprimir SQL
+            preConsulta = objConector.prepareStatement(SQL.toString());
+            resultadoConsulta = preConsulta.executeQuery();//ejecutar la consulta
+            System.out.println("Datos consultado correctamente de la tabla: " + this.nombreTab);
 
         } catch (SQLException ex) {
             System.err.println("Error al leer desde la base de datos: " + ex.getMessage());

@@ -18,10 +18,10 @@ public class ClaseModificar {
     private Connection objConector = null;
     private String nombreTab;
     private PreparedStatement preMod;
-    private ArrayList valores;
+    private ArrayList <Object>valores;
     private StringBuilder SQL;
     private ArrayList<String> tipoCampo;
-    private byte[] dato;
+    //private byte[] dato;
 
     //constructor
     public ClaseModificar(Connection objConector_, String nombreTab_) {
@@ -37,10 +37,10 @@ public class ClaseModificar {
     private void initVariables() {//limpiar todas las variables
 
         this.preMod = null;
-        this.valores = new ArrayList();
+        this.valores = new ArrayList<Object>();
         this.SQL = new StringBuilder();
         this.tipoCampo = new ArrayList<String>();
-        this.dato = null;
+        //this.dato = null;
         this.SQL.append("UPDATE ").append(nombreTab).append(" SET ");//inicializar sentencia SQL
 
     }
@@ -79,9 +79,9 @@ public class ClaseModificar {
         }
         //=========================================================================
 
-        this.valores.add(null);//le metemos un valor quemado al arrayList en lugar del byte de la huella
+        this.valores.add(valor);//le metemos un valor quemado al arrayList en lugar del byte de la huella
 
-        this.dato = valor;//agregar el dato tipo arreglo de bytes
+       // this.dato = valor;//agregar el dato tipo arreglo de bytes
 
         this.tipoCampo.add(tipoCampo_);//agregar el tipo de campo   
 
@@ -109,6 +109,8 @@ public class ClaseModificar {
             //clasificador de variables
             for (int i = 0; i < valores.size(); i++) {//recorrer la lista de valores
 
+                this.preMod.setObject(i + 1, this.valores.get(i));
+                /*
                 
                 if ("I".equals(this.tipoCampo.get(i)))//tipo Int
                 {
@@ -139,7 +141,7 @@ public class ClaseModificar {
                 {
                     this.preMod.setBytes(i + 1, dato);
                 }
-
+                */
             }//termina for
 
             this.preMod.executeUpdate();//ejecutar SQL

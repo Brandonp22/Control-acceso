@@ -64,6 +64,8 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
         this.formulario.setVisible(true);
 
         iniciarEventosTextField();
+        
+        this.formulario.setIconImage(new ImageIcon(getClass().getResource("/Img/Logo.png")).getImage());
     }
 
     private void iniciarEventosTextField() {
@@ -173,7 +175,7 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
 
     }
 
-    public void GuardarHuellaDB() {
+    public void GuardarResgistro() {
 
         Conexion con = new Conexion("datos/registro");
         ClaseInsertar insertar = new ClaseInsertar(con.conectar(), "Usuarios");
@@ -184,6 +186,7 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
         insertar.agregarValor("Privilegio", propietario.getPrivilegio(), "S");
         insertar.agregarValor("Huella", propietario.getHuella(), "B");
         insertar.agregarValor("Foto", propietario.getFoto(), "B");
+        insertar.agregarValor("FotoHuella", propietario.getFotoHuella(), "B");
 
         if (!insertar.ejecutarSQL()) {
             return;
@@ -240,9 +243,10 @@ public class ControlRegistro extends ClaseLector implements ActionListener {
 
                         setTemplate(Reclutador.getTemplate());//se establece le huella 
 
-                        propietario.setHuella(getPlantillaHuella().serialize());//llenamos el ultimo dato del usuario
+                        propietario.setHuella(getPlantillaHuella().serialize());//llenamos la huella
+                        propietario.setFotoHuella(muestra.serialize());//se establece la img de la huella en bytes
 
-                        GuardarHuellaDB();//y se guarda la huella
+                        GuardarResgistro();//y se guarda todo 
 
                         this.Reclutador.clear();//limpiar el reclutador
 

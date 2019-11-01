@@ -35,6 +35,8 @@ public class ClaseEliminar {
 
         this.SQL.append(campo).append(" = ").append("'").append(valBuscar).append("'")
                 .append(";");
+        
+        System.out.println("SQL Construido: "+ SQL.toString());
 
         try {
             if (objConector != null) {
@@ -50,7 +52,7 @@ public class ClaseEliminar {
             }
 
         } catch (HeadlessException | SQLException ex) {
-            System.out.println("Error al realizar la actualización por" + ex.getMessage());
+            System.out.println("Error al realizar la eliminacion por" + ex.getMessage());
             //JOptionPane.showMessageDialog(null, "Error al realizar la actualización por" + ex.getMessage());
         }
     }

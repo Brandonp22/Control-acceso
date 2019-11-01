@@ -59,11 +59,12 @@ public class ControlBarraBotones extends PnlBarraBotones implements ActionListen
 
         this.btnAddUser.setEnabled(!e.getSource().equals(btnAddUser));
              */
-            this.btnAdmin.setEnabled(!e.getSource().equals(btnAdmin));
+            //this.btnAdmin.setEnabled(!e.getSource().equals(btnAdmin));
 
-            this.btnAreaTrabajo.setEnabled(!e.getSource().equals(btnAreaTrabajo));
+            //this.btnAreaTrabajo.setEnabled(!e.getSource().equals(btnAreaTrabajo));
 
-            this.btnEmpleado.setEnabled(!e.getSource().equals(btnEmpleado));
+            //this.btnEmpleado.setEnabled(!e.getSource().equals(btnEmpleado));
+            
 
             /*
         this.btnHistorial.setVisible(e.getSource().equals(btnEmpleado)
@@ -87,6 +88,7 @@ public class ControlBarraBotones extends PnlBarraBotones implements ActionListen
                 this.btnHistorial.setVisible(false);
                 this.btnImprimir.setVisible(true);
                 this.btnAddUser.setVisible(false);
+                this.botonPulsado = "AreaTrabajo";
             }
 
             if (e.getSource().equals(btnAdmin)) {

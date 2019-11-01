@@ -6,7 +6,6 @@ package Controlador;
 import Modelo.Conexion;
 import Modelo.Personal;
 import Vista.FramePrincipal;
-import Vista.PnlBarraBotones;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -30,7 +29,7 @@ public class ControlPrincipal implements ActionListener {
     //private PnlBarraBotones barraBotones = null;
     private ControlInisioSesion ctrlLogin;
     private ControlRegistro ctrlRegistro;
-    private ControlBarraBotones CtrlBarraBTN = null;
+    public ControlBarraBotones CtrlBarraBTN = null;
 
     private Personal personal = null;
 
@@ -47,6 +46,7 @@ public class ControlPrincipal implements ActionListener {
 
     private CambiarPanel cambiar = null;
 
+    //////constructor/////
     public ControlPrincipal() {
 
         this.ventanaPrincipal = new FramePrincipal();
@@ -65,6 +65,9 @@ public class ControlPrincipal implements ActionListener {
 
         this.cambiar.cambiarPNL(ventanaPrincipal.PanelMinCerrar,
                 new ControlCerrarMinimizar(ventanaPrincipal).getPnlMC());
+
+        
+        this.ventanaPrincipal.setIconImage(new ImageIcon(getClass().getResource("/Img/Logo.png")).getImage());
 
         comprobarExisteUsuario();
     }
@@ -131,8 +134,13 @@ public class ControlPrincipal implements ActionListener {
         return ventanaPrincipal;
     }
 
-    public PnlBarraBotones getBarraBotones() {
+    public ControlBarraBotones getBarraBotones() {
         return CtrlBarraBTN;
+
+    }
+
+    public Personal getPersonal() {
+        return personal;
     }
 
     @Override
@@ -148,6 +156,10 @@ public class ControlPrincipal implements ActionListener {
 
         ///////////////boton agregar empleado////////////////
         if (e.getSource().equals(this.CtrlBarraBTN.btnAddUser)) {
+
+            this.CtrlBarraBTN.btnEmpleado.setEnabled(true);
+            this.CtrlBarraBTN.btnAreaTrabajo.setEnabled(true);
+            this.CtrlBarraBTN.btnAdmin.setEnabled(true);
 
             //comprobar si existen areas de trabajo
             if (this.contador.contarReg("datos/registro", "AreasTrabajo") > 0) {
@@ -181,8 +193,8 @@ public class ControlPrincipal implements ActionListener {
             //comprobar si existen empleados
             if (this.contador.contarReg("datos/registro", "Usuarios", "Privilegio", "Empleado") > 0) {
 
-                this.CtrlBarraBTN.setActivarDesactivarBtn(true);
-                this.ctrlTablaDat = new ControlTablaDatos();
+                //this.CtrlBarraBTN.setActivarDesactivarBtn(true);
+                this.ctrlTablaDat = new ControlTablaDatos(this);
                 this.ctrlTablaDat.actualizarTabla(EMPLEADO);
                 this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
                         this.ctrlTablaDat);
@@ -198,9 +210,9 @@ public class ControlPrincipal implements ActionListener {
 
                 if (option == JOptionPane.YES_OPTION) {
                     this.CtrlBarraBTN.btnAddUser.doClick();//accion de clic al boton de add usuario
-                    this.CtrlBarraBTN.setActivarDesactivarBtn(false);
+                    // this.CtrlBarraBTN.setActivarDesactivarBtn(false);
                 } else {
-                    this.CtrlBarraBTN.setActivarDesactivarBtn(false);
+                    // this.CtrlBarraBTN.setActivarDesactivarBtn(false);
                 }
             }
 
@@ -211,8 +223,8 @@ public class ControlPrincipal implements ActionListener {
 
             //comprobar si existen areas
             if (this.contador.contarReg("datos/registro", "AreasTrabajo") > 0) {
-                
-                this.CtrlBarraBTN.setActivarDesactivarBtn(true);
+
+                // this.CtrlBarraBTN.setActivarDesactivarBtn(true);
                 this.ctrlAreasT = new ControlAreasTrabajo(this);
                 this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
                         this.ctrlAreasT);
@@ -234,9 +246,9 @@ public class ControlPrincipal implements ActionListener {
                     this.ctrlNAT = new ControlNuevaAreaTrabajo(this, ctrlAreasT);
                     this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
                             this.ctrlNAT);
-                    this.CtrlBarraBTN.setActivarDesactivarBtn(false);
+                    //  this.CtrlBarraBTN.setActivarDesactivarBtn(false);
                 } else {
-                    this.CtrlBarraBTN.setActivarDesactivarBtn(false);
+                    //  this.CtrlBarraBTN.setActivarDesactivarBtn(false);
                 }
             }
 
@@ -248,8 +260,8 @@ public class ControlPrincipal implements ActionListener {
             //comprobar si existen empleados
             if (this.contador.contarReg("datos/registro", "Usuarios", "Privilegio", "Admin") > 0) {
 
-                this.CtrlBarraBTN.setActivarDesactivarBtn(true);
-                this.ctrlTablaDat = new ControlTablaDatos();
+                // this.CtrlBarraBTN.setActivarDesactivarBtn(true);
+                this.ctrlTablaDat = new ControlTablaDatos(this);
                 this.ctrlTablaDat.actualizarTabla(ADMINISTRADOR);
                 this.cambiar.cambiarPNL(this.ventanaPrincipal.panelContenedor,
                         this.ctrlTablaDat);
@@ -265,9 +277,9 @@ public class ControlPrincipal implements ActionListener {
 
                 if (option == JOptionPane.YES_OPTION) {
                     this.CtrlBarraBTN.btnAddUser.doClick();//accion de clic al boton de add usuario
-                    this.CtrlBarraBTN.setActivarDesactivarBtn(false);
+                    //   this.CtrlBarraBTN.setActivarDesactivarBtn(false);
                 } else {
-                    this.CtrlBarraBTN.setActivarDesactivarBtn(false);
+                    //  this.CtrlBarraBTN.setActivarDesactivarBtn(false);
                 }
             }
 
@@ -313,6 +325,8 @@ public class ControlPrincipal implements ActionListener {
                 view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);//habilitmos la x para salir
 
                 view.setTitle("Reportes de Empleados");
+                
+                view.setIconImage(new ImageIcon(getClass().getResource("/Img/Logo.png")).getImage());
 
                 view.setVisible(true);
 

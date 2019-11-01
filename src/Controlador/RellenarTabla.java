@@ -38,6 +38,11 @@ public class RellenarTabla {
          * Todo lo que se hace en DefaultModel se refresca automaticamente en el Jtable
          */
         try {
+            
+            int filas = tabla.getRowCount();//numero de filas
+            for (int i = 0; i < filas; i++) {
+                modelo.removeRow(0);//limpiar la tabla, fila cero
+            }
 
             this.metaDatos = datos.getMetaData();//obtener informacion de la tabla en la BD
            

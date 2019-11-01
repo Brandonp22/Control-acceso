@@ -65,7 +65,6 @@ public class PnlNuevaAreaTrabajo extends javax.swing.JPanel {
 
         TxtAreaTrabajo.setBackground(new java.awt.Color(222, 222, 222));
         TxtAreaTrabajo.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtAreaTrabajo.setForeground(new java.awt.Color(0, 0, 0));
         TxtAreaTrabajo.setBorder(null);
         jPanel2.add(TxtAreaTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 440, 35));
 
@@ -82,7 +81,6 @@ public class PnlNuevaAreaTrabajo extends javax.swing.JPanel {
 
         TxtId.setBackground(new java.awt.Color(222, 222, 222));
         TxtId.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        TxtId.setForeground(new java.awt.Color(0, 0, 0));
         TxtId.setBorder(null);
         TxtId.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         TxtId.setName(""); // NOI18N
@@ -91,13 +89,11 @@ public class PnlNuevaAreaTrabajo extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(222, 222, 222));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Reloj.png"))); // NOI18N
         jLabel2.setText("Entrada");
 
         TxtHoraEntrada.setBackground(new java.awt.Color(222, 222, 222));
         TxtHoraEntrada.setBorder(null);
-        TxtHoraEntrada.setForeground(new java.awt.Color(0, 0, 0));
         try {
             TxtHoraEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
@@ -128,13 +124,11 @@ public class PnlNuevaAreaTrabajo extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(222, 222, 222));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Reloj.png"))); // NOI18N
         jLabel1.setText("Salida");
 
         TxtHoraSalida.setBackground(new java.awt.Color(222, 222, 222));
         TxtHoraSalida.setBorder(null);
-        TxtHoraSalida.setForeground(new java.awt.Color(0, 0, 0));
         try {
             TxtHoraSalida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {

@@ -18,7 +18,7 @@ public class Personal {
     private String Privilegio;
     private byte Huella[];
     private byte[] Foto;
-
+    private byte[] FotoHuella;
     public Personal() {
         this.DPI = 0;
         this.Nombre = "";
@@ -101,6 +101,14 @@ public class Personal {
 
     public void setFoto(byte[] Foto) {
         this.Foto = Foto;
+    }
+
+    public byte[] getFotoHuella() {
+        return FotoHuella;
+    }
+
+    public void setFotoHuella(byte[] FotoHuella) {
+        this.FotoHuella = FotoHuella;
     }
     
     

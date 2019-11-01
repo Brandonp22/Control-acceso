@@ -84,6 +84,7 @@ public class ClaseLector extends JFrame {
 
     public Image CrearImagenHuella(DPFPSample muestra) {//crea una imagen dada la plantilla de la huella
         return DPFPGlobal.getSampleConversionFactory().createImage(muestra);//crea una img a partir de una muestra
+        
     }
 
     public void DibujarImagen(Image image, javax.swing.JLabel lblHuella) {//funcion para setear imagen en label
@@ -123,7 +124,7 @@ public class ClaseLector extends JFrame {
         boolean verificacion = false;
         this.resultado = this.Verificador.verify(conjuntoCaracteristicas,
                 DPFPGlobal.getTemplateFactory().createTemplate(huella));
-
+       
         if (this.resultado.isVerified()) {
             verificacion = true;
         } else {
