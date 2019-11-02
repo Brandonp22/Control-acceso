@@ -21,7 +21,7 @@ public class PnlHuella extends javax.swing.JPanel {
 
         LblHuella = new javax.swing.JLabel();
         TxtNombreUsuario = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        TxtIndicador = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(38, 50, 56));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -34,18 +34,19 @@ public class PnlHuella extends javax.swing.JPanel {
         TxtNombreUsuario.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         TxtNombreUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TxtNombreUsuario.setBorder(null);
-        add(TxtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 262, 53));
+        add(TxtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 430, 53));
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("INDICADOR");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 80, -1));
+        TxtIndicador.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        TxtIndicador.setForeground(new java.awt.Color(255, 255, 255));
+        TxtIndicador.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        TxtIndicador.setText("INDICADOR");
+        add(TxtIndicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 430, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel LblHuella;
+    public javax.swing.JLabel TxtIndicador;
     public javax.swing.JTextField TxtNombreUsuario;
-    public javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

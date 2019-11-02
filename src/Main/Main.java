@@ -7,6 +7,8 @@ package Main;
 
 import Controlador.ControlPrincipal;
 import Controlador.ControlRegistro;
+import Modelo.ClaseInsertar;
+import Modelo.Conexion;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -41,6 +43,15 @@ public class Main {
         
         ControlPrincipal control;
         control = new ControlPrincipal();
+       
+       //es un registro de ENTRADA entonces se hace in INSERT
+           //     Conexion con = new Conexion("datos/registro");
+             //   ClaseInsertar ins = new ClaseInsertar(con.conectar(), "EntradasSalidas");
+               // ins.agregarValor("Fecha", "12", "S");
+              //  ins.agregarValor("Entrada", "12", "S");
+              //  ins.agregarValor("Salida", "--:--", "S");//aun no se marca la salida
+              //  ins.agregarValor("Empleados_Usuarios_DPI", 888, "L");
+              //  ins.ejecutarSQL();
         
      
         

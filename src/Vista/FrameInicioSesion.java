@@ -31,13 +31,17 @@ public class FrameInicioSesion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        BtnGrupo = new javax.swing.ButtonGroup();
         PanelPrincipal = new javax.swing.JPanel();
         Encabezado = new javax.swing.JPanel();
+        PanelMinCerrar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         PnlCentral = new javax.swing.JPanel();
         PnlInferior = new javax.swing.JPanel();
         btnAccesoAlter = new javax.swing.JButton();
         BtnAccesoSistema = new javax.swing.JButton();
+        RBtnMarcarIO = new javax.swing.JRadioButton();
+        RBtnAccesoSistema = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -46,12 +50,16 @@ public class FrameInicioSesion extends javax.swing.JFrame {
         PanelPrincipal.setLayout(new java.awt.BorderLayout());
 
         Encabezado.setBackground(new java.awt.Color(38, 50, 56));
-        Encabezado.setLayout(new java.awt.BorderLayout());
+        Encabezado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PanelMinCerrar.setBackground(new java.awt.Color(38, 50, 56));
+        PanelMinCerrar.setLayout(new java.awt.BorderLayout());
+        Encabezado.add(PanelMinCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 100, 25));
 
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/LogoControlAcceso.png"))); // NOI18N
-        Encabezado.add(jLabel1, java.awt.BorderLayout.CENTER);
+        Encabezado.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, -1));
 
         PanelPrincipal.add(Encabezado, java.awt.BorderLayout.PAGE_START);
 
@@ -79,14 +87,22 @@ public class FrameInicioSesion extends javax.swing.JFrame {
         BtnAccesoSistema.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlSistema3.png"))); // NOI18N
         BtnAccesoSistema.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlSistema1.png"))); // NOI18N
 
+        RBtnMarcarIO.setText("Marcar I/O");
+
+        RBtnAccesoSistema.setText("Acceso al Sistema");
+
         javax.swing.GroupLayout PnlInferiorLayout = new javax.swing.GroupLayout(PnlInferior);
         PnlInferior.setLayout(PnlInferiorLayout);
         PnlInferiorLayout.setHorizontalGroup(
             PnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlInferiorLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(26, 26, 26)
+                .addGroup(PnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RBtnAccesoSistema)
+                    .addComponent(RBtnMarcarIO))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(BtnAccesoSistema)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAccesoAlter)
                 .addContainerGap())
         );
@@ -98,6 +114,11 @@ public class FrameInicioSesion extends javax.swing.JFrame {
                     .addComponent(BtnAccesoSistema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAccesoAlter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(PnlInferiorLayout.createSequentialGroup()
+                .addComponent(RBtnMarcarIO)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RBtnAccesoSistema)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         PanelPrincipal.add(PnlInferior, java.awt.BorderLayout.PAGE_END);
@@ -110,10 +131,14 @@ public class FrameInicioSesion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BtnAccesoSistema;
+    public javax.swing.ButtonGroup BtnGrupo;
     private javax.swing.JPanel Encabezado;
+    public javax.swing.JPanel PanelMinCerrar;
     private javax.swing.JPanel PanelPrincipal;
     public javax.swing.JPanel PnlCentral;
     private javax.swing.JPanel PnlInferior;
+    public javax.swing.JRadioButton RBtnAccesoSistema;
+    public javax.swing.JRadioButton RBtnMarcarIO;
     public javax.swing.JButton btnAccesoAlter;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

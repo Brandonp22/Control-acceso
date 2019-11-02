@@ -31,6 +31,7 @@ public class ControlTablaHistorial extends PnlTablaDatosHistorial implements Key
     private String buscarFecha;
     private String buscarArea;
     private String buscarEmpleado;
+    private String SQL;
 
     public ControlTablaHistorial() {
 
@@ -67,6 +68,7 @@ public class ControlTablaHistorial extends PnlTablaDatosHistorial implements Key
 
             RellenarTabla rellenar = new RellenarTabla(consulta.getResultadoConsulta(), this.Datos);
             rellenar.llenar();
+            this.SQL = consulta.getSQL().toString();
 
             conectarse.cerrar();//cerrar conexion
             conectarse = null;
@@ -112,6 +114,7 @@ public class ControlTablaHistorial extends PnlTablaDatosHistorial implements Key
             RellenarTabla rellenar = new RellenarTabla(consulta.getResultadoConsulta(), this.Datos);
             rellenar.llenar();
 
+            this.SQL = consulta.getSQL().toString();
             conectarse.cerrar();//cerrar conexion
             conectarse = null;
             consulta = null;
@@ -158,6 +161,10 @@ public class ControlTablaHistorial extends PnlTablaDatosHistorial implements Key
         busqueda.put("NOMBRE", "Nombre");
         this.TxtBuscar.setEditable(false);
 
+    }
+
+    public String getSQL() {
+        return SQL;
     }
 
     @Override

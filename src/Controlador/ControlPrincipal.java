@@ -106,7 +106,7 @@ public class ControlPrincipal implements ActionListener {
         * componentes son visibles dependiendo del privilegio
          */
         //this.registroEmp = new ControlRegistroEmpleado(this,this.personal);
-        this.ventanaPrincipal.setLocationRelativeTo(null);
+        
         this.ventanaPrincipal.setVisible(true);
 
     }
@@ -314,10 +314,31 @@ public class ControlPrincipal implements ActionListener {
                 Conexion conec = new Conexion("datos/registro");
 
                 JasperReport reporte = null;//creamos la variable Jasreport reporte
-                String path = "src/Reportes/ReporteEmpleados.jasper";//ruta del reporte
+                
+                String path = "";
+                
+                if(this.CtrlBarraBTN.getBotonPulsado().equals("Empleado")){
+                    path = "src/Reportes/Empleados.jasper";//ruta del reporte
+                }
+                if(this.CtrlBarraBTN.getBotonPulsado().equals("Admin")){
+                    path = "src/Reportes/Admin.jasper";//ruta del reporte
+                }
+                if(this.CtrlBarraBTN.getBotonPulsado().equals("AreaTrabajo")){
+                    path = "src/Reportes/AreasTrabajo.jasper";//ruta del reporte
+                }
+                if(this.CtrlBarraBTN.getBotonPulsado().equals("EmpleadoHistorial")){
+                    path = "src/Reportes/HistorialHorasEmp.jasper";//ruta del reporte
+                }
+                if(this.CtrlBarraBTN.getBotonPulsado().equals("AdminHistorial")){
+                    path = "src/Reportes/HistorialHorasAdmin.jasper";//ruta del reporte
+                    
+                }
+                
 
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path);//igualamos la variable reporte y le enviamos el path
 
+                
+                
                 JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conec.conectar());//caste y lo hacemos a jaspereport
 
                 JasperViewer view = new JasperViewer(jprint, false);//llenado del reporte

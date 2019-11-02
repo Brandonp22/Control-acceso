@@ -108,4 +108,8 @@ public class ClaseConsultar {
         this.SQL = new StringBuilder();
     }
 
+    public StringBuilder getSQL() {
+        return SQL;
+    }
+
 }

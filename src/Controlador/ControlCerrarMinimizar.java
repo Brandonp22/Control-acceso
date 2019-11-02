@@ -38,7 +38,7 @@ public class ControlCerrarMinimizar implements ActionListener {
 
         if (e.getSource().equals(pnlMC.BtnMinimizar)) {
 
-            this.ventana.setExtendedState(ICONIFIED);
+            this.ventana.setExtendedState(ventana.ICONIFIED);
 
         }
 

@@ -53,6 +53,7 @@ public class ControlFechaHora {
             }
         };
         timer.schedule(procesos, 0, 1000);
+       
     }
 
     public PnlFechaHora getFechaHora() {

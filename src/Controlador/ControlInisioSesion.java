@@ -5,6 +5,8 @@
 package Controlador;
 
 import Modelo.ClaseConsultar;
+import Modelo.ClaseInsertar;
+import Modelo.ClaseModificar;
 import Modelo.Conexion;
 import Modelo.Personal;
 import Vista.FrameInicioSesion;
@@ -18,11 +20,17 @@ import com.digitalpersona.onetouch.capture.event.DPFPErrorAdapter;
 import com.digitalpersona.onetouch.capture.event.DPFPErrorEvent;
 import com.digitalpersona.onetouch.capture.event.DPFPReaderStatusAdapter;
 import com.digitalpersona.onetouch.capture.event.DPFPReaderStatusEvent;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
@@ -40,6 +48,10 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
     //encapsulamiento de datos de usuario
     private Personal personal = null;
 
+    private final long TIEMPO_ESPERA = 2500;
+    
+    private ControlCerrarMinimizar ctrlCM = null;
+
     /////////cobstructor/////////
     public ControlInisioSesion(ControlPrincipal ventanaMain, Personal personal) {
         super();//llamar al constructor de la clase padre
@@ -53,6 +65,8 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
         this.pnlHuella.TxtNombreUsuario.setText("- - - -");//poner texto inicial
         this.pnlHuella.LblHuella.setIcon(new ImageIcon(getClass()
                 .getResource("/Img/Huella.png")));
+        this.pnlHuella.TxtIndicador.setText(null);
+        this.pnlCredenciales.TxtIndicadorCred.setText(null);
 
         this.formulario.btnAccesoAlter.addActionListener(this);
         this.formulario.BtnAccesoSistema.addActionListener(this);
@@ -66,10 +80,16 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
         iniciarEventosLector();
         super.start();
 
+        this.formulario.RBtnMarcarIO.setSelected(true);
+        this.formulario.BtnGrupo.add(formulario.RBtnMarcarIO);
+        this.formulario.BtnGrupo.add(formulario.RBtnAccesoSistema);
+
         this.formulario.setLocationRelativeTo(null);
         this.formulario.setVisible(true);
-        
+
         this.formulario.setIconImage(new ImageIcon(getClass().getResource("/Img/Logo.png")).getImage());
+        this.ctrlCM = new ControlCerrarMinimizar(this);
+        cambiar.cambiarPNL(formulario.PanelMinCerrar, ctrlCM.getPnlMC());
     }
 
     private void iniciarEventosLector() {
@@ -104,6 +124,8 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
                     public void run() {
 
                         System.out.println("EL sensor de huella se encuentra activado");
+                        pnlHuella.LblHuella.setIcon(new ImageIcon(getClass()
+                                .getResource("/Img/Huella.png")));
                     }
                 });
             }
@@ -114,6 +136,8 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
                     @Override
                     public void run() {
                         System.out.println("El sensor se encuentra desactivado");
+                        pnlHuella.LblHuella.setIcon(new ImageIcon(getClass()
+                                .getResource("/Img/LectorDesactivadoDos.png")));
                     }
                 });
             }
@@ -135,8 +159,83 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
     private void iniciarVentanaPrincipal() {
 
         this.formulario.setVisible(false);
+        this.CtrlMain.getVentanaPrincipal().setLocationRelativeTo(null);
         this.CtrlMain.getVentanaPrincipal().setVisible(true);
         this.CtrlMain.starVentanaPrincipal();
+    }
+
+    private void Marcaje_O_Acceso() {//para validar marcaje o acceso al sistema
+        if (formulario.RBtnMarcarIO.isSelected()) {//si se quiere marcar IO
+            if (personal.getPrivilegio().equals("Admin") || personal.getPrivilegio().equals("Empleado")) {
+
+                this.formulario.btnAccesoAlter.setEnabled(false);//desactivar el boton
+                super.stop();//detener el lector
+                marcarIO();
+                Timer timer = new Timer();
+                TimerTask procesos = new TimerTask() {
+                    @Override
+                    public void run() {//subProceso aca
+                        resetInisioSesion();
+                    }
+                };
+                timer.schedule(procesos, TIEMPO_ESPERA);
+
+            } else {
+                this.pnlHuella.TxtIndicador.setForeground(Color.ORANGE);
+                this.pnlHuella.TxtIndicador.setText("Usted es un propetario");
+                this.pnlCredenciales.TxtIndicadorCred.setForeground(Color.ORANGE);
+                this.pnlCredenciales.TxtIndicadorCred.setText("Usted es un propietario");
+
+                super.stop();//detener el lector
+
+                Timer timer = new Timer();
+                TimerTask procesos = new TimerTask() {
+                    @Override
+                    public void run() {//subProceso aca
+                        resetInisioSesion();
+                    }
+                };
+                timer.schedule(procesos, TIEMPO_ESPERA);
+            }
+        } else if (formulario.RBtnAccesoSistema.isSelected()) {//si se quiere acceder al sistema
+
+            if (personal.getPrivilegio().equals("Admin") || personal.getPrivilegio().equals("Propietario")) {
+
+                this.formulario.btnAccesoAlter.setEnabled(false);//desactivar el boton
+                super.stop();//detener el lector
+
+                this.pnlHuella.TxtIndicador.setForeground(Color.GREEN);
+                this.pnlHuella.TxtIndicador.setText("Acceso Concedido");
+                this.pnlCredenciales.TxtIndicadorCred.setForeground(Color.GREEN);
+                this.pnlCredenciales.TxtIndicadorCred.setText("Acceso Concedido");
+
+                Timer timer = new Timer();
+                TimerTask procesos = new TimerTask() {
+                    @Override
+                    public void run() {//subProceso aca
+                        iniciarVentanaPrincipal();//iniciar la ventana segun privilegio
+
+                    }
+                };
+                timer.schedule(procesos, TIEMPO_ESPERA);
+
+            } else {
+                this.pnlHuella.TxtIndicador.setForeground(Color.RED);
+                this.pnlHuella.TxtIndicador.setText("Acceso denegado");
+                this.pnlCredenciales.TxtIndicadorCred.setForeground(Color.RED);
+                this.pnlCredenciales.TxtIndicadorCred.setText("Acceso denegado");
+
+                Timer timer = new Timer();
+                TimerTask procesos = new TimerTask() {
+                    @Override
+                    public void run() {//subProceso aca
+                        resetInisioSesion();
+                    }
+                };
+                timer.schedule(procesos, TIEMPO_ESPERA);
+            }
+
+        }
     }
 
     private void identificarPersona(DPFPSample muestra)//para buscar la huella que se capturo
@@ -166,7 +265,6 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
                     this.personal.setPrivilegio(consulta.getResultadoConsulta().getString("Privilegio"));
                     this.personal.setNombre(consulta.getResultadoConsulta().getString("Nombre"));
                     this.personal.setApellidos(consulta.getResultadoConsulta().getString("Apellidos"));
-                    
 
                     System.out.println("La huella es de: " + personal.getNombre());
 
@@ -177,18 +275,10 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
                     //poner imagen 
                     this.pnlHuella.LblHuella.setIcon(new ImageIcon(getClass()
                             .getResource("/Img/HuellaReconocida.png")));
+                    conectar.cerrar();
+                    Marcaje_O_Acceso();
 
-                    super.stop();//detener el lector
-
-                    this.formulario.btnAccesoAlter.setEnabled(false);//desactivar el boton
-
-                    if (personal.getPrivilegio().equals("Admin")) {
-
-                        //el boton de acceso se activa solo si es admin
-                        this.formulario.BtnAccesoSistema.setVisible(true);
-                    }
-
-                    return;//romper el ciclo y retorna
+                    return;//romper el ciclo 
 
                 } else {
 
@@ -203,6 +293,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
             //si no se encuentran datos que coincidan, entonces llega hasta aca
             //y se hace la consulta en la tabla propietarios
+            //conectar = new Conexion("datos/registro");
             consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Propietarios");
 
             consulta.consultar("Usuarios.DPI, Usuarios.Contrasenia,Usuarios.Privilegio, Usuarios.Huella, Propietarios.Nombre, "
@@ -230,15 +321,12 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
                     //poner imagen 
                     this.pnlHuella.LblHuella.setIcon(new ImageIcon(getClass()
                             .getResource("/Img/HuellaReconocida.png")));
-
-                    super.stop();//detener el lector
-
-                    this.formulario.btnAccesoAlter.setEnabled(false);//desactivar el boton
+                    conectar.cerrar();
+                    Marcaje_O_Acceso();
 
                     //se activa boton de acceso al sistema
-                    this.formulario.BtnAccesoSistema.setVisible(true);
-
-                    return;//romper el ciclo y retorna
+                    // this.formulario.BtnAccesoSistema.setVisible(true);
+                    return;//romper el ciclo
 
                 } else {
 
@@ -254,7 +342,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
         } catch (SQLException ex) {
             System.err.print("Error al consultar los datos: " + ex.getMessage());
         } finally {
-            conectar.cerrar();//cerrar la conexion
+            conectar.cerrar();
             conectar = null;
             consulta = null;
             System.gc();
@@ -268,7 +356,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
         ClaseConsultar consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Empleados");
 
         consulta.consultar("Usuarios.DPI, Usuarios.NombreUsuario, Usuarios.Contrasenia,"
-                + "Usuarios.Privilegio, Empleados.Nombre, Empleados.Apellidos", 
+                + "Usuarios.Privilegio, Empleados.Nombre, Empleados.Apellidos",
                 "Usuarios.DPI", " = ", "Empleados.Usuarios_DPI");//obtener todo esto de la tabla
 
         try {
@@ -288,17 +376,14 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
                     this.personal.setNombre(consulta.getResultadoConsulta().getString("Nombre"));
                     this.personal.setApellidos(consulta.getResultadoConsulta().getString("Apellidos"));
 
-                    this.formulario.btnAccesoAlter.setEnabled(false);//desactivar el boton acceso alternativo
-
-                    if (personal.getPrivilegio().equals("Admin")) {
-                        //el boton de acceso se activa solo si es admin
-                        this.formulario.BtnAccesoSistema.setVisible(true);
-                    }
-                    this.pnlCredenciales.BtbEntrar.setEnabled(false);
+                    conectar.cerrar();
+                    Marcaje_O_Acceso();
 
                     return;//romper el ciclo
 
                 } else {
+                    this.pnlCredenciales.TxtIndicadorCred.setForeground(Color.RED);
+                    this.pnlCredenciales.TxtIndicadorCred.setText("Credenciales Incorrectos");
                     System.out.println("Acceso denegado");
                 }
             }
@@ -308,7 +393,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
             consulta.consultar("Usuarios.DPI, Usuarios.NombreUsuario, Usuarios.Contrasenia,"
                     + "Usuarios.Privilegio, Propietarios.Nombre, Propietarios.Apellidos",
-                    "Usuarios.DPI" , " = " , "Propietarios.Usuarios_DPI");//obtener todo esto de la tabla
+                    "Usuarios.DPI", " = ", "Propietarios.Usuarios_DPI");//obtener todo esto de la tabla
 
             while (consulta.getResultadoConsulta().next())//recorrer los datos
             {
@@ -325,14 +410,14 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
                     this.personal.setNombre(consulta.getResultadoConsulta().getString("Nombre"));
                     this.personal.setApellidos(consulta.getResultadoConsulta().getString("Apellidos"));
 
-                    this.formulario.btnAccesoAlter.setEnabled(false);//desactivar el boton acceso alternativo
-
-                    this.formulario.BtnAccesoSistema.setVisible(true);
-                    this.pnlCredenciales.BtbEntrar.setEnabled(false);
+                    conectar.cerrar();
+                    Marcaje_O_Acceso();
 
                     return;//romper el ciclo
 
                 } else {
+                    this.pnlCredenciales.TxtIndicadorCred.setForeground(Color.RED);
+                    this.pnlCredenciales.TxtIndicadorCred.setText("Credenciales Incorrectos");
                     System.out.println("Acceso denegado");
                 }
             }
@@ -360,6 +445,9 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
         this.pnlHuella.TxtNombreUsuario.setText("- - - -");//poner texto inicial
         this.pnlHuella.LblHuella.setIcon(new ImageIcon(getClass()
                 .getResource("/Img/Huella.png")));
+        this.pnlHuella.TxtIndicador.setText(null);
+        this.pnlCredenciales.TxtIndicadorCred.setText(null);
+
         //pasar al panel de huella
         this.cambiar.cambiarPNL(formulario.PnlCentral, pnlHuella);
         super.start();
@@ -372,6 +460,93 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
         ////////volver a hacer visible///////////
         this.formulario.setVisible(true);
+
+        this.formulario.RBtnMarcarIO.setSelected(true);//seleccion por defecto
+    }
+
+    private void marcarIO() {//servira para marcar las entradas y salidas
+
+        System.out.println("Marcar IO");
+        Date date = new Date();
+        DateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+        String Fecha = fecha.format(date);//obtener la fecha actual
+
+        Conexion con = new Conexion("datos/registro");
+        ClaseConsultar consulta = new ClaseConsultar(con.conectar(), "EntradasSalidas");
+        consulta.consultar("Fecha,Estado,Empleados_Usuarios_DPI", "Empleados_Usuarios_DPI",
+                "=", String.valueOf(personal.getDPI()));
+
+        try {
+            boolean esEntrada = true;
+
+            while (consulta.getResultadoConsulta().next()) {
+
+                /*
+                 *  se comprueba si es la fecha actual, de serla
+                 * entonces se dice que es una registro de SALIDA
+                 * y se hace un UPDATE
+                 */
+                if (consulta.getResultadoConsulta().getString("Fecha").equals(Fecha)
+                        && consulta.getResultadoConsulta().getInt("Estado") != 2) {
+
+                    con.cerrar();
+                    con = new Conexion("datos/registro");
+                    //REGISTRO DE SALIDA
+                    esEntrada = false;
+                    DateFormat hora = new SimpleDateFormat("HH:mm");
+                    String horaActual = hora.format(date);//hora actual
+
+                    ClaseModificar mod = new ClaseModificar(con.conectar(), "EntradasSalidas");
+                    mod.agregarValor("Salida", horaActual, "S");
+                    mod.agregarValor("Estado", 2, "S");
+                    mod.setDonde("Fecha", "'" + Fecha + "'" + " AND Empleados_Usuarios_DPI = "
+                            + String.valueOf(personal.getDPI()));
+                    if (mod.ejecutarSQL()) {//ejecutar UPDATE
+                        this.pnlHuella.TxtIndicador.setForeground(Color.ORANGE);
+                        this.pnlHuella.TxtIndicador.setText("Hasta Pronto...");
+                        this.pnlCredenciales.TxtIndicadorCred.setForeground(Color.ORANGE);
+                        this.pnlCredenciales.TxtIndicadorCred.setText("Hasta Pronto...");
+                    }
+                    break;
+                } else {
+                    esEntrada = false;
+                    this.pnlHuella.TxtIndicador.setForeground(Color.ORANGE);
+                    this.pnlHuella.TxtIndicador.setText("Ya marcó I/O");
+                    this.pnlCredenciales.TxtIndicadorCred.setForeground(Color.ORANGE);
+                    this.pnlCredenciales.TxtIndicadorCred.setText("Ya marcó I/O");
+                }
+            }//termina while
+
+            con.cerrar();
+
+            if (esEntrada) {
+                //REGISTRO DE ENTRADA
+                DateFormat hora = new SimpleDateFormat("HH:mm");
+                String horaActual = hora.format(date);//hora actual
+
+                //es un registro de ENTRADA entonces se hace in INSERT
+                con = new Conexion("datos/registro");
+                ClaseInsertar ins = new ClaseInsertar(con.conectar(), "EntradasSalidas");
+                ins.agregarValor("Fecha", Fecha, "S");
+                ins.agregarValor("Entrada", horaActual, "S");
+                ins.agregarValor("Salida", "--:--", "S");//aun no se marca la salida
+                ins.agregarValor("Estado", 1, "I");
+                ins.agregarValor("Empleados_Usuarios_DPI", personal.getDPI(), "L");
+                if (ins.ejecutarSQL()) {
+                    this.pnlHuella.TxtIndicador.setForeground(Color.GREEN);
+                    this.pnlHuella.TxtIndicador.setText("¡Bienvenido!");
+                    this.pnlCredenciales.TxtIndicadorCred.setForeground(Color.GREEN);
+                    this.pnlCredenciales.TxtIndicadorCred.setText("¡Bienvenido!");
+
+                }
+                con.cerrar();
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al operar en EntradasSalidas: " + e.getMessage());
+        } finally {
+            con.cerrar();
+        }
+
     }
 
     @Override
@@ -402,7 +577,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
         if (e.getSource() == formulario.BtnAccesoSistema) {//boton de acceso al sistema
 
-            iniciarVentanaPrincipal();//iniciar la ventana segun privilegio
+            //iniciarVentanaPrincipal();//iniciar la ventana segun privilegio
         }
 
     }

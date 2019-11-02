@@ -91,7 +91,7 @@ public class ClaseModificar {
     public void setDonde(String campo, String valBuscar) {
 
         this.SQL.append(" WHERE ").append(campo).append(" = ")
-                .append("'").append(valBuscar).append("'").append(";");//completando Sentencia SQL
+                .append("").append(valBuscar).append("").append(";");//completando Sentencia SQL
 
     }
 

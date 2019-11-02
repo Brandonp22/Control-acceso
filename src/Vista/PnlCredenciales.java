@@ -32,7 +32,7 @@ public class PnlCredenciales extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         txtPassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        TxtIndicadorCred = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(38, 50, 56));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -84,18 +84,19 @@ public class PnlCredenciales extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 190, 30));
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("INDICADOR");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 80, -1));
+        TxtIndicadorCred.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        TxtIndicadorCred.setForeground(new java.awt.Color(255, 255, 255));
+        TxtIndicadorCred.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        TxtIndicadorCred.setText("INDICADOR");
+        add(TxtIndicadorCred, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 190, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BtbEntrar;
+    public javax.swing.JLabel TxtIndicadorCred;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    public javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
