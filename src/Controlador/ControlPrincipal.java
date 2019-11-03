@@ -6,6 +6,7 @@ package Controlador;
 import Modelo.Conexion;
 import Modelo.Personal;
 import Vista.FramePrincipal;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -66,10 +67,17 @@ public class ControlPrincipal implements ActionListener {
         this.cambiar.cambiarPNL(ventanaPrincipal.PanelMinCerrar,
                 new ControlCerrarMinimizar(ventanaPrincipal).getPnlMC());
 
-        
         this.ventanaPrincipal.setIconImage(new ImageIcon(getClass().getResource("/Img/Logo.png")).getImage());
 
         comprobarExisteUsuario();
+    }
+
+    public void DibujarImagen(Image image, javax.swing.JLabel label) {//funcion para setear imagen en label
+
+        label.setIcon(new ImageIcon(
+                image.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT)
+        )
+        );
     }
 
     //este metodo prepara todo para mostrar el frame principal
@@ -97,6 +105,9 @@ public class ControlPrincipal implements ActionListener {
                 .getResource("/Img/ControlAcceso" + this.personal.getPrivilegio() + ".png")));
 
         this.ventanaPrincipal.panelContenedor.removeAll();//remover el contenido del panel 
+
+        DibujarImagen(new ImageIcon(personal.getFoto()).getImage(), ventanaPrincipal.LblFotoUsuario);
+        this.ventanaPrincipal.lblNombreUsuario.setText(personal.getNombre());
         //this.ventanaPrincipal.panelContenedor.revalidate();
         //this.ventanaPrincipal.panelContenedor.repaint();
 
@@ -106,7 +117,6 @@ public class ControlPrincipal implements ActionListener {
         * componentes son visibles dependiendo del privilegio
          */
         //this.registroEmp = new ControlRegistroEmpleado(this,this.personal);
-        
         this.ventanaPrincipal.setVisible(true);
 
     }
@@ -314,31 +324,28 @@ public class ControlPrincipal implements ActionListener {
                 Conexion conec = new Conexion("datos/registro");
 
                 JasperReport reporte = null;//creamos la variable Jasreport reporte
-                
+
                 String path = "";
-                
-                if(this.CtrlBarraBTN.getBotonPulsado().equals("Empleado")){
+
+                if (this.CtrlBarraBTN.getBotonPulsado().equals("Empleado")) {
                     path = "src/Reportes/Empleados.jasper";//ruta del reporte
                 }
-                if(this.CtrlBarraBTN.getBotonPulsado().equals("Admin")){
+                if (this.CtrlBarraBTN.getBotonPulsado().equals("Admin")) {
                     path = "src/Reportes/Admin.jasper";//ruta del reporte
                 }
-                if(this.CtrlBarraBTN.getBotonPulsado().equals("AreaTrabajo")){
+                if (this.CtrlBarraBTN.getBotonPulsado().equals("AreaTrabajo")) {
                     path = "src/Reportes/AreasTrabajo.jasper";//ruta del reporte
                 }
-                if(this.CtrlBarraBTN.getBotonPulsado().equals("EmpleadoHistorial")){
+                if (this.CtrlBarraBTN.getBotonPulsado().equals("EmpleadoHistorial")) {
                     path = "src/Reportes/HistorialHorasEmp.jasper";//ruta del reporte
                 }
-                if(this.CtrlBarraBTN.getBotonPulsado().equals("AdminHistorial")){
+                if (this.CtrlBarraBTN.getBotonPulsado().equals("AdminHistorial")) {
                     path = "src/Reportes/HistorialHorasAdmin.jasper";//ruta del reporte
-                    
+
                 }
-                
 
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path);//igualamos la variable reporte y le enviamos el path
 
-                
-                
                 JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conec.conectar());//caste y lo hacemos a jaspereport
 
                 JasperViewer view = new JasperViewer(jprint, false);//llenado del reporte
@@ -346,7 +353,7 @@ public class ControlPrincipal implements ActionListener {
                 view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);//habilitmos la x para salir
 
                 view.setTitle("Reportes de Empleados");
-                
+
                 view.setIconImage(new ImageIcon(getClass().getResource("/Img/Logo.png")).getImage());
 
                 view.setVisible(true);

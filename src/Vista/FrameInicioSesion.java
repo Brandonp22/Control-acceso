@@ -87,8 +87,14 @@ public class FrameInicioSesion extends javax.swing.JFrame {
         BtnAccesoSistema.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlSistema3.png"))); // NOI18N
         BtnAccesoSistema.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAccesoAlSistema1.png"))); // NOI18N
 
+        RBtnMarcarIO.setBackground(new java.awt.Color(38, 50, 56));
+        RBtnMarcarIO.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        RBtnMarcarIO.setForeground(new java.awt.Color(255, 255, 255));
         RBtnMarcarIO.setText("Marcar I/O");
 
+        RBtnAccesoSistema.setBackground(new java.awt.Color(38, 50, 56));
+        RBtnAccesoSistema.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        RBtnAccesoSistema.setForeground(new java.awt.Color(255, 255, 255));
         RBtnAccesoSistema.setText("Acceso al Sistema");
 
         javax.swing.GroupLayout PnlInferiorLayout = new javax.swing.GroupLayout(PnlInferior);
@@ -96,11 +102,11 @@ public class FrameInicioSesion extends javax.swing.JFrame {
         PnlInferiorLayout.setHorizontalGroup(
             PnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlInferiorLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap()
                 .addGroup(PnlInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RBtnAccesoSistema)
                     .addComponent(RBtnMarcarIO))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(BtnAccesoSistema)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAccesoAlter)

@@ -49,7 +49,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
     private Personal personal = null;
 
     private final long TIEMPO_ESPERA = 2500;
-    
+
     private ControlCerrarMinimizar ctrlCM = null;
 
     /////////cobstructor/////////
@@ -248,8 +248,8 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
         ClaseConsultar consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Empleados");
 
-        consulta.consultar("Usuarios.DPI,Usuarios.Contrasenia, Usuarios.Privilegio, Usuarios.Huella, Empleados.Nombre, "
-                + "Empleados.Apellidos", "Usuarios.DPI", "=", "Empleados.Usuarios_DPI");
+        consulta.consultar("Usuarios.DPI,Usuarios.Contrasenia, Usuarios.Privilegio, Usuarios.Huella, Usuarios.Foto,"
+                + "Empleados.Nombre, Empleados.Apellidos", "Usuarios.DPI", "=", "Empleados.Usuarios_DPI");
 
         try {
 
@@ -263,6 +263,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
                     this.personal.setDPI(consulta.getResultadoConsulta().getLong("DPI"));
                     this.personal.setContrasenia(consulta.getResultadoConsulta().getString("Contrasenia"));
                     this.personal.setPrivilegio(consulta.getResultadoConsulta().getString("Privilegio"));
+                    this.personal.setFoto(consulta.getResultadoConsulta().getBytes("Foto"));
                     this.personal.setNombre(consulta.getResultadoConsulta().getString("Nombre"));
                     this.personal.setApellidos(consulta.getResultadoConsulta().getString("Apellidos"));
 
@@ -296,8 +297,8 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
             //conectar = new Conexion("datos/registro");
             consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Propietarios");
 
-            consulta.consultar("Usuarios.DPI, Usuarios.Contrasenia,Usuarios.Privilegio, Usuarios.Huella, Propietarios.Nombre, "
-                    + "Propietarios.Apellidos", "Usuarios.DPI", "=", "Propietarios.Usuarios_DPI");//obtener 
+            consulta.consultar("Usuarios.DPI, Usuarios.Contrasenia,Usuarios.Privilegio, Usuarios.Huella, Usuarios.Foto,"
+                    + "Propietarios.Nombre, Propietarios.Apellidos", "Usuarios.DPI", "=", "Propietarios.Usuarios_DPI");//obtener 
 
             while (consulta.getResultadoConsulta().next()) {//iterear en cada resultado
 
@@ -309,6 +310,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
                     this.personal.setDPI(consulta.getResultadoConsulta().getLong("DPI"));
                     this.personal.setContrasenia(consulta.getResultadoConsulta().getString("Contrasenia"));
                     this.personal.setPrivilegio(consulta.getResultadoConsulta().getString("Privilegio"));
+                    this.personal.setFoto(consulta.getResultadoConsulta().getBytes("Foto"));
                     this.personal.setNombre(consulta.getResultadoConsulta().getString("Nombre"));
                     this.personal.setApellidos(consulta.getResultadoConsulta().getString("Apellidos"));
 
@@ -355,7 +357,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
         Conexion conectar = new Conexion("datos/registro");
         ClaseConsultar consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Empleados");
 
-        consulta.consultar("Usuarios.DPI, Usuarios.NombreUsuario, Usuarios.Contrasenia,"
+        consulta.consultar("Usuarios.DPI, Usuarios.NombreUsuario, Usuarios.Contrasenia, Usuarios.Foto,"
                 + "Usuarios.Privilegio, Empleados.Nombre, Empleados.Apellidos",
                 "Usuarios.DPI", " = ", "Empleados.Usuarios_DPI");//obtener todo esto de la tabla
 
@@ -372,7 +374,9 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
                     //rellenar los datos
                     this.personal.setDPI(consulta.getResultadoConsulta().getLong("DPI"));
+                    this.personal.setContrasenia(consulta.getResultadoConsulta().getString("Contrasenia"));
                     this.personal.setPrivilegio(consulta.getResultadoConsulta().getString("Privilegio"));
+                    this.personal.setFoto(consulta.getResultadoConsulta().getBytes("Foto"));
                     this.personal.setNombre(consulta.getResultadoConsulta().getString("Nombre"));
                     this.personal.setApellidos(consulta.getResultadoConsulta().getString("Apellidos"));
 
@@ -391,7 +395,7 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
             //si no se encuentraron datos en la primera consulta entoncs llega hasta aca
             consulta = new ClaseConsultar(conectar.conectar(), "Usuarios,Propietarios");
 
-            consulta.consultar("Usuarios.DPI, Usuarios.NombreUsuario, Usuarios.Contrasenia,"
+            consulta.consultar("Usuarios.DPI, Usuarios.NombreUsuario, Usuarios.Contrasenia, Usuarios.Foto,"
                     + "Usuarios.Privilegio, Propietarios.Nombre, Propietarios.Apellidos",
                     "Usuarios.DPI", " = ", "Propietarios.Usuarios_DPI");//obtener todo esto de la tabla
 
@@ -406,7 +410,9 @@ public class ControlInisioSesion extends ClaseLector implements ActionListener {
 
                     //rellenar los datos
                     this.personal.setDPI(consulta.getResultadoConsulta().getLong("DPI"));
+                    this.personal.setContrasenia(consulta.getResultadoConsulta().getString("Contrasenia"));
                     this.personal.setPrivilegio(consulta.getResultadoConsulta().getString("Privilegio"));
+                    this.personal.setFoto(consulta.getResultadoConsulta().getBytes("Foto"));
                     this.personal.setNombre(consulta.getResultadoConsulta().getString("Nombre"));
                     this.personal.setApellidos(consulta.getResultadoConsulta().getString("Apellidos"));
 

@@ -147,7 +147,7 @@ public class ControlTablaDatos extends PnlTablaDatos implements ActionListener, 
 
             DefaultTableModel modelo = (DefaultTableModel) this.Datos.getModel();//cast el modelo de jtable
 
-            int DPI = (int) modelo.getValueAt(Datos.getSelectedRow(), 0);//obtener el DPI
+            long DPI = (long)modelo.getValueAt(Datos.getSelectedRow(), 0);//obtener el DPI
 
             JPanel panel = new JPanel();
             JLabel label = new JLabel("Ingrese su Contraseña:");

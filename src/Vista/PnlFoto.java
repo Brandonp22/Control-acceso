@@ -47,29 +47,35 @@ public class PnlFoto extends javax.swing.JPanel {
             .addGap(0, 296, Short.MAX_VALUE)
         );
 
-        BtnAceptarFoto.setText("Aceptar");
+        BtnAceptarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAceptar2.png"))); // NOI18N
+        BtnAceptarFoto.setBorder(null);
+        BtnAceptarFoto.setBorderPainted(false);
+        BtnAceptarFoto.setContentAreaFilled(false);
+        BtnAceptarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnAceptarFoto.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAceptar3.png"))); // NOI18N
+        BtnAceptarFoto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BtnAceptar1.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(BtnAceptarFoto)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(82, Short.MAX_VALUE)
                 .addComponent(LblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(183, 183, 183)
+                .addComponent(BtnAceptarFoto)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addComponent(LblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(41, 41, 41)
                 .addComponent(BtnAceptarFoto)
-                .addGap(28, 28, 28))
+                .addGap(29, 29, 29))
         );
     }// </editor-fold>//GEN-END:initComponents
 
